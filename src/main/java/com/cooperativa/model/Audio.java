@@ -39,10 +39,6 @@ public abstract class Audio {
     return tipo;
   }
 
-  public void setTipo(String tipo) {
-    this.tipo = tipo;
-  }
-
   public int getAlturaInicio() {
     return alturaInicio;
   }
