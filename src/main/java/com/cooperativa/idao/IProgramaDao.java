@@ -9,6 +9,6 @@ package com.cooperativa.idao;
  *
  * @author ftorrejon
  */
-public interface IClienteDao {
+public interface IProgramaDao {
   
 }

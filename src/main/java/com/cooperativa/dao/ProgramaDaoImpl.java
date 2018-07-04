@@ -9,6 +9,6 @@ package com.cooperativa.dao;
  *
  * @author ftorrejon
  */
-public class ClienteDaoImpl {
+public class ProgramaDaoImpl {
   
 }

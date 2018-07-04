@@ -7,28 +7,10 @@ package com.connection;
 
 /**
  *
- * @author ftorrejon
+ * @author Felipe Torrejon (ftorrejon@cooperativa.cl)
  */
-
-import com.mongodb.ConnectionString;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoClient;
-import com.mongodb.ServerAddress;
-import com.mongodb.client.MongoDatabase;
-import com.mongodb.client.MongoCollection;
-
-import org.bson.Document;
-import java.util.Arrays;
-import com.mongodb.Block;
-import com.mongodb.MongoClientSettings;
-
-import com.mongodb.client.MongoCursor;
-import static com.mongodb.client.model.Filters.*;
-import com.mongodb.client.result.DeleteResult;
-import static com.mongodb.client.model.Updates.*;
-import com.mongodb.client.result.UpdateResult;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Conexion {
   public static MongoClient conectar(){
@@ -43,7 +25,6 @@ public class Conexion {
     } catch (Exception e){
       System.out.println("No se pudo conectar a la base de datos");
     }
-    
     return mongoClient;
     
   }
