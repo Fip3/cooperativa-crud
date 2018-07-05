@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.cooperativa.dao;
+package com.cooperativa.controller;
 
 /**
  *
  * @author ftorrejon
  */
-public class ProgramaDaoImpl {
+public class ControllerArchivo {
   
 }

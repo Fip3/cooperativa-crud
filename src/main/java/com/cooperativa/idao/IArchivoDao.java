@@ -5,16 +5,16 @@
  */
 package com.cooperativa.idao;
 
-import com.cooperativa.model.Programa;
+import com.cooperativa.model.Archivo;
 import java.util.List;
 
 /**
  *
  * @author Felipe Torrejon (ftorrejon@cooperativa.cl)
  */
-public interface IProgramaDao {
-  public boolean registrar(Programa programa);
-  public List<Programa> obtener();
-  public boolean actualizar(Programa programa);
-  public boolean eliminar(Programa programa);
+public interface IArchivoDao {
+  public boolean registrar(Archivo archivo);
+  public List<Archivo> obtener();
+  public boolean actualizar(Archivo archivo);
+  public boolean eliminar(Archivo archivo);
 }

@@ -22,6 +22,7 @@ public class Conexion {
       if (mongoClient != null){
         System.out.println("Conectado");
       }
+      
     } catch (Exception e){
       System.out.println("No se pudo conectar a la base de datos");
     }
