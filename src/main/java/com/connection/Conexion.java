@@ -9,16 +9,15 @@ package com.connection;
  *
  * @author Felipe Torrejon (ftorrejon@cooperativa.cl)
  */
-import com.mongodb.client.MongoClients;
-import com.mongodb.client.MongoClient;
+import com.mongodb.MongoClient;
 
 public class Conexion {
-  public static MongoClient conectar(){
+  public MongoClient conectar(){
     MongoClient mongoClient = null;
     String url = "mongodb://localhost:27017";
     
     try {
-      mongoClient = MongoClients.create(url);
+      mongoClient = new MongoClient(url);
       if (mongoClient != null){
         System.out.println("Conectado");
       }
