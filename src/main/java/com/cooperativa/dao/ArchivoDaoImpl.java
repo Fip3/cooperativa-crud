@@ -13,6 +13,7 @@ import java.util.List;
 import com.cooperativa.idao.IArchivoDao;
 import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.Morphia;
+import org.mongodb.morphia.query.Query;
 
 /**
  *
@@ -36,7 +37,7 @@ public class ArchivoDaoImpl implements IArchivoDao {
       datastore.ensureIndexes(true);
       
       datastore.save(archivo);
-      return true;
+      registrar = true;
     
     } catch (MongoException e) {
       System.out.println("ERROR: Clase ArchivoDaoImpl, método registrar");
@@ -51,7 +52,27 @@ public class ArchivoDaoImpl implements IArchivoDao {
 
   @Override
   public List<Archivo> obtener() {
-    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    Conexion conexion = new Conexion();
+    MongoClient cliente = null;
+    Morphia morphia = null;
+    List<Archivo> resultado = null;
+    
+    try {
+      cliente = conexion.conectar();
+      morphia = new Morphia();
+      morphia.mapPackage("com.cooperativa.model");
+      final Datastore datastore = morphia.createDatastore(cliente, "cooperativa");
+      
+      final Query<Archivo> consulta = datastore.createQuery(Archivo.class);
+      resultado = consulta.asList();
+      
+      
+    } catch (MongoException e){
+      System.out.println("ERROR: Clase ArchivoDaoImpl, método obtener");
+      e.printStackTrace();
+    }
+    
+    return resultado;
   }
 
   @Override
