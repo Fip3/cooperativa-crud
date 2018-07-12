@@ -8,12 +8,11 @@ package com.cooperativa.dao;
 import com.connection.Conexion;
 import com.cooperativa.model.*;
 import com.mongodb.MongoException;
-import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
+import com.mongodb.MongoClient;
 import java.util.List;
-import org.bson.Document;
 import com.cooperativa.idao.IArchivoDao;
+import org.mongodb.morphia.Datastore;
+import org.mongodb.morphia.Morphia;
 
 /**
  *
@@ -25,19 +24,26 @@ public class ArchivoDaoImpl implements IArchivoDao {
   public boolean registrar(Archivo archivo) {
     boolean registrar = false;
     
-    MongoClient client = null;
-    MongoDatabase database = null;
-    MongoCollection<Document> collection = null;
-    Document document = null;
+    Conexion conexion = new Conexion();
+    MongoClient cliente = null;
+    Morphia morphia = null;
     
     try {
-      client = Conexion.conectar();
-      database = client.getDatabase("cooperativa");
-      collection = database.getCollection("archivos");      
+      cliente = conexion.conectar();
+      morphia = new Morphia();
+      morphia.mapPackage("com.cooperativa.model");
+      final Datastore datastore = morphia.createDatastore(cliente, "cooperativa");
+      datastore.ensureIndexes(true);
       
+      datastore.save(archivo);
+      return true;
+    
     } catch (MongoException e) {
-      
+      System.out.println("ERROR: Clase ArchivoDaoImpl, método registrar");
+      e.printStackTrace();
     }
+    
+    cliente.close();
     
     return registrar;
     
