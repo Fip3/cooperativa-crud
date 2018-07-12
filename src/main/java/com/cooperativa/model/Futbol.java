@@ -6,6 +6,8 @@
 package com.cooperativa.model;
 
 import java.util.ArrayList;
+import java.util.List;
+import org.mongodb.morphia.annotations.Embedded;
 
 /**
  *
@@ -16,7 +18,9 @@ public class Futbol extends Deporte{
   private String equipoLocal;
   private String equipoVisita;
   private String marcador;
-  private ArrayList<Gol> gol;
+  
+  @Embedded
+  private List<Gol> gol = new ArrayList<>();
 
   public Futbol() {
     super("Futbol");
@@ -46,13 +50,17 @@ public class Futbol extends Deporte{
     this.marcador = marcador;
   }
   
+  public List<Gol> getGol() {
+    return gol;
+  }
+  
   /**
    * Método para agregar Gol a la lista de Goles.
    * @param j - String que se almacenará en la lista de goles.
    * @return boolean - Valor que verifica que el String se insertó correctamente en la lista.
    */
   public boolean agregarGol(Gol g) {
-    return true;
+    return this.gol.add(g);
   }
   
   

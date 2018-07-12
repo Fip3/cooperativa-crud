@@ -6,6 +6,9 @@
 package com.cooperativa.model;
 
 import java.util.ArrayList;
+import java.util.List;
+import org.mongodb.morphia.annotations.Embedded;
+import org.mongodb.morphia.annotations.Id;
 
 /**
  *
@@ -13,15 +16,23 @@ import java.util.ArrayList;
  */
 public class Archivo {
 
+  @Id
   private String id;
+  
   private String fechaIngreso;
   private String responsableDigitalizacion;
   private String codigoSoporte;
   private String tipoSoporte;
   private String descripcionExterior;
-  private ArrayList<Programa> programas;
+  
+  @Embedded
+  private List<Programa> programas;
+  
   private String nombreArchivo;
-  private ArrayList<Cambio> historialCambios;
+  
+  @Embedded
+  private List<Cambio> historialCambios;
+  
   private int tamanhoArchivo;
   private int duracionArchivo;
   private Formato formatoArchivo;
@@ -118,11 +129,11 @@ public class Archivo {
     this.fechaDigitalizacion = fechaDigitalizacion;
   }
 
-  public ArrayList<Programa> getProgramas() {
+  public List<Programa> getProgramas() {
     return programas;
   }
 
-  public ArrayList<Cambio> getHistorialCambios() {
+  public List<Cambio> getHistorialCambios() {
     return historialCambios;
   }
   
@@ -132,7 +143,7 @@ public class Archivo {
    * @return boolean - Valor que confirma si el programa se insertó exitosamente en el listado de programas.
    */
   public boolean agregarPrograma(Programa p){
-    return true;
+    return this.programas.add(p);
   }
   /**
    * Método para agregar un cambio a la lista de cambios realizados sobre el registro del Archivo en la base de datos.
@@ -140,22 +151,34 @@ public class Archivo {
    * @return boolean - Valor que confirma que el cambio se insertó exitosamente en el listado de cambios. 
    */
   public boolean agregarCambio (Cambio c){
-    return true;
+    return this.historialCambios.add(c);
   }
   /**
    * Método para calcular la duración real del material contenido en la lista de programas.
    * @return int - Devuelve el tiempo, en segundos, del material descrito en la lista de programas.
    */
   public int duracionReal() {
-    return 0;
+    int total = 0;
+    
+    for(Programa p: this.programas){
+      total =+ p.duracionPrograma();
+    }
+    
+    return total;
   }
   
   /**
-   * Método para conocer la cantidad de programas contenidos en el archivo.
-   * @return int - Devuelve la cantidad de programas descritos en el listado de programas.
+   * Método para conocer la cantidad de fragmentos contenidos en el archivo.
+   * @return int - Devuelve la cantidad de fragmentos descritos en el listado de programas.
    */
   public int numeroFragmentos() {
-    return 0;
+    int total = this.programas.size();
+    
+    for(Programa p: programas){
+      total =+ p.getFragmentos().size();
+    }
+    
+    return total;
   }
   
   

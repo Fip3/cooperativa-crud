@@ -6,6 +6,8 @@
 package com.cooperativa.model;
 
 import java.util.ArrayList;
+import java.util.List;
+import org.mongodb.morphia.annotations.Embedded;
 
 /**
  *
@@ -17,8 +19,13 @@ public class Programa {
   private int alturaInicio;
   private int alturaTermino;
   private String nombrePrograma;
-  private ArrayList<String> conductor;
-  private ArrayList<Audio> fragmentos;
+  
+  @Embedded
+  private List<String> conductor = new ArrayList<>();
+  
+  @Embedded
+  private List<Audio> fragmentos = new ArrayList<>();
+  
   private String fechaEmision;
 
   public Programa() {
@@ -64,11 +71,11 @@ public class Programa {
     this.fechaEmision = fechaEmision;
   }
 
-  public ArrayList<String> getConductor() {
+  public List<String> getConductor() {
     return conductor;
   }
 
-  public ArrayList<Audio> getFragmentos() {
+  public List<Audio> getFragmentos() {
     return fragmentos;
   }
   
@@ -77,7 +84,13 @@ public class Programa {
    * @return int - El valor, en segundos, de la duración del programa descrito.
    */
   public int duracionPrograma(){
-    return 0;
+    int total = 0;
+    
+    for(Audio a: fragmentos){
+      total =+ a.duracionFragmento();
+    }
+    
+    return total;
   }
   
   /**
@@ -86,7 +99,7 @@ public class Programa {
    * @return boolean - valor que confirma que el conductor se agregó exitosamente a la lista de conductores.
    */
   public boolean agregarConductor(String c){
-    return true;
+    return this.conductor.add(c);
   }
   
   /**
@@ -95,6 +108,7 @@ public class Programa {
    * @return boolean - valor que confirma que el audio se agregó exitosamente a la lista de fragmentos.
    */
   public boolean agregarFragmento(Audio f) {
-    return true;
+    return this.fragmentos.add(f);
   }
+  
 }

@@ -6,6 +6,8 @@
 package com.cooperativa.model;
 
 import java.util.ArrayList;
+import java.util.List;
+import org.mongodb.morphia.annotations.Embedded;
 
 /**
  *
@@ -13,10 +15,18 @@ import java.util.ArrayList;
  */
 public abstract class Deporte extends Audio{
   
-  private ArrayList<String> relator;
-  private ArrayList<String> locutorComercial;
-  private ArrayList<String> encargadoRedesSociales;
-  private ArrayList<String> reportero;
+  @Embedded
+  private List<String> relator = new ArrayList<>();
+  
+  @Embedded
+  private List<String> locutorComercial = new ArrayList<>();
+  
+  @Embedded
+  private List<String> encargadoRedesSociales = new ArrayList<>();
+  
+  @Embedded
+  private List<String> reportero = new ArrayList<>();
+  
   private String disciplina;
   private String competencia;
   private String lugar;
@@ -30,19 +40,19 @@ public abstract class Deporte extends Audio{
     this.disciplina = disciplina;
   }
 
-  public ArrayList<String> getRelator() {
+  public List<String> getRelator() {
     return relator;
   }
 
-  public ArrayList<String> getLocutorComercial() {
+  public List<String> getLocutorComercial() {
     return locutorComercial;
   }
 
-  public ArrayList<String> getEncargadoRedesSociales() {
+  public List<String> getEncargadoRedesSociales() {
     return encargadoRedesSociales;
   }
 
-  public ArrayList<String> getReportero() {
+  public List<String> getReportero() {
     return reportero;
   }
 

@@ -6,29 +6,36 @@
 package com.cooperativa.model;
 
 import java.util.ArrayList;
+import java.util.List;
+import org.mongodb.morphia.annotations.Embedded;
 
 /**
  *
  * @author Felipe Torrejon (ftorrejon@cooperativa.cl)
  */
 public class Entrevista extends Audio{
-  private ArrayList<String> periodista;
-  private ArrayList<Personaje> entrevistado;
-  private ArrayList<String> tema;
+  @Embedded
+  private List<String> periodista = new ArrayList<>();
+  
+  @Embedded
+  private List<Personaje> entrevistado = new ArrayList<>();
+  
+  @Embedded
+  private List<String> tema = new ArrayList<>();
 
   public Entrevista() {
     super("Entrevista");
   }
 
-  public ArrayList<String> getPeriodista() {
+  public List<String> getPeriodista() {
     return periodista;
   }
 
-  public ArrayList<Personaje> getEntrevistado() {
+  public List<Personaje> getEntrevistado() {
     return entrevistado;
   }
 
-  public ArrayList<String> getTema() {
+  public List<String> getTema() {
     return tema;
   }
   
@@ -38,7 +45,7 @@ public class Entrevista extends Audio{
    * @return boolean - Valor que verifica que el String se insertó correctamente en la lista.
    */
   public boolean agregarPeriodista(String p) {
-    return true;
+    return this.periodista.add(p);
   }
   
   /**
@@ -47,7 +54,7 @@ public class Entrevista extends Audio{
    * @return boolean - Valor que verifica que el String se insertó correctamente en la lista.
    */
   public boolean agregarEntrevistado(Personaje p) {
-    return true;
+    return this.entrevistado.add(p);
   }
   
   /**
@@ -56,7 +63,7 @@ public class Entrevista extends Audio{
    * @return boolean - Valor que confirma que el String se agregó satisfactoriamente  a la lista.
    */
   public boolean agregarTema(String t) {
-    return true;
+    return this.tema.add(t);
   }
   
 }

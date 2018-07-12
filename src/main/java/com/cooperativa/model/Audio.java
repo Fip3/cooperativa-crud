@@ -6,6 +6,8 @@
 package com.cooperativa.model;
 
 import java.util.ArrayList;
+import java.util.List;
+import org.mongodb.morphia.annotations.Embedded;
 
 /**
  *
@@ -14,10 +16,14 @@ import java.util.ArrayList;
 public abstract class Audio {
   
   private String idAudio;
+  
   private String tipo;
   private int alturaInicio;
   private int alturaTermino;
-  private ArrayList<String> palabrasClave;
+  
+  @Embedded
+  private List<String> palabrasClave = new ArrayList<>();
+  
   private String descripcion;
 
   public Audio() {
@@ -63,7 +69,7 @@ public abstract class Audio {
     this.descripcion = descripcion;
   }
 
-  public ArrayList<String> getPalabrasClave() {
+  public List<String> getPalabrasClave() {
     return palabrasClave;
   }
   
@@ -72,7 +78,7 @@ public abstract class Audio {
    * @return int - El valor, en segundos, de la duración del fragmento.
    */
   public int duracionFragmento(){
-    return 0;
+    return (this.alturaTermino - this.alturaInicio);
   }
   
   /**
@@ -81,7 +87,7 @@ public abstract class Audio {
    * @return boolean - El valor que confirma que la palabra clave se insertó exitosamente en la lista de palabras claves.
    */
   public boolean agregarPalabraClave(String pc){
-    return true;
+    return this.palabrasClave.add(pc);
   }
   
 }

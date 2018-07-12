@@ -6,13 +6,16 @@
 package com.cooperativa.model;
 
 import java.util.ArrayList;
+import java.util.List;
+import org.mongodb.morphia.annotations.Embedded;
 
 /**
  *
  * @author Felipe Torrejon (ftorrejon@cooperativa.cl)
  */
 public class Tenis extends Deporte{
-  private ArrayList<String> jugador;
+  @Embedded
+  private List<String> jugador = new ArrayList<>();
   private String marcador;
   private boolean dobles;
 
@@ -36,7 +39,7 @@ public class Tenis extends Deporte{
     this.dobles = dobles;
   }
 
-  public ArrayList<String> getJugador() {
+  public List<String> getJugador() {
     return jugador;
   }
   
@@ -46,7 +49,7 @@ public class Tenis extends Deporte{
    * @return boolean - Valor que verifica que el String se insertó correctamente en la lista.
    */
   public boolean agregarJugador(String j) {
-    return true;
+    return this.jugador.add(j);
   }
   
   

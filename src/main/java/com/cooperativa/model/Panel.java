@@ -6,6 +6,8 @@
 package com.cooperativa.model;
 
 import java.util.ArrayList;
+import java.util.List;
+import org.mongodb.morphia.annotations.Embedded;
 
 /**
  *
@@ -13,18 +15,21 @@ import java.util.ArrayList;
  */
 public class Panel extends Audio{
   
-  public ArrayList<String> panelista;
-  public ArrayList<String> tema;
+  @Embedded
+  public List<Personaje> panelista = new ArrayList<>();
+  
+  @Embedded
+  public List<String> tema = new ArrayList<>();
 
   public Panel() {
     super("Panel");
   }
 
-  public ArrayList<String> getPanelista() {
+  public List<Personaje> getPanelista() {
     return panelista;
   }
 
-  public ArrayList<String> getTema() {
+  public List<String> getTema() {
     return tema;
   }
   
@@ -34,7 +39,7 @@ public class Panel extends Audio{
    * @return boolean - Valor que verifica que el String se insertó correctamente en la lista.
    */
   public boolean agregarPanelista(Personaje p) {
-    return true;
+    return this.panelista.add(p);
   }
   
   /**

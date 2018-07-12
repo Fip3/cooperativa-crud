@@ -6,15 +6,23 @@
 package com.cooperativa.model;
 
 import java.util.ArrayList;
+import java.util.List;
+import org.mongodb.morphia.annotations.Embedded;
 
 /**
  *
  * @author Felipe Torrejon (ftorrejon@cooperativa.cl)
  */
 public class Informe extends Audio{
-  private ArrayList<String> periodista;
-  private ArrayList<Personaje> cunha;
-  private ArrayList<String> tema;
+  
+  @Embedded
+  private List<String> periodista = new ArrayList<>();
+  
+  @Embedded
+  private List<Personaje> cunha = new ArrayList<>();
+  
+  @Embedded
+  private List<String> tema = new ArrayList<>();
   private String lugar;
 
   public Informe() {
@@ -29,15 +37,15 @@ public class Informe extends Audio{
     this.lugar = lugar;
   }
 
-  public ArrayList<String> getPeriodista() {
+  public List<String> getPeriodista() {
     return periodista;
   }
 
-  public ArrayList<Personaje> getCunha() {
+  public List<Personaje> getCunha() {
     return cunha;
   }
 
-  public ArrayList<String> getTema() {
+  public List<String> getTema() {
     return tema;
   }
   
@@ -47,7 +55,7 @@ public class Informe extends Audio{
    * @return boolean - Valor que verifica que el String se insertó correctamente en la lista.
    */
   public boolean agregarPeriodista(String p){
-    return true;
+    return this.periodista.add(p);
   }
   
   /**
@@ -55,8 +63,8 @@ public class Informe extends Audio{
    * @param c - Personaje que se almacenará en la lista de cuñas.
    * @return boolean - Valor que verifica que el Personaje se insertó correctamente en la lista.
    */
-  public boolean agregarCunha(String c){
-    return true;
+  public boolean agregarCunha(Personaje c){
+    return this.cunha.add(c);
   }
   
   /**
@@ -65,7 +73,7 @@ public class Informe extends Audio{
    * @return boolean - Valor que confirma que el String se agregó satisfactoriamente  a la lista.
    */
   public boolean agregarTema(String t){
-    return true;
+    return this.tema.add(t);
   }
   
 }

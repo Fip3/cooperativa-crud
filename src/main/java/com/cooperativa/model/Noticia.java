@@ -6,19 +6,22 @@
 package com.cooperativa.model;
 
 import java.util.ArrayList;
+import java.util.List;
+import org.mongodb.morphia.annotations.Embedded;
 
 /**
  *
  * @author Felipe Torrejon (ftorrejon@cooperativa.cl)
  */
 public class Noticia extends Audio{
-  private ArrayList<String> tema;
+  @Embedded
+  private List<String> tema = new ArrayList<>();
 
   public Noticia() {
     super("Noticia");
   }
 
-  public ArrayList<String> getTema() {
+  public List<String> getTema() {
     return tema;
   }
   
@@ -28,7 +31,7 @@ public class Noticia extends Audio{
    * @return boolean - Valor que confirma que el String se agregó satisfactoriamente  a la lista.
    */
   public boolean agregarTema(String t) {
-    return true;
+    return this.tema.add(t);
   }
   
 }
