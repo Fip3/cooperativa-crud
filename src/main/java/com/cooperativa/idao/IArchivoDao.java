@@ -5,7 +5,7 @@
  */
 package com.cooperativa.idao;
 
-import com.cooperativa.model.Archivo;
+import com.cooperativa.model.*;
 import java.util.List;
 
 /**
@@ -14,7 +14,8 @@ import java.util.List;
  */
 public interface IArchivoDao {
   public boolean registrar(Archivo archivo);
-  public List<Archivo> obtener();
-  public boolean actualizar(Archivo archivo);
+  public List<Archivo> obtenerTodos();
+  public List<Archivo> buscar(String cadenaBusqueda);
+  public boolean actualizar(Archivo archivo, Programa programa, Audio audio);
   public boolean eliminar(Archivo archivo);
 }

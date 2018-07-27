@@ -51,7 +51,7 @@ public class ArchivoDaoImpl implements IArchivoDao {
   }
 
   @Override
-  public List<Archivo> obtener() {
+  public List<Archivo> obtenerTodos() {
     Conexion conexion = new Conexion();
     MongoClient cliente = null;
     Morphia morphia = null;
@@ -66,9 +66,8 @@ public class ArchivoDaoImpl implements IArchivoDao {
       final Query<Archivo> consulta = datastore.createQuery(Archivo.class);
       resultado = consulta.asList();
       
-      
     } catch (MongoException e){
-      System.out.println("ERROR: Clase ArchivoDaoImpl, método obtener");
+      System.out.println("ERROR: Clase ArchivoDaoImpl, método obtenerTodos");
       e.printStackTrace();
     }
     
@@ -76,14 +75,51 @@ public class ArchivoDaoImpl implements IArchivoDao {
   }
 
   @Override
-  public boolean actualizar(Archivo archivo) {
-    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+  public boolean actualizar(Archivo archivo, Programa programa, Audio audio) {
+    boolean actualizado = false;
+    Conexion conexion = new Conexion();
+    MongoClient cliente = null;
+    Morphia morphia = null;
+    
+    try {
+      
+    } catch (MongoException e) {
+      System.out.println("ERROR: Clase ArchivoDaoImpl, método actualizar");
+      e.printStackTrace();
+    }
+    
+    return actualizado;
   }
 
   @Override
+  public List<Archivo> buscar(String cadenaBusqueda) {
+    Conexion conexion = new Conexion();
+    MongoClient cliente = null;
+    Morphia morphia = null;
+    List<Archivo> resultado = null;
+    
+    try {
+      cliente = conexion.conectar();
+      morphia = new Morphia();
+      morphia.mapPackage("com.cooperativa.model");
+      final Datastore datastore = morphia.createDatastore(cliente, "cooperativa");
+      
+      final Query<Archivo> consulta = datastore.createQuery(Archivo.class);
+      
+      resultado = consulta
+              .search(cadenaBusqueda)
+              .asList();
+      
+    } catch (MongoException e){
+      System.out.println("ERROR: Clase ArchivoDaoImpl, método buscar");
+      e.printStackTrace();
+    }
+    
+    return resultado;
+  }
+  
+  @Override
   public boolean eliminar(Archivo archivo) {
     throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-  }
-
-  
+  } 
 }
