@@ -22,7 +22,7 @@ import org.mongodb.morphia.query.Query;
 public class ArchivoDaoImpl implements IArchivoDao {
 
   @Override
-  public boolean registrar(Archivo archivo) {
+  public boolean crearArchivo(Archivo archivo) {
     boolean registrar = false;
     
     Conexion conexion = new Conexion();
@@ -49,6 +49,28 @@ public class ArchivoDaoImpl implements IArchivoDao {
     return registrar;
     
   }
+  
+  @Override
+  public boolean crearPrograma(String idArchivo, Programa programa) {
+    try {
+      
+    } catch (MongoException e) {
+      
+    }
+    
+    return true;
+  }
+  
+  @Override
+  public boolean crearAudio(String idArchivo, String idPrograma, Audio audio) {
+    try {
+      
+    } catch (MongoException e) {
+      
+    }
+    
+    return true;
+  }
 
   @Override
   public List<Archivo> obtenerTodos() {
@@ -73,9 +95,19 @@ public class ArchivoDaoImpl implements IArchivoDao {
     
     return resultado;
   }
+  
+  @Override
+  public boolean modificarArchivo(Archivo archivo){
+    return true;
+  }
+  
+  @Override
+  public boolean modificarPrograma(String idArchivo, Programa programa){
+    return true;
+  }
 
   @Override
-  public boolean actualizar(Archivo archivo, Programa programa, Audio audio) {
+  public boolean modificarAudio(String idArchivo, String idPrograma, Audio audio) {
     boolean actualizado = false;
     Conexion conexion = new Conexion();
     MongoClient cliente = null;
@@ -119,7 +151,17 @@ public class ArchivoDaoImpl implements IArchivoDao {
   }
   
   @Override
-  public boolean eliminar(Archivo archivo) {
-    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+  public boolean eliminarArchivo(String idArchivo) {
+    return true;
+  } 
+  
+  @Override
+  public boolean eliminarPrograma(String idArchivo, String idPrograma) {
+    return true;
+  }
+  
+  @Override
+  public boolean eliminarAudio(String idArchivo, String idPrograma, String idAudio) {
+    return true;
   } 
 }

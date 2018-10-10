@@ -13,9 +13,15 @@ import java.util.List;
  * @author Felipe Torrejon (ftorrejon@cooperativa.cl)
  */
 public interface IArchivoDao {
-  public boolean registrar(Archivo archivo);
+  public boolean crearArchivo(Archivo archivo);
+  public boolean crearPrograma(String idArchivo, Programa programa);
+  public boolean crearAudio(String idArchivo, String idPrograma, Audio audio);
   public List<Archivo> obtenerTodos();
   public List<Archivo> buscar(String cadenaBusqueda);
-  public boolean actualizar(Archivo archivo, Programa programa, Audio audio);
-  public boolean eliminar(Archivo archivo);
+  public boolean modificarArchivo(Archivo archivo);
+  public boolean modificarPrograma(String idArchivo, Programa programa);
+  public boolean modificarAudio(String idArchivo, String idPrograma, Audio audio);
+  public boolean eliminarArchivo(String archivo);
+  public boolean eliminarPrograma(String idArchivo, String programa);
+  public boolean eliminarAudio(String idArchivo, String idPrograma, String idAudio);
 }
