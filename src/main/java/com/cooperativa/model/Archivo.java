@@ -26,12 +26,12 @@ public class Archivo {
   private String descripcionExterior;
   
   @Embedded
-  private List<Programa> programas;
+  private List<Programa> programas = new ArrayList();
   
   private String nombreArchivo;
   
   @Embedded
-  private List<Cambio> historialCambios;
+  private List<Cambio> historialCambios = new ArrayList();
   
   private int tamanhoArchivo;
   private int duracionArchivo;
