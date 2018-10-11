@@ -14,10 +14,10 @@ import com.mongodb.MongoClient;
 public class Conexion {
   public MongoClient conectar(){
     MongoClient mongoClient = null;
-    String url = "mongodb://localhost:27017";
+    String url = "localhost";
     
     try {
-      mongoClient = new MongoClient(url);
+      mongoClient = new MongoClient(url,27017);
       if (mongoClient != null){
         System.out.println("Conectado");
       }
