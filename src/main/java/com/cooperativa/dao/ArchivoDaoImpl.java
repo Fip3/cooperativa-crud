@@ -14,6 +14,8 @@ import com.cooperativa.idao.IArchivoDao;
 import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.Morphia;
 import org.mongodb.morphia.query.Query;
+import org.mongodb.morphia.query.UpdateOperations;
+import org.mongodb.morphia.query.UpdateResults;
 
 /**
  *
@@ -23,7 +25,7 @@ public class ArchivoDaoImpl implements IArchivoDao {
 
   @Override
   public boolean crearArchivo(Archivo archivo) {
-    boolean registrar = false;
+    boolean registrado = false;
     
     Conexion conexion = new Conexion();
     MongoClient cliente = null;
@@ -37,32 +39,56 @@ public class ArchivoDaoImpl implements IArchivoDao {
       datastore.ensureIndexes(true);
       
       datastore.save(archivo);
-      registrar = true;
+      registrado = true;
     
     } catch (MongoException e) {
-      System.out.println("ERROR: Clase ArchivoDaoImpl, método registrar");
+      System.out.println("ERROR: Clase ArchivoDaoImpl, método crearArchivo");
       e.printStackTrace();
     }
     
     cliente.close();
     
-    return registrar;
+    return registrado;
     
   }
   
   @Override
-  public boolean crearPrograma(String idArchivo, Programa programa) {
+  public boolean insertarPrograma(String idArchivo, Programa programa) {
+    boolean registrado = false;
+    
+    Conexion conexion = new Conexion();
+    MongoClient cliente = null;
+    Morphia morphia = null;
+    
     try {
+      cliente = conexion.conectar();
+      morphia = new Morphia();
+      morphia.mapPackage("com.cooperativa.model");
+      final Datastore datastore = morphia.createDatastore(cliente, "cooperativa");
+      datastore.ensureIndexes(true);
+      
+      Query<Archivo> updateQuery = datastore.createQuery(Archivo.class)
+              .filter("_id ==", idArchivo);
+            
+      UpdateOperations updateOperations = datastore
+              .createUpdateOperations(Archivo.class)
+              .push("programas", programa);
+      
+      registrado = datastore.updateFirst(updateQuery, updateOperations).getUpdatedExisting();
       
     } catch (MongoException e) {
-      
+      System.out.println("ERROR: Clase ArchivoDaoImpl, método insertarPrograma");
+      e.printStackTrace();
+      return registrado;
     }
     
-    return true;
+    cliente.close();
+    
+    return registrado;
   }
   
   @Override
-  public boolean crearAudio(String idArchivo, String idPrograma, Audio audio) {
+  public boolean insertarAudio(String idArchivo, String idPrograma, Audio audio) {
     try {
       
     } catch (MongoException e) {
