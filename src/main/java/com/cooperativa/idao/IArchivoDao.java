@@ -14,8 +14,8 @@ import java.util.List;
  */
 public interface IArchivoDao {
   public boolean crearArchivo(Archivo archivo);
-  public boolean crearPrograma(String idArchivo, Programa programa);
-  public boolean crearAudio(String idArchivo, String idPrograma, Audio audio);
+  public boolean insertarPrograma(String idArchivo, Programa programa);
+  public boolean insertarAudio(String idArchivo, String idPrograma, Audio audio);
   public List<Archivo> obtenerTodos();
   public List<Archivo> buscar(String cadenaBusqueda);
   public boolean modificarArchivo(Archivo archivo);
