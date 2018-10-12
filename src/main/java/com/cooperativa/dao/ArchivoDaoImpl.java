@@ -70,8 +70,7 @@ public class ArchivoDaoImpl implements IArchivoDao {
       Query<Archivo> updateQuery = datastore.createQuery(Archivo.class)
               .filter("_id ==", idArchivo);
             
-      UpdateOperations updateOperations = datastore
-              .createUpdateOperations(Archivo.class)
+      UpdateOperations updateOperations = datastore.createUpdateOperations(Archivo.class)
               .push("programas", programa);
       
       registrado = datastore.updateFirst(updateQuery, updateOperations).getUpdatedExisting();
@@ -89,11 +88,35 @@ public class ArchivoDaoImpl implements IArchivoDao {
   
   @Override
   public boolean insertarAudio(String idArchivo, String idPrograma, Audio audio) {
+    boolean registrado = false;
+    
+    Conexion conexion = new Conexion();
+    MongoClient cliente = null;
+    Morphia morphia = null;
+    
     try {
+      cliente = conexion.conectar();
+      morphia = new Morphia();
+      morphia.mapPackage("com.cooperativa.model");
+      final Datastore datastore = morphia.createDatastore(cliente, "cooperativa");
+      datastore.ensureIndexes(true);
+      
+      Query<Archivo> updateQuery = datastore.createQuery(Archivo.class)
+              .filter("_id ==", idArchivo)
+              .filter("programas.idPrograma ==", idPrograma);
+      
+      UpdateOperations updateOperations = datastore.createUpdateOperations(Archivo.class)
+              .push("programas.$.fragmentos", audio);
+      
+      registrado = datastore.updateFirst(updateQuery, updateOperations).getUpdatedExisting();
       
     } catch (MongoException e) {
-      
+      System.out.println("ERROR: Clase ArchivoDaoImpl, método insertarAudio");
+      e.printStackTrace();
+      return registrado;
     }
+    
+    cliente.close();
     
     return true;
   }
