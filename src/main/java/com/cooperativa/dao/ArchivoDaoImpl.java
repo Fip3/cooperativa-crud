@@ -338,7 +338,32 @@ public class ArchivoDaoImpl implements IArchivoDao {
   }
   
   @Override
-  public boolean eliminarAudio(String idArchivo, int indicePrograma, int indiceAudio) {
-    return true;
+  public boolean eliminarAudio(String idArchivo, int indicePrograma, String idAudio) {
+    Conexion conexion = new Conexion();
+    MongoClient cliente = null;
+    Morphia morphia = null;
+    boolean audioEliminado = false;
+    
+    try {
+      cliente = conexion.conectar();
+      morphia = new Morphia();
+      morphia.mapPackage("com.cooperativa.model");
+      
+      Datastore datastore = morphia.createDatastore(cliente, "cooperativa");
+      
+      Query<Archivo> updateQuery = datastore.createQuery(Archivo.class)
+              .filter("_id ==", idArchivo);
+      
+      UpdateOperations updateOperations = datastore.createUpdateOperations(Archivo.class)
+              .removeAll("programas." + indicePrograma + ".fragmentos", new Document("idAudio",idAudio));
+      
+      audioEliminado = datastore.updateFirst(updateQuery, updateOperations).getUpdatedExisting();
+      
+    } catch (MongoException e) {
+      System.out.println("ERROR: Clase ArchivoDaoImpl, método eliminarAudio");
+    }
+    
+    cliente.close();
+    return audioEliminado;
   } 
 }
