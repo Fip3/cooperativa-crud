@@ -22,6 +22,6 @@ public interface IArchivoDao {
   public boolean modificarPrograma(String idArchivo, int indicePrograma, Programa programa);
   public boolean modificarAudio(String idArchivo, int indicePrograma, int indiceAudio, Audio audio);
   public boolean eliminarArchivo(String archivo);
-  public boolean eliminarPrograma(String idArchivo, String programa);
-  public boolean eliminarAudio(String idArchivo, String idPrograma, String idAudio);
+  public boolean eliminarPrograma(String idArchivo, int indicePrograma);
+  public boolean eliminarAudio(String idArchivo, int indicePrograma, int indiceAudio);
 }
