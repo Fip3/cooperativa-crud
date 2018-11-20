@@ -11,6 +11,7 @@ import com.mongodb.MongoException;
 import com.mongodb.MongoClient;
 import java.util.List;
 import com.cooperativa.idao.IArchivoDao;
+import org.bson.Document;
 import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.Morphia;
 import org.mongodb.morphia.query.Query;
@@ -307,8 +308,33 @@ public class ArchivoDaoImpl implements IArchivoDao {
   } 
   
   @Override
-  public boolean eliminarPrograma(String idArchivo, int indicePrograma) {
-    return true;
+  public boolean eliminarPrograma(String idArchivo, String idPrograma) {
+    Conexion conexion = new Conexion();
+    MongoClient cliente = null;
+    Morphia morphia = null;
+    boolean programaEliminado = false;
+    
+    try {
+      cliente = conexion.conectar();
+      morphia = new Morphia();
+      morphia.mapPackage("com.cooperativa.model");
+      
+      Datastore datastore = morphia.createDatastore(cliente, "cooperativa");
+      
+      Query<Archivo> updateQuery = datastore.createQuery(Archivo.class)
+              .filter("_id ==", idArchivo);
+      
+      UpdateOperations updateOperations = datastore.createUpdateOperations(Archivo.class)
+              .removeAll("programas", new Document("programa", idPrograma));
+      
+      programaEliminado = datastore.updateFirst(updateQuery, updateOperations).getUpdatedExisting();
+      
+    } catch (MongoException e) {
+      System.out.println("ERROR: Clase ArchivoDaoImpl, método eliminarPrograma");
+    }
+    
+    cliente.close();
+    return programaEliminado;
   }
   
   @Override
