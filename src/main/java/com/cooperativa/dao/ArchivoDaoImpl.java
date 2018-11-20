@@ -186,7 +186,38 @@ public class ArchivoDaoImpl implements IArchivoDao {
   
   @Override
   public boolean modificarPrograma(String idArchivo, int indicePrograma, Programa programa){
-    return true;
+    Conexion conexion = new Conexion();
+    MongoClient cliente = null;
+    Morphia morphia = null;
+    boolean programaActualizado = false;
+    
+    try {
+      cliente = conexion.conectar();
+      morphia = new Morphia();
+      morphia.mapPackage("com.cooperativa.model");
+      final Datastore datastore = morphia.createDatastore(cliente, "cooperativa");
+      
+      Query<Archivo> updateQuery = datastore.createQuery(Archivo.class)
+              .filter("_id ==", idArchivo);
+      
+      String programaAModificar = "programa." + indicePrograma;
+      UpdateOperations updateOperations = datastore.createUpdateOperations(Archivo.class)
+              .set(programaAModificar + ".idPrograma", programa.getIdPrograma())
+              .set(programaAModificar + ".alturaInicio", programa.getAlturaInicio())
+              .set(programaAModificar + ".alturaTermino", programa.getAlturaTermino())
+              .set(programaAModificar + ".nombrePrograma", programa.getNombrePrograma())
+              .set(programaAModificar + ".fechaEmision", programa.getFechaEmision());
+      
+      programaActualizado = datastore.updateFirst(updateQuery, updateOperations).getUpdatedExisting();
+      
+    } catch (MongoException e){
+      System.out.println("ERROR: Clase ArchivoDaoImpl, método modificarPrograma");
+      e.printStackTrace();
+    }
+    
+    cliente.close();
+    
+    return programaActualizado;
   }
 
   @Override
