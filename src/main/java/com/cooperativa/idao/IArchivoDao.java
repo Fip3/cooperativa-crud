@@ -19,8 +19,8 @@ public interface IArchivoDao {
   public List<Archivo> obtenerTodos();
   public List<Archivo> buscar(String cadenaBusqueda);
   public boolean modificarArchivo(Archivo archivo);
-  public boolean modificarPrograma(String idArchivo, Programa programa);
-  public boolean modificarAudio(String idArchivo, String idPrograma, Audio audio);
+  public boolean modificarPrograma(String idArchivo, int indicePrograma, Programa programa);
+  public boolean modificarAudio(String idArchivo, int indicePrograma, int indiceAudio, Audio audio);
   public boolean eliminarArchivo(String archivo);
   public boolean eliminarPrograma(String idArchivo, String programa);
   public boolean eliminarAudio(String idArchivo, String idPrograma, String idAudio);
