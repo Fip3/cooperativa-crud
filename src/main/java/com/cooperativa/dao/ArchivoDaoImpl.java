@@ -65,7 +65,7 @@ public class ArchivoDaoImpl implements IArchivoDao {
       morphia = new Morphia();
       morphia.mapPackage("com.cooperativa.model");
       final Datastore datastore = morphia.createDatastore(cliente, "cooperativa");
-      datastore.ensureIndexes(true);
+      //datastore.ensureIndexes(true);
       
       Query<Archivo> updateQuery = datastore.createQuery(Archivo.class)
               .filter("_id ==", idArchivo);
@@ -99,7 +99,7 @@ public class ArchivoDaoImpl implements IArchivoDao {
       morphia = new Morphia();
       morphia.mapPackage("com.cooperativa.model");
       final Datastore datastore = morphia.createDatastore(cliente, "cooperativa");
-      datastore.ensureIndexes(true);
+      //datastore.ensureIndexes(true);
       
       Query<Archivo> updateQuery = datastore.createQuery(Archivo.class)
               .filter("_id ==", idArchivo)
@@ -142,34 +142,82 @@ public class ArchivoDaoImpl implements IArchivoDao {
       e.printStackTrace();
     }
     
+    cliente.close();
     return resultado;
   }
   
   @Override
   public boolean modificarArchivo(Archivo archivo){
-    return true;
+    Conexion conexion = new Conexion();
+    MongoClient cliente = null;
+    Morphia morphia = null;
+    boolean archivoActualizado = false;
+    
+    try {
+      cliente = conexion.conectar();
+      morphia = new Morphia();
+      morphia.mapPackage("com.cooperativa.model");
+      final Datastore datastore = morphia.createDatastore(cliente, "cooperativa");
+      
+      Query<Archivo> updateQuery = datastore.createQuery(Archivo.class)
+              .filter("_id ==",archivo.getId());
+      
+      UpdateOperations updateOperations = datastore.createUpdateOperations(Archivo.class)
+              .set("fechaIngreso", archivo.getFechaIngreso())
+              .set("responsableDigitalizacion", archivo.getResponsableDigitalizacion())
+              .set("codigoSoporte", archivo.getCodigoSoporte())
+              .set("tipoSoporte", archivo.getTipoSoporte())
+              .set("descripcionExterior", archivo.getDescripcionExterior())
+              .set("nombreArchivo", archivo.getNombreArchivo())
+              .set("tamanhoArchivo", archivo.getTamanhoArchivo())
+              .set("duracionArchivo", archivo.getDuracionArchivo())
+              .set("fechaDigitalizacion", archivo.getFechaDigitalizacion());
+      
+      archivoActualizado = datastore.updateFirst(updateQuery, updateOperations).getUpdatedExisting();
+      
+    } catch (MongoException e){
+      System.out.println("ERROR: Clase ArchivoDaoImpl, método modificarArchivo");
+      e.printStackTrace();
+    }
+    
+    cliente.close();
+    return archivoActualizado;
   }
   
   @Override
-  public boolean modificarPrograma(String idArchivo, Programa programa){
+  public boolean modificarPrograma(String idArchivo, int indicePrograma, Programa programa){
     return true;
   }
 
   @Override
-  public boolean modificarAudio(String idArchivo, String idPrograma, Audio audio) {
-    boolean actualizado = false;
+  public boolean modificarAudio(String idArchivo, int indicePrograma, int indiceAudio, Audio audio) {
     Conexion conexion = new Conexion();
     MongoClient cliente = null;
     Morphia morphia = null;
+    boolean audioActualizado = false;
+    
     
     try {
+      cliente = conexion.conectar();
+      morphia = new Morphia();
+      morphia.mapPackage("com.cooperativa.model");
+      final Datastore datastore = morphia.createDatastore(cliente, "cooperativa");
+      
+      Query<Archivo> updateQuery = datastore.createQuery(Archivo.class)
+              .filter("_id ==", idArchivo);
+      
+      UpdateOperations updateOperation = datastore.createUpdateOperations(Archivo.class)
+              .set("programas." + indicePrograma + ".fragmentos." + indiceAudio, audio);
+      
+      audioActualizado = datastore.updateFirst(updateQuery, updateOperation).getUpdatedExisting();
       
     } catch (MongoException e) {
       System.out.println("ERROR: Clase ArchivoDaoImpl, método actualizar");
       e.printStackTrace();
     }
     
-    return actualizado;
+    cliente.close();
+    return audioActualizado;
   }
 
   @Override
