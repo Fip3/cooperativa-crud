@@ -17,6 +17,7 @@ import org.mongodb.morphia.query.Query;
 import org.mongodb.morphia.query.UpdateOperations;
 import org.mongodb.morphia.query.UpdateResults;
 
+
 /**
  *
  * @author Felipe Torrejon (ftorrejon@cooperativa.cl)
@@ -280,16 +281,38 @@ public class ArchivoDaoImpl implements IArchivoDao {
   
   @Override
   public boolean eliminarArchivo(String idArchivo) {
-    return true;
+    Conexion conexion = new Conexion();
+    MongoClient cliente = null;
+    Morphia morphia = null;
+    boolean audioEliminado = false;
+    
+    try {
+      cliente = conexion.conectar();
+      morphia = new Morphia();
+      morphia.mapPackage("com.cooperativa.model");
+      
+      final Datastore datastore = morphia.createDatastore(cliente, "cooperativa");
+      
+      final Query<Archivo> deleteQuery = datastore.createQuery(Archivo.class);
+      
+      audioEliminado = datastore.delete(deleteQuery).isUpdateOfExisting();
+      
+    } catch (MongoException e){
+      System.out.println("ERROR: Clase ArchivoDaoImpl, método eliminarArchivo");
+      e.printStackTrace();
+    }
+    
+    cliente.close();
+    return audioEliminado;
   } 
   
   @Override
-  public boolean eliminarPrograma(String idArchivo, String idPrograma) {
+  public boolean eliminarPrograma(String idArchivo, int indicePrograma) {
     return true;
   }
   
   @Override
-  public boolean eliminarAudio(String idArchivo, String idPrograma, String idAudio) {
+  public boolean eliminarAudio(String idArchivo, int indicePrograma, int indiceAudio) {
     return true;
   } 
 }
