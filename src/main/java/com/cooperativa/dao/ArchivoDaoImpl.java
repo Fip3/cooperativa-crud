@@ -460,4 +460,35 @@ public class ArchivoDaoImpl implements IArchivoDao {
     return resultado;
     
   }
+  
+  @Override
+  public boolean eliminarCambio(String idArchivo, String idCambio) {
+    Conexion conexion = new Conexion();
+    MongoClient cliente = null;
+    Morphia morphia = null;
+    boolean cambioEliminado = false;
+    
+    try {
+      cliente = conexion.conectar();
+      morphia = new Morphia();
+      morphia.mapPackage("com.cooperativa.model");
+      
+      Datastore datastore = morphia.createDatastore(cliente, "cooperativa");
+      
+      Query<Archivo> consulta = datastore.createQuery(Archivo.class)
+              .filter("_id ==", idArchivo);
+      
+      UpdateOperations updateOperations = datastore.createUpdateOperations(Archivo.class)
+              .removeAll("historialCambios", new Document("idCambio", idCambio));
+      
+      cambioEliminado = datastore.updateFirst(consulta, updateOperations).getUpdatedExisting();
+      
+    } catch (MongoException e) {
+      System.out.println("ERROR: Clase ArchivoDaoImpl, método eliminarCambio");
+      e.printStackTrace();
+    }
+    
+    cliente.close();
+    return cambioEliminado;
+  }
 }

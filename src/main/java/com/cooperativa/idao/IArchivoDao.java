@@ -27,5 +27,5 @@ public interface IArchivoDao {
   public boolean agregarCambio(String idArchivo, Cambio cambio);
   public boolean modificarCambio(String idArchivo, int indiceCambio, Cambio cambio);
   public List<Cambio> listarCambios(String idArchivo);
-  public boolean borrarCambio(String idArchivo, String idCambio);
+  public boolean eliminarCambio(String idArchivo, String idCambio);
 }
