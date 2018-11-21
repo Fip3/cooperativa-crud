@@ -420,7 +420,6 @@ public class ArchivoDaoImpl implements IArchivoDao {
       
       cambioModificado = datastore.updateFirst(updateQuery, updateOperations).getUpdatedExisting();
       
-      
     } catch (MongoException e) {
       System.out.println("ERROR: Clase ArchivoDaoImpl, método modificarCambio");
       e.printStackTrace();
@@ -429,6 +428,36 @@ public class ArchivoDaoImpl implements IArchivoDao {
     cliente.close();
     
     return cambioModificado;
+    
+  }
+  
+  @Override
+  public List<Cambio> listarCambios(String idArchivo) {
+    Conexion conexion = new Conexion();
+    MongoClient cliente = null;
+    Morphia morphia = null;
+    List<Cambio> resultado = null;
+    
+    try {
+      cliente = conexion.conectar();
+      morphia = new Morphia();
+      morphia.mapPackage("com.cooperativa.model");
+      
+      Datastore datastore = morphia.createDatastore(cliente, "cooperativa");
+      
+      Query<Archivo> consulta = datastore.createQuery(Archivo.class)
+              .filter("_id ==", idArchivo);
+      
+      resultado = consulta.asList().get(0).getHistorialCambios();
+      
+      
+    } catch (MongoException e) {
+      System.out.println("ERROR: Clase ArchivoDaoImpl, método listarCambios");
+      e.printStackTrace();
+    }
+    
+    cliente.close();
+    return resultado;
     
   }
 }
