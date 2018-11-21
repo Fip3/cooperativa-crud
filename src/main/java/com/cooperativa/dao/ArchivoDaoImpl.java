@@ -331,6 +331,7 @@ public class ArchivoDaoImpl implements IArchivoDao {
       
     } catch (MongoException e) {
       System.out.println("ERROR: Clase ArchivoDaoImpl, método eliminarPrograma");
+      e.printStackTrace();
     }
     
     cliente.close();
@@ -361,9 +362,40 @@ public class ArchivoDaoImpl implements IArchivoDao {
       
     } catch (MongoException e) {
       System.out.println("ERROR: Clase ArchivoDaoImpl, método eliminarAudio");
+      e.printStackTrace();
     }
     
     cliente.close();
     return audioEliminado;
   } 
+  
+  @Override
+  public boolean agregarCambio(String idArchivo, Cambio cambio){
+    Conexion conexion = new Conexion();
+    MongoClient cliente = null;
+    Morphia morphia = null;
+    boolean cambioAgregado = false;
+    
+    try {
+      cliente = conexion.conectar();
+      morphia = new Morphia();
+      morphia.mapPackage("com.cooperativa.model");
+      Datastore datastore = morphia.createDatastore(cliente, "cooperativa");
+      
+      Query<Archivo> updateQuery = datastore.createQuery(Archivo.class)
+              .filter("_id ==", idArchivo);
+      
+      UpdateOperations updateOperations = datastore.createUpdateOperations(Archivo.class)
+              .push("historialCambios", cambio);
+      
+      cambioAgregado = datastore.updateFirst(updateQuery, updateOperations).getUpdatedExisting();
+      
+    } catch (MongoException e) {
+      System.out.println("ERROR: Clase ArchivoDaoImpl, método agregarCambio");
+      e.printStackTrace();
+    }
+    
+    cliente.close();
+    return cambioAgregado;
+  }
 }
