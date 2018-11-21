@@ -398,4 +398,37 @@ public class ArchivoDaoImpl implements IArchivoDao {
     cliente.close();
     return cambioAgregado;
   }
+  
+  @Override
+  public boolean modificarCambio(String idArchivo, int indiceCambio, Cambio cambio) {
+    Conexion conexion = new Conexion();
+    MongoClient cliente = null;
+    Morphia morphia = null;
+    boolean cambioModificado = false;
+    
+    try {
+      cliente = conexion.conectar();
+      morphia = new Morphia();
+      morphia.mapPackage("com.cooperativa.model");
+      
+      Datastore datastore = morphia.createDatastore(cliente, "cooperativa");
+      
+      Query<Archivo> updateQuery = datastore.createQuery(Archivo.class)
+              .filter("_id ==", idArchivo);
+      UpdateOperations updateOperations = datastore.createUpdateOperations(Archivo.class)
+              .set("historialCambios." + indiceCambio, cambio);
+      
+      cambioModificado = datastore.updateFirst(updateQuery, updateOperations).getUpdatedExisting();
+      
+      
+    } catch (MongoException e) {
+      System.out.println("ERROR: Clase ArchivoDaoImpl, método modificarCambio");
+      e.printStackTrace();
+    }
+    
+    cliente.close();
+    
+    return cambioModificado;
+    
+  }
 }
