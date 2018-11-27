@@ -22,6 +22,9 @@ public class Seccion extends Audio{
   
   @Embedded
   private List<String> tema = new ArrayList<>();
+  
+  @Embedded
+  private List<String> invitado = new ArrayList<>();
 
   public Seccion() {
     super("Seccion");
@@ -42,6 +45,15 @@ public class Seccion extends Audio{
   public List<String> getTema() {
     return tema;
   }
+  
+  public List<String> getInvitado() {
+    return invitado;
+  }
+
+  public void setInvitado(List<String> invitados) {
+    this.invitado = invitados;
+  }
+  
   /**
    * Método para agregar Panelista a la lista de Panelistas.
    * @param p - String que se almacenará en la lista de panelistas.
