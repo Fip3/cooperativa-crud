@@ -1,0 +1,892 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.9" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <Properties>
+    <Property name="defaultCloseOperation" type="int" value="3"/>
+  </Properties>
+  <SyntheticProperties>
+    <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+  </SyntheticProperties>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="labelTitulo" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="labelSubtitulo" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="panelArchivo" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="panelAgregarPrograma" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="panelAgregarFragmento" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace pref="40" max="32767" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="labelTitulo" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="labelSubtitulo" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="panelAgregarPrograma" max="32767" attributes="0"/>
+                  <Component id="panelArchivo" max="32767" attributes="0"/>
+                  <Component id="panelAgregarFragmento" alignment="0" min="-2" max="-2" attributes="0"/>
+              </Group>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Component class="javax.swing.JLabel" name="labelSubtitulo">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Archivo Radio Cooperativa"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="labelTitulo">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="12" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="REGISTRO DE ARCHIVOS"/>
+      </Properties>
+    </Component>
+    <Container class="javax.swing.JPanel" name="panelArchivo">
+      <Properties>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+            <TitledBorder title="Crear Archivo"/>
+          </Border>
+        </Property>
+      </Properties>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="labelFechaIngreso" max="32767" attributes="0"/>
+                              <Component id="labelIdArchivo" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      </Group>
+                      <Component id="labelResponsableDigitalizacion" alignment="0" max="32767" attributes="0"/>
+                      <Component id="labelCodigoSoporte" alignment="0" max="32767" attributes="0"/>
+                      <Component id="labelTipoSoporte" alignment="0" max="32767" attributes="0"/>
+                      <Component id="labelDescripcionExterior" alignment="0" max="32767" attributes="0"/>
+                      <Component id="labelNombreArchivo" alignment="0" max="32767" attributes="0"/>
+                      <Component id="labelTamanhoArchivo" alignment="0" max="32767" attributes="0"/>
+                      <Component id="labelDuracionArchivo" alignment="0" max="32767" attributes="0"/>
+                      <Component id="labelFormatoArchivo" alignment="1" max="32767" attributes="0"/>
+                      <Component id="labelFechaDigitalizacion" alignment="0" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="112" max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="labelIdArchivo" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="labelFechaIngreso" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="labelResponsableDigitalizacion" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="labelCodigoSoporte" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="labelTipoSoporte" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="labelDescripcionExterior" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="labelNombreArchivo" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="labelTamanhoArchivo" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="labelDuracionArchivo" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="labelFormatoArchivo" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="labelFechaDigitalizacion" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JLabel" name="labelIdArchivo">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Id Archivo"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="labelFechaIngreso">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Fecha Ingreso"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="labelResponsableDigitalizacion">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Responsable Digitalizaci&#xf3;n"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="labelCodigoSoporte">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="C&#xf3;digo de Soporte"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="labelTipoSoporte">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Tipo Soporte"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="labelDescripcionExterior">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Descripcion Exterior"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="labelNombreArchivo">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Nombre de Archivo"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="labelTamanhoArchivo">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Tama&#xf1;o"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="labelDuracionArchivo">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Duraci&#xf3;n"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="labelFormatoArchivo">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Formato"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="labelFechaDigitalizacion">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Fecha de Digitalizaci&#xf3;n"/>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Container class="javax.swing.JPanel" name="panelAgregarPrograma">
+      <Properties>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+            <TitledBorder title="Agregar Programa"/>
+          </Border>
+        </Property>
+      </Properties>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="labelIdPrograma" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="149" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="labelAlturaTerminoPrograma" alignment="0" max="-2" attributes="0"/>
+                              <Component id="labelNombrePrograma" alignment="0" max="-2" attributes="0"/>
+                              <Component id="labelConductor" alignment="0" max="-2" attributes="0"/>
+                              <Component id="labelAlturaInicioPrograma" alignment="0" max="-2" attributes="0"/>
+                              <Component id="labelAlturaTerminoPrograma3" alignment="0" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="0" pref="119" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="labelIdPrograma" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="labelAlturaInicioPrograma" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="labelAlturaTerminoPrograma" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="labelNombrePrograma" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="labelAlturaTerminoPrograma3" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="labelConductor" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JLabel" name="labelIdPrograma">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Id Programa"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="labelAlturaInicioPrograma">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Altura Inicio"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="labelAlturaTerminoPrograma">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Altura T&#xe9;rmino"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="labelNombrePrograma">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Nombre del Programa"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="labelConductor">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Conductor"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="labelAlturaTerminoPrograma3">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Fecha Emision"/>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Container class="javax.swing.JPanel" name="panelAgregarFragmento">
+      <Properties>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+            <TitledBorder title="Agregar Fragmento"/>
+          </Border>
+        </Property>
+      </Properties>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="panelTipos" alignment="0" max="32767" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="labelIdAudio" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="labelTipoAudio" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="labelAlturaInicioFragmento" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="labelAlturaTerminoFragmento" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="labelDescripcion" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="labelPalabrasClave" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="0" pref="98" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="labelIdAudio" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="labelAlturaInicioFragmento" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="labelAlturaTerminoFragmento" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="labelTipoAudio" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="panelTipos" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                  <Component id="labelDescripcion" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="labelPalabrasClave" min="-2" max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JLabel" name="labelIdAudio">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Id Audio"/>
+          </Properties>
+        </Component>
+        <Container class="javax.swing.JLayeredPane" name="panelTipos">
+
+          <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
+            <Property name="useNullLayout" type="boolean" value="false"/>
+          </Layout>
+          <SubComponents>
+            <Container class="javax.swing.JPanel" name="panelNoticia">
+              <AuxValues>
+                <AuxValue name="JLayeredPane.layer" type="java.lang.Integer" value="1"/>
+              </AuxValues>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                  <AbsoluteConstraints x="0" y="0" width="-1" height="-1"/>
+                </Constraint>
+              </Constraints>
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="labelTemaNoticia" alignment="0" max="32767" attributes="0"/>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="labelTemaNoticia" max="-2" attributes="0"/>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Component class="javax.swing.JLabel" name="labelTemaNoticia">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Tema de la Noticia"/>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
+            <Container class="javax.swing.JPanel" name="panelInforme">
+              <AuxValues>
+                <AuxValue name="JLayeredPane.layer" type="java.lang.Integer" value="2"/>
+              </AuxValues>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                  <AbsoluteConstraints x="0" y="0" width="-1" height="-1"/>
+                </Constraint>
+              </Constraints>
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="labelTemaInforme" max="-2" attributes="0"/>
+                      <Component id="labelPeriodistaInforme" max="-2" attributes="0"/>
+                      <Component id="labelLugarInforme" max="-2" attributes="0"/>
+                      <Component id="labelPersonajeInforme" max="-2" attributes="0"/>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="labelPeriodistaInforme" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="labelTemaInforme" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="labelLugarInforme" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="labelPersonajeInforme" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Component class="javax.swing.JLabel" name="labelTemaInforme">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Tema del Informe"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="labelPeriodistaInforme">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Periodista"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="labelLugarInforme">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Lugar desde donde se informa"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="labelPersonajeInforme">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Cu&#xf1;as en el Informe"/>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
+            <Container class="javax.swing.JPanel" name="panelSeccion">
+              <AuxValues>
+                <AuxValue name="JLayeredPane.layer" type="java.lang.Integer" value="3"/>
+              </AuxValues>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                  <AbsoluteConstraints x="0" y="0" width="-1" height="-1"/>
+                </Constraint>
+              </Constraints>
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="labelPanelistasSeccion" alignment="0" max="-2" attributes="0"/>
+                              <Component id="labelNombreSeccion" alignment="0" max="-2" attributes="0"/>
+                              <Component id="labelTemaSeccion" alignment="0" max="-2" attributes="0"/>
+                              <Component id="labelInvitadosSeccion" alignment="0" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="labelNombreSeccion" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="labelPanelistasSeccion" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="labelTemaSeccion" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="labelInvitadosSeccion" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Component class="javax.swing.JLabel" name="labelPanelistasSeccion">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Panelistas"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="labelNombreSeccion">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Nombre de la Secci&#xf3;n"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="labelTemaSeccion">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Tema"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="labelInvitadosSeccion">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Invitados"/>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
+            <Container class="javax.swing.JPanel" name="panelPanel">
+              <AuxValues>
+                <AuxValue name="JLayeredPane.layer" type="java.lang.Integer" value="6"/>
+              </AuxValues>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                  <AbsoluteConstraints x="0" y="0" width="-1" height="-1"/>
+                </Constraint>
+              </Constraints>
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="labelPanelistas" alignment="0" max="-2" attributes="0"/>
+                              <Component id="labelTemaEntrevista1" alignment="0" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="0" pref="94" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="labelPanelistas" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="labelTemaEntrevista1" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Component class="javax.swing.JLabel" name="labelPanelistas">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Entrevistados"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="labelTemaEntrevista1">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Tema"/>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
+            <Container class="javax.swing.JPanel" name="panelDeporte">
+              <AuxValues>
+                <AuxValue name="JLayeredPane.layer" type="java.lang.Integer" value="5"/>
+              </AuxValues>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                  <AbsoluteConstraints x="0" y="0" width="-1" height="-1"/>
+                </Constraint>
+              </Constraints>
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="labelLocutorComercial" alignment="0" max="-2" attributes="0"/>
+                              <Component id="labelRelator" alignment="0" max="-2" attributes="0"/>
+                              <Component id="labelEncargadoRRSS" alignment="0" max="-2" attributes="0"/>
+                              <Component id="labelCompetencia" max="-2" attributes="0"/>
+                              <Component id="labelLugar" max="-2" attributes="0"/>
+                              <Component id="labelDisciplina" alignment="0" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="panelDisciplina" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="labelRelator" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="labelLocutorComercial" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="labelEncargadoRRSS" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="labelCompetencia" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="labelLugar" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="labelDisciplina" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="panelDisciplina" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Component class="javax.swing.JLabel" name="labelLocutorComercial">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Locutor Comercial"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="labelRelator">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Relator"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="labelEncargadoRRSS">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Encargado Redes Sociales"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="labelCompetencia">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Competencia"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="labelLugar">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Lugar"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="labelDisciplina">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Disciplina"/>
+                  </Properties>
+                </Component>
+                <Container class="javax.swing.JLayeredPane" name="panelDisciplina">
+
+                  <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
+                    <Property name="useNullLayout" type="boolean" value="false"/>
+                  </Layout>
+                  <SubComponents>
+                    <Container class="javax.swing.JPanel" name="panelFutbol">
+                      <Properties>
+                        <Property name="alignmentX" type="float" value="0.0"/>
+                        <Property name="alignmentY" type="float" value="0.0"/>
+                      </Properties>
+                      <AuxValues>
+                        <AuxValue name="JLayeredPane.layer" type="java.lang.Integer" value="6"/>
+                      </AuxValues>
+                      <Constraints>
+                        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                          <AbsoluteConstraints x="0" y="0" width="-1" height="-1"/>
+                        </Constraint>
+                      </Constraints>
+
+                      <Layout>
+                        <DimensionLayout dim="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="labelEquipoLocalFutbol" min="-2" max="-2" attributes="0"/>
+                                      <Component id="labelEquipoVisitaFutbol" min="-2" max="-2" attributes="0"/>
+                                      <Component id="labelMarcadorFinalFutbol" min="-2" max="-2" attributes="0"/>
+                                      <Component id="labelGoles" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="0" pref="8" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                        </DimensionLayout>
+                        <DimensionLayout dim="1">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="labelEquipoLocalFutbol" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="labelEquipoVisitaFutbol" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="labelMarcadorFinalFutbol" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="labelGoles" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                        </DimensionLayout>
+                      </Layout>
+                      <SubComponents>
+                        <Component class="javax.swing.JLabel" name="labelEquipoLocalFutbol">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="Equipo Local"/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JLabel" name="labelEquipoVisitaFutbol">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="Equipo Visita"/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JLabel" name="labelMarcadorFinalFutbol">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="Marcador Final"/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JLabel" name="labelGoles">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="Goles"/>
+                          </Properties>
+                        </Component>
+                      </SubComponents>
+                    </Container>
+                    <Container class="javax.swing.JPanel" name="panelTenis">
+                      <Properties>
+                        <Property name="alignmentX" type="float" value="0.0"/>
+                        <Property name="alignmentY" type="float" value="0.0"/>
+                      </Properties>
+                      <AuxValues>
+                        <AuxValue name="JLayeredPane.layer" type="java.lang.Integer" value="8"/>
+                      </AuxValues>
+                      <Constraints>
+                        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                          <AbsoluteConstraints x="0" y="0" width="-1" height="-1"/>
+                        </Constraint>
+                      </Constraints>
+
+                      <Layout>
+                        <DimensionLayout dim="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="labelJugadores" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="labelMarcadorFinalTenis" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                        </DimensionLayout>
+                        <DimensionLayout dim="1">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="labelJugadores" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="labelMarcadorFinalTenis" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                        </DimensionLayout>
+                      </Layout>
+                      <SubComponents>
+                        <Component class="javax.swing.JLabel" name="labelJugadores">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="Equipo Local"/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JLabel" name="labelMarcadorFinalTenis">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="Marcador Final"/>
+                          </Properties>
+                        </Component>
+                      </SubComponents>
+                    </Container>
+                    <Container class="javax.swing.JPanel" name="panelBasquetball">
+                      <Properties>
+                        <Property name="alignmentX" type="float" value="0.0"/>
+                        <Property name="alignmentY" type="float" value="0.0"/>
+                      </Properties>
+                      <AuxValues>
+                        <AuxValue name="JLayeredPane.layer" type="java.lang.Integer" value="7"/>
+                      </AuxValues>
+                      <Constraints>
+                        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                          <AbsoluteConstraints x="0" y="0" width="-1" height="-1"/>
+                        </Constraint>
+                      </Constraints>
+
+                      <Layout>
+                        <DimensionLayout dim="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="labelEquipoLocalBasquetball" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="labelEquipoVisitaBasquetball" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="labelMarcadorFinalBasquetball" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                        </DimensionLayout>
+                        <DimensionLayout dim="1">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Component id="labelEquipoLocalBasquetball" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="labelEquipoVisitaBasquetball" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="labelMarcadorFinalBasquetball" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                        </DimensionLayout>
+                      </Layout>
+                      <SubComponents>
+                        <Component class="javax.swing.JLabel" name="labelEquipoLocalBasquetball">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="Equipo Local"/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JLabel" name="labelEquipoVisitaBasquetball">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="Equipo Visita"/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JLabel" name="labelMarcadorFinalBasquetball">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="Marcador Final"/>
+                          </Properties>
+                        </Component>
+                      </SubComponents>
+                    </Container>
+                  </SubComponents>
+                </Container>
+              </SubComponents>
+            </Container>
+            <Container class="javax.swing.JPanel" name="panelEntrevista">
+              <AuxValues>
+                <AuxValue name="JLayeredPane.layer" type="java.lang.Integer" value="4"/>
+              </AuxValues>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                  <AbsoluteConstraints x="0" y="0" width="-1" height="-1"/>
+                </Constraint>
+              </Constraints>
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="labelEntrevistados" alignment="0" max="-2" attributes="0"/>
+                              <Component id="labelPeriodistaEntrevista" alignment="0" max="-2" attributes="0"/>
+                              <Component id="labelTemaEntrevista" alignment="0" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="labelPeriodistaEntrevista" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="labelEntrevistados" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="labelTemaEntrevista" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Component class="javax.swing.JLabel" name="labelEntrevistados">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Entrevistados"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="labelPeriodistaEntrevista">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Periodista"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="labelTemaEntrevista">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Tema"/>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
+          </SubComponents>
+        </Container>
+        <Component class="javax.swing.JLabel" name="labelTipoAudio">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Tipo de Audio"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="labelAlturaInicioFragmento">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Altura de Inicio"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="labelAlturaTerminoFragmento">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Altura de T&#xe9;rmino"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="labelDescripcion">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Descripcion"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="labelPalabrasClave">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Palabras Clave"/>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
+  </SubComponents>
+</Form>
