@@ -16,6 +16,17 @@ public class VentanaRegistrar extends javax.swing.JFrame {
    */
   public VentanaRegistrar() {
     initComponents();
+    //inicialización de paneles no visibles al cargar ventana
+    panelTipos.setVisible(false);
+    panelNoticia.setVisible(false);
+    panelInforme.setVisible(false);
+    panelEntrevista.setVisible(false);
+    panelPanel.setVisible(false);
+    panelDeporte.setVisible(false);
+    panelDisciplina.setVisible(false);
+    panelBasquetball.setVisible(false);
+    panelFutbol.setVisible(false);
+    panelTenis.setVisible(false);
   }
 
   /**
@@ -546,7 +557,7 @@ public class VentanaRegistrar extends javax.swing.JFrame {
       .addGroup(panelAgregarFragmentoLayout.createSequentialGroup()
         .addContainerGap()
         .addGroup(panelAgregarFragmentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-          .addComponent(panelTipos)
+          .addComponent(panelTipos, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
           .addGroup(panelAgregarFragmentoLayout.createSequentialGroup()
             .addGroup(panelAgregarFragmentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
               .addComponent(labelIdAudio)
@@ -555,7 +566,7 @@ public class VentanaRegistrar extends javax.swing.JFrame {
               .addComponent(labelAlturaTerminoFragmento)
               .addComponent(labelDescripcion)
               .addComponent(labelPalabrasClave))
-            .addGap(0, 98, Short.MAX_VALUE)))
+            .addGap(0, 0, Short.MAX_VALUE)))
         .addContainerGap())
     );
     panelAgregarFragmentoLayout.setVerticalGroup(
@@ -584,20 +595,23 @@ public class VentanaRegistrar extends javax.swing.JFrame {
       .addGroup(layout.createSequentialGroup()
         .addContainerGap()
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-          .addComponent(labelTitulo)
-          .addComponent(labelSubtitulo)
           .addGroup(layout.createSequentialGroup()
             .addComponent(panelArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGap(18, 18, 18)
             .addComponent(panelAgregarPrograma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(panelAgregarFragmento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-        .addContainerGap(40, Short.MAX_VALUE))
+            .addComponent(panelAgregarFragmento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+          .addGroup(layout.createSequentialGroup()
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+              .addComponent(labelTitulo)
+              .addComponent(labelSubtitulo))
+            .addGap(0, 0, Short.MAX_VALUE)))
+        .addContainerGap())
     );
     layout.setVerticalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(layout.createSequentialGroup()
-        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        .addContainerGap()
         .addComponent(labelTitulo)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addComponent(labelSubtitulo)
@@ -605,7 +619,8 @@ public class VentanaRegistrar extends javax.swing.JFrame {
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
           .addComponent(panelAgregarPrograma, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
           .addComponent(panelArchivo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-          .addComponent(panelAgregarFragmento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+          .addComponent(panelAgregarFragmento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        .addContainerGap(90, Short.MAX_VALUE))
     );
 
     pack();
