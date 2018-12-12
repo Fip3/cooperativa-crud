@@ -17,6 +17,8 @@ public class VentanaRegistrar extends javax.swing.JFrame {
   public VentanaRegistrar() {
     initComponents();
     //inicialización de paneles no visibles al cargar ventana
+    panelAgregarPrograma.setVisible(false);
+    panelAgregarFragmento.setVisible(false);
     panelTipos.setVisible(false);
     panelNoticia.setVisible(false);
     panelInforme.setVisible(false);
@@ -26,7 +28,7 @@ public class VentanaRegistrar extends javax.swing.JFrame {
     panelDisciplina.setVisible(false);
     panelBasquetball.setVisible(false);
     panelFutbol.setVisible(false);
-    panelTenis.setVisible(false);
+    panelTenis.setVisible(false);    
   }
 
   /**
@@ -39,7 +41,7 @@ public class VentanaRegistrar extends javax.swing.JFrame {
 
     labelSubtitulo = new javax.swing.JLabel();
     labelTitulo = new javax.swing.JLabel();
-    panelArchivo = new javax.swing.JPanel();
+    panelCrearArchivo = new javax.swing.JPanel();
     labelIdArchivo = new javax.swing.JLabel();
     textIdArchivo = new javax.swing.JTextField();
     labelFechaIngreso = new javax.swing.JLabel();
@@ -180,13 +182,14 @@ public class VentanaRegistrar extends javax.swing.JFrame {
     textDescripcion = new javax.swing.JTextField();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+    setTitle("REGISTRO DE ARCHIVOS");
 
     labelSubtitulo.setText("Archivo Radio Cooperativa");
 
     labelTitulo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
     labelTitulo.setText("REGISTRO DE ARCHIVOS");
 
-    panelArchivo.setBorder(javax.swing.BorderFactory.createTitledBorder("Crear Archivo"));
+    panelCrearArchivo.setBorder(javax.swing.BorderFactory.createTitledBorder("Crear Archivo"));
 
     labelIdArchivo.setText("Id Archivo");
 
@@ -435,16 +438,16 @@ public class VentanaRegistrar extends javax.swing.JFrame {
 
     botonAgregarPrograma.setText("Agregar Programa");
 
-    javax.swing.GroupLayout panelArchivoLayout = new javax.swing.GroupLayout(panelArchivo);
-    panelArchivo.setLayout(panelArchivoLayout);
-    panelArchivoLayout.setHorizontalGroup(
-      panelArchivoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGroup(panelArchivoLayout.createSequentialGroup()
+    javax.swing.GroupLayout panelCrearArchivoLayout = new javax.swing.GroupLayout(panelCrearArchivo);
+    panelCrearArchivo.setLayout(panelCrearArchivoLayout);
+    panelCrearArchivoLayout.setHorizontalGroup(
+      panelCrearArchivoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(panelCrearArchivoLayout.createSequentialGroup()
         .addGap(0, 0, 0)
-        .addGroup(panelArchivoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-          .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelArchivoLayout.createSequentialGroup()
-            .addGroup(panelArchivoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-              .addGroup(panelArchivoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+        .addGroup(panelCrearArchivoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCrearArchivoLayout.createSequentialGroup()
+            .addGroup(panelCrearArchivoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+              .addGroup(panelCrearArchivoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                 .addComponent(labelNombreArchivo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(labelTipoSoporte, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(labelCodigoSoporte, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -457,7 +460,7 @@ public class VentanaRegistrar extends javax.swing.JFrame {
                 .addComponent(labelTamanhoArchivo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
               .addComponent(labelFechaDigitalizacion))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addGroup(panelArchivoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelCrearArchivoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
               .addComponent(textIdArchivo)
               .addComponent(textNombreArchivo)
               .addComponent(textCodigoSoporte)
@@ -465,63 +468,63 @@ public class VentanaRegistrar extends javax.swing.JFrame {
               .addComponent(textAreaDescripcionAnterior, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
               .addComponent(comboResponsableDigitalizacion1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
               .addComponent(panelFechaIngreso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-              .addGroup(panelArchivoLayout.createSequentialGroup()
-                .addGroup(panelArchivoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                  .addGroup(panelArchivoLayout.createSequentialGroup()
-                    .addGroup(panelArchivoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+              .addGroup(panelCrearArchivoLayout.createSequentialGroup()
+                .addGroup(panelCrearArchivoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                  .addGroup(panelCrearArchivoLayout.createSequentialGroup()
+                    .addGroup(panelCrearArchivoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                       .addComponent(textDuracionArchivo, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
                       .addComponent(textTamanhoArchivo))
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addGroup(panelArchivoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelCrearArchivoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                       .addComponent(labelBytesArchivo)
                       .addComponent(labelSegundosArchivo, javax.swing.GroupLayout.Alignment.TRAILING)))
                   .addComponent(panelFechaDigitalizacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE))))
-          .addGroup(panelArchivoLayout.createSequentialGroup()
+          .addGroup(panelCrearArchivoLayout.createSequentialGroup()
             .addComponent(panelFormato, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addContainerGap())
-          .addGroup(panelArchivoLayout.createSequentialGroup()
+          .addGroup(panelCrearArchivoLayout.createSequentialGroup()
             .addComponent(botonAgregarPrograma)
             .addGap(0, 0, Short.MAX_VALUE))))
     );
-    panelArchivoLayout.setVerticalGroup(
-      panelArchivoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGroup(panelArchivoLayout.createSequentialGroup()
+    panelCrearArchivoLayout.setVerticalGroup(
+      panelCrearArchivoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(panelCrearArchivoLayout.createSequentialGroup()
         .addContainerGap()
-        .addGroup(panelArchivoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+        .addGroup(panelCrearArchivoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(labelIdArchivo)
           .addComponent(textIdArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-        .addGroup(panelArchivoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+        .addGroup(panelCrearArchivoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
           .addComponent(labelFechaIngreso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
           .addComponent(panelFechaIngreso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-        .addGroup(panelArchivoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+        .addGroup(panelCrearArchivoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(labelResponsableDigitalizacion)
           .addComponent(comboResponsableDigitalizacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-        .addGroup(panelArchivoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+        .addGroup(panelCrearArchivoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(labelCodigoSoporte)
           .addComponent(textCodigoSoporte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-        .addGroup(panelArchivoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+        .addGroup(panelCrearArchivoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(labelTipoSoporte)
           .addComponent(comboResponsableDigitalizacion1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-        .addGroup(panelArchivoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(panelCrearArchivoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
           .addComponent(labelDescripcionExterior)
           .addComponent(textAreaDescripcionAnterior, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-        .addGroup(panelArchivoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+        .addGroup(panelCrearArchivoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(labelNombreArchivo)
           .addComponent(textNombreArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-        .addGroup(panelArchivoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+        .addGroup(panelCrearArchivoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(labelTamanhoArchivo)
           .addComponent(textTamanhoArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
           .addComponent(labelBytesArchivo))
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-        .addGroup(panelArchivoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+        .addGroup(panelCrearArchivoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(labelDuracionArchivo)
           .addComponent(textDuracionArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
           .addComponent(labelSegundosArchivo))
@@ -530,12 +533,12 @@ public class VentanaRegistrar extends javax.swing.JFrame {
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addComponent(panelFormato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-        .addGroup(panelArchivoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(panelCrearArchivoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
           .addComponent(panelFechaDigitalizacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
           .addComponent(labelFechaDigitalizacion))
         .addGap(18, 18, 18)
         .addComponent(botonAgregarPrograma)
-        .addGap(0, 0, Short.MAX_VALUE))
+        .addGap(0, 202, Short.MAX_VALUE))
     );
 
     panelAgregarPrograma.setBorder(javax.swing.BorderFactory.createTitledBorder("Agregar Programa"));
@@ -1285,7 +1288,7 @@ public class VentanaRegistrar extends javax.swing.JFrame {
         .addContainerGap()
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
           .addGroup(layout.createSequentialGroup()
-            .addComponent(panelArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(panelCrearArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGap(18, 33, Short.MAX_VALUE)
             .addComponent(panelAgregarPrograma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGap(27, 27, 27)
@@ -1310,10 +1313,10 @@ public class VentanaRegistrar extends javax.swing.JFrame {
               .addGroup(layout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addComponent(panelAgregarFragmento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-            .addGap(0, 0, Short.MAX_VALUE))
+            .addGap(0, 200, Short.MAX_VALUE))
           .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(panelArchivo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addComponent(panelCrearArchivo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         .addContainerGap())
     );
 
@@ -1564,8 +1567,8 @@ public class VentanaRegistrar extends javax.swing.JFrame {
   private javax.swing.JLabel labelTitulo;
   private javax.swing.JPanel panelAgregarFragmento;
   private javax.swing.JPanel panelAgregarPrograma;
-  private javax.swing.JPanel panelArchivo;
   private javax.swing.JPanel panelBasquetball;
+  private javax.swing.JPanel panelCrearArchivo;
   private javax.swing.JPanel panelDeporte;
   private javax.swing.JLayeredPane panelDisciplina;
   private javax.swing.JPanel panelEntrevista;

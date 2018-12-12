@@ -3,6 +3,7 @@
 <Form version="1.9" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="title" type="java.lang.String" value="REGISTRO DE ARCHIVOS"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -27,7 +28,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="panelArchivo" min="-2" max="-2" attributes="0"/>
+                      <Component id="panelCrearArchivo" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" pref="33" max="32767" attributes="0"/>
                       <Component id="panelAgregarPrograma" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
@@ -59,11 +60,11 @@
                               <Component id="panelAgregarFragmento" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="200" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="panelArchivo" max="32767" attributes="0"/>
+                      <Component id="panelCrearArchivo" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -85,7 +86,7 @@
         <Property name="text" type="java.lang.String" value="REGISTRO DE ARCHIVOS"/>
       </Properties>
     </Component>
-    <Container class="javax.swing.JPanel" name="panelArchivo">
+    <Container class="javax.swing.JPanel" name="panelCrearArchivo">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
@@ -217,7 +218,7 @@
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="botonAgregarPrograma" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="202" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
