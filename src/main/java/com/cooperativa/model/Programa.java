@@ -6,6 +6,7 @@
 package com.cooperativa.model;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import org.mongodb.morphia.annotations.Embedded;
 
@@ -26,7 +27,7 @@ public class Programa {
   @Embedded
   private List<Audio> fragmentos = new ArrayList<>();
   
-  private String fechaEmision;
+  private Date fechaEmision;
 
   public Programa() {
   }
@@ -63,11 +64,11 @@ public class Programa {
     this.nombrePrograma = nombrePrograma;
   }
 
-  public String getFechaEmision() {
+  public Date getFechaEmision() {
     return fechaEmision;
   }
 
-  public void setFechaEmision(String fechaEmision) {
+  public void setFechaEmision(Date fechaEmision) {
     this.fechaEmision = fechaEmision;
   }
 

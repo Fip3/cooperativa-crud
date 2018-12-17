@@ -6,6 +6,7 @@
 package com.cooperativa.model;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import org.mongodb.morphia.annotations.Embedded;
 import org.mongodb.morphia.annotations.Id;
@@ -19,7 +20,7 @@ public class Archivo {
   @Id
   private String id;
   
-  private String fechaIngreso;
+  private Date fechaIngreso;
   private String responsableDigitalizacion;
   private String codigoSoporte;
   private String tipoSoporte;
@@ -36,7 +37,7 @@ public class Archivo {
   private int tamanhoArchivo;
   private int duracionArchivo;
   private Formato formatoArchivo;
-  private String fechaDigitalizacion;
+  private Date fechaDigitalizacion;
 
   public Archivo() {
   }
@@ -49,11 +50,11 @@ public class Archivo {
     this.id = id;
   }
 
-  public String getFechaIngreso() {
+  public Date getFechaIngreso() {
     return fechaIngreso;
   }
 
-  public void setFechaIngreso(String fechaIngreso) {
+  public void setFechaIngreso(Date fechaIngreso) {
     this.fechaIngreso = fechaIngreso;
   }
 
@@ -121,11 +122,11 @@ public class Archivo {
     this.formatoArchivo = formatoArchivo;
   }
 
-  public String getFechaDigitalizacion() {
+  public Date getFechaDigitalizacion() {
     return fechaDigitalizacion;
   }
 
-  public void setFechaDigitalizacion(String fechaDigitalizacion) {
+  public void setFechaDigitalizacion(Date fechaDigitalizacion) {
     this.fechaDigitalizacion = fechaDigitalizacion;
   }
 

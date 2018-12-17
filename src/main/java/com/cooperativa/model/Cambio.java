@@ -5,6 +5,8 @@
  */
 package com.cooperativa.model;
 
+import java.util.Date;
+
 /**
  *
  * @author Felipe Torrejon (ftorrejon@cooperativa.cl)
@@ -13,7 +15,7 @@ public class Cambio {
   
   private String idCambio;
   private String responsableCambio;
-  private String fechaCambio;
+  private Date fechaCambio;
   private String descripcion;
 
   public Cambio() {
@@ -35,11 +37,11 @@ public class Cambio {
     this.responsableCambio = responsableCambio;
   }
 
-  public String getFechaCambio() {
+  public Date getFechaCambio() {
     return fechaCambio;
   }
 
-  public void setFechaCambio(String fechaCambio) {
+  public void setFechaCambio(Date fechaCambio) {
     this.fechaCambio = fechaCambio;
   }
 
