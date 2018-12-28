@@ -138,8 +138,27 @@ public class ConstDaoImpl implements IConstDao {
   }
 
   @Override
-  public boolean eliminarColección(String nombreColeccion) {
-    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+  public boolean eliminarColeccion(String nombreColeccion) {
+    boolean coleccionEliminada = false;
+    Conexion conexion = new Conexion();
+    MongoClient cliente = null;
+    MongoDatabase db = null;
+    MongoCollection tabla = null;
+    
+    try {
+      cliente = conexion.conectar();
+      db = cliente.getDatabase(NOMBREBD);
+      tabla = db.getCollection(NOMBRECOL);
+      
+      Document deleteQuery = new Document()
+              .append("nombreColeccion", nombreColeccion);
+      tabla.deleteOne(deleteQuery);
+      
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    cliente.close();
+    return coleccionEliminada;
   }
   
 }

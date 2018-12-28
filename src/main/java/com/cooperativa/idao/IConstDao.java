@@ -18,6 +18,6 @@ public interface IConstDao {
   public boolean agregarConstante(String nombreColeccion, Object nuevoElemento);
   public List listarColeccion(String nombreColeccion);
   public boolean eliminarConstante(String nombreColeccion, Object cadenaEliminacion);
-  public boolean eliminarColección(String nombreColeccion);
+  public boolean eliminarColeccion(String nombreColeccion);
   
 }
