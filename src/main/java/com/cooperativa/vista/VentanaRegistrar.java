@@ -16,6 +16,7 @@ public class VentanaRegistrar extends javax.swing.JFrame {
   /**
    * Creates new form VentanaRegistrar
    */
+  
   public VentanaRegistrar() {
     initComponents();
     //inicialización de paneles no visibles al cargar ventana
@@ -26,6 +27,7 @@ public class VentanaRegistrar extends javax.swing.JFrame {
     panelInforme.setVisible(false);
     panelEntrevista.setVisible(false);
     panelPanel.setVisible(false);
+    panelSeccion.setVisible(false);
     panelDeporte.setVisible(false);
     panelDisciplina.setVisible(false);
     panelBasquetball.setVisible(false);
