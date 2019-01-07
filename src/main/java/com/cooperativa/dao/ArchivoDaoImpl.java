@@ -40,6 +40,9 @@ public class ArchivoDaoImpl implements IArchivoDao {
       final Datastore datastore = morphia.createDatastore(cliente, "cooperativa");
       datastore.ensureIndexes(true);
       
+      if(datastore.createQuery(Archivo.class).filter("_id", archivo.getId()).count() > 0) {
+        throw new MongoException("ID ya existe");
+      }
       datastore.save(archivo);
       registrado = true;
     
