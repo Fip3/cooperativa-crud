@@ -1469,7 +1469,7 @@ public class VentanaRegistrar extends javax.swing.JFrame {
                   .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAgregarFragmentoLayout.createSequentialGroup()
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(comboPalabrasClave, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-            .addGap(0, 0, Short.MAX_VALUE)))
+            .addGap(0, 40, Short.MAX_VALUE)))
         .addContainerGap())
     );
     panelAgregarFragmentoLayout.setVerticalGroup(
@@ -1516,10 +1516,13 @@ public class VentanaRegistrar extends javax.swing.JFrame {
             .addGap(18, 18, 18)
             .addComponent(panelAgregarPrograma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGap(18, 18, 18)
-            .addComponent(panelAgregarFragmento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-          .addComponent(labelTitulo)
-          .addComponent(labelSubtitulo))
-        .addGap(0, 0, 0))
+            .addComponent(panelAgregarFragmento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+          .addGroup(layout.createSequentialGroup()
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+              .addComponent(labelTitulo)
+              .addComponent(labelSubtitulo))
+            .addGap(0, 0, Short.MAX_VALUE)))
+        .addContainerGap())
     );
     layout.setVerticalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
