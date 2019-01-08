@@ -235,6 +235,7 @@ public class VentanaRegistrar extends javax.swing.JFrame {
     comboPalabrasClave = new javax.swing.JComboBox<>();
     labelDescripcionFragmento = new javax.swing.JLabel();
     textAreaDescripcionFragmento = new javax.swing.JTextArea();
+    botonGuardarFragmento = new javax.swing.JButton();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     setTitle("REGISTRO DE ARCHIVOS");
@@ -1432,6 +1433,8 @@ public class VentanaRegistrar extends javax.swing.JFrame {
     textAreaDescripcionFragmento.setRows(5);
     textAreaDescripcionFragmento.setWrapStyleWord(true);
 
+    botonGuardarFragmento.setText("Guardar Fragmento");
+
     javax.swing.GroupLayout panelAgregarFragmentoLayout = new javax.swing.GroupLayout(panelAgregarFragmento);
     panelAgregarFragmento.setLayout(panelAgregarFragmentoLayout);
     panelAgregarFragmentoLayout.setHorizontalGroup(
@@ -1469,7 +1472,10 @@ public class VentanaRegistrar extends javax.swing.JFrame {
                   .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAgregarFragmentoLayout.createSequentialGroup()
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(comboPalabrasClave, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-            .addGap(0, 40, Short.MAX_VALUE)))
+            .addGap(0, 40, Short.MAX_VALUE))
+          .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAgregarFragmentoLayout.createSequentialGroup()
+            .addGap(0, 0, Short.MAX_VALUE)
+            .addComponent(botonGuardarFragmento)))
         .addContainerGap())
     );
     panelAgregarFragmentoLayout.setVerticalGroup(
@@ -1501,7 +1507,9 @@ public class VentanaRegistrar extends javax.swing.JFrame {
         .addGroup(panelAgregarFragmentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(labelDescripcionFragmento)
           .addComponent(textAreaDescripcionFragmento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        .addContainerGap())
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        .addComponent(botonGuardarFragmento)
+        .addGap(14, 14, 14))
     );
 
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -1790,6 +1798,7 @@ public class VentanaRegistrar extends javax.swing.JFrame {
   private javax.swing.JButton botonAgregarFragmento;
   private javax.swing.JButton botonAgregarGoles;
   private javax.swing.JButton botonAgregarPrograma;
+  private javax.swing.JButton botonGuardarFragmento;
   private javax.swing.JComboBox<String> comboCanales;
   private javax.swing.JComboBox<String> comboCodec;
   private javax.swing.JComboBox<String> comboConductor;
