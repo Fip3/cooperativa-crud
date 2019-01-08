@@ -114,21 +114,20 @@
                               <Component id="comboTipoSoporte" alignment="0" max="32767" attributes="0"/>
                               <Component id="panelFechaIngreso" max="32767" attributes="0"/>
                               <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                              <Component id="textDuracionArchivo" pref="54" max="32767" attributes="0"/>
-                                              <Component id="textTamanhoArchivo" max="32767" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="labelBytesArchivo" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Component id="labelSegundosArchivo" alignment="1" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                      </Group>
-                                      <Component id="panelFechaDigitalizacion" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="panelFechaDigitalizacion" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="textDuracionArchivo" min="-2" pref="90" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="labelSegundosArchivo" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="textTamanhoArchivo" max="32767" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="labelBytesArchivo" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -204,7 +203,7 @@
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="botonAgregarPrograma" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="80" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -308,11 +307,8 @@
         <Component class="javax.swing.JComboBox" name="comboResponsableDigitalizacion">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
+              <StringArray count="1">
                 <StringItem index="0" value="Elige un nombre"/>
-                <StringItem index="1" value="Marcela Osorio"/>
-                <StringItem index="2" value="Susan Bustamante"/>
-                <StringItem index="3" value="Felipe Torrej&#xf3;n"/>
               </StringArray>
             </Property>
           </Properties>
@@ -541,7 +537,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="10" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="tasa de bits"/>
+                <Property name="text" type="java.lang.String" value="tasa de bits (kbps)"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JComboBox" name="comboTasaBits">
@@ -576,12 +572,8 @@
         <Component class="javax.swing.JComboBox" name="comboTipoSoporte">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="5">
+              <StringArray count="1">
                 <StringItem index="0" value="Elige un soporte"/>
-                <StringItem index="1" value="Cinta Anal&#xf3;gica"/>
-                <StringItem index="2" value="Cinta Digital"/>
-                <StringItem index="3" value="Disco Anal&#xf3;gico"/>
-                <StringItem index="4" value="Disco &#xd3;ptico. Disco Duro"/>
               </StringArray>
             </Property>
           </Properties>
@@ -818,11 +810,8 @@
         <Component class="javax.swing.JComboBox" name="comboNombrePrograma">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
-                <StringItem index="0" value="Item 1"/>
-                <StringItem index="1" value="Item 2"/>
-                <StringItem index="2" value="Item 3"/>
-                <StringItem index="3" value="Item 4"/>
+              <StringArray count="1">
+                <StringItem index="0" value="Elige un programa"/>
               </StringArray>
             </Property>
           </Properties>
@@ -915,11 +904,8 @@
         <Component class="javax.swing.JComboBox" name="comboConductor">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
-                <StringItem index="0" value="Item 1"/>
-                <StringItem index="1" value="Item 2"/>
-                <StringItem index="2" value="Item 3"/>
-                <StringItem index="3" value="Item 4"/>
+              <StringArray count="1">
+                <StringItem index="0" value="Elige un conductor"/>
               </StringArray>
             </Property>
           </Properties>
@@ -929,7 +915,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="botonAgregarFragmento">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Agregar Fragmento"/>
+            <Property name="text" type="java.lang.String" value="Agregar Fragmento &gt;&gt;"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonAgregarFragmentoActionPerformed"/>
@@ -953,10 +939,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Component id="panelTipos" max="32767" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="panelTipos" pref="0" max="32767" attributes="0"/>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
@@ -986,16 +969,22 @@
                                       <Component id="labelDescripcionFragmento" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Component id="labelPalabrasClave" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="textPalabrasClave" pref="121" max="32767" attributes="0"/>
-                                      <Component id="textAreaDescripcionAnterior2" pref="0" max="32767" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
+                                          <Component id="textAreaDescripcionFragmento" min="-2" pref="121" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="comboPalabrasClave" min="-2" pref="149" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
                               </Group>
                           </Group>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -1027,12 +1016,12 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="labelPalabrasClave" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="textPalabrasClave" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="comboPalabrasClave" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="labelDescripcionFragmento" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="textAreaDescripcionAnterior2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="textAreaDescripcionFragmento" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -1167,30 +1156,32 @@
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
-                                  <Component id="labelLugarInforme" max="-2" attributes="0"/>
+                                  <Component id="labelPeriodistaInforme" min="-2" pref="167" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="textLugarInforme" min="-2" pref="106" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  <Component id="comboPeriodistaInforme" pref="135" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
-                                  <Component id="labelPersonajeInforme" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="textPersonajeInforme" min="-2" pref="106" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <EmptySpace min="0" pref="10" max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="labelPeriodistaInforme" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="textPeriodistaInforme" min="-2" pref="106" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" attributes="0">
-                                  <Component id="labelTemaInforme" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="textTemaInforme" min="-2" pref="106" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Component id="labelPersonajeInforme" max="-2" attributes="0"/>
+                                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                              </Group>
+                                              <Component id="labelTemaInforme" max="32767" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="labelLugarInforme" min="-2" pref="179" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="textLugarInforme" max="32767" attributes="0"/>
+                                      <Component id="textTemaInforme" max="32767" attributes="0"/>
+                                      <Component id="textPersonajeInforme" pref="106" max="32767" attributes="0"/>
+                                  </Group>
                               </Group>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
@@ -1202,7 +1193,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="labelPeriodistaInforme" alignment="3" max="-2" attributes="0"/>
-                              <Component id="textPeriodistaInforme" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="comboPeriodistaInforme" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -1230,10 +1221,20 @@
                     <Property name="text" type="java.lang.String" value="Periodista"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="textPeriodistaInforme">
+                <Component class="javax.swing.JComboBox" name="comboPeriodistaInforme">
+                  <Properties>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="1">
+                        <StringItem index="0" value="Elige el nombre"/>
+                      </StringArray>
+                    </Property>
+                  </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textPeriodistaInformeActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="comboPeriodistaInformeActionPerformed"/>
                   </Events>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                  </AuxValues>
                 </Component>
                 <Component class="javax.swing.JLabel" name="labelTemaInforme">
                   <Properties>
@@ -1286,19 +1287,20 @@
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="labelEntrevistados" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="textEntrevistados" min="-2" pref="116" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
                                   <Component id="labelTemaEntrevista" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
+                                  <EmptySpace pref="56" max="32767" attributes="0"/>
                                   <Component id="textTemaEntrevista" min="-2" pref="116" max="-2" attributes="0"/>
                               </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="labelPeriodistaEntrevista" max="-2" attributes="0"/>
-                                  <EmptySpace pref="30" max="32767" attributes="0"/>
-                                  <Component id="textPeriodistaEntrevista" min="-2" pref="116" max="-2" attributes="0"/>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="labelEntrevistados" alignment="0" max="-2" attributes="0"/>
+                                      <Component id="labelPeriodistaEntrevista" alignment="0" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="textEntrevistados" pref="116" max="32767" attributes="0"/>
+                                      <Component id="comboPeriodistaEntrevista" pref="0" max="32767" attributes="0"/>
+                                  </Group>
                               </Group>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
@@ -1310,7 +1312,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="labelPeriodistaEntrevista" alignment="3" max="-2" attributes="0"/>
-                              <Component id="textPeriodistaEntrevista" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="comboPeriodistaEntrevista" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -1332,10 +1334,20 @@
                     <Property name="text" type="java.lang.String" value="Periodista"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="textPeriodistaEntrevista">
+                <Component class="javax.swing.JComboBox" name="comboPeriodistaEntrevista">
+                  <Properties>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="1">
+                        <StringItem index="0" value="Elige el nombre"/>
+                      </StringArray>
+                    </Property>
+                  </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textPeriodistaEntrevistaActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="comboPeriodistaEntrevistaActionPerformed"/>
                   </Events>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                  </AuxValues>
                 </Component>
                 <Component class="javax.swing.JLabel" name="labelEntrevistados">
                   <Properties>
@@ -1389,15 +1401,16 @@
                                   <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
-                                  <Component id="textInvitadosSeccion" pref="79" max="32767" attributes="0"/>
+                                  <Component id="textInvitadosSeccion" max="32767" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
-                                  <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="textPanelistasSeccion" max="32767" attributes="0"/>
-                                      <Component id="textTemaSeccion" pref="79" max="32767" attributes="0"/>
-                                  </Group>
+                                  <Component id="textTemaSeccion" max="32767" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <Component id="comboPanelistasSeccion" min="-2" pref="97" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -1413,7 +1426,7 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="labelPanelistasSeccion" alignment="3" max="-2" attributes="0"/>
-                              <Component id="textPanelistasSeccion" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="comboPanelistasSeccion" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -1442,7 +1455,20 @@
                     <Property name="text" type="java.lang.String" value="Panelistas"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="textPanelistasSeccion">
+                <Component class="javax.swing.JComboBox" name="comboPanelistasSeccion">
+                  <Properties>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="1">
+                        <StringItem index="0" value="Elige el nombre"/>
+                      </StringArray>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="comboPanelistasSeccionActionPerformed"/>
+                  </Events>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                  </AuxValues>
                 </Component>
                 <Component class="javax.swing.JLabel" name="labelTemaSeccion">
                   <Properties>
@@ -1484,12 +1510,14 @@
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
-                                  <Component id="textTemaPanel" pref="74" max="32767" attributes="0"/>
-                                  <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                                  <Component id="textTemaPanel" max="32767" attributes="0"/>
+                                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="textPanelistas" max="32767" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Component id="comboPanelistas" min="-2" pref="97" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                              </Group>
                           </Group>
-                          <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -1498,7 +1526,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="labelPanelistas" alignment="3" max="-2" attributes="0"/>
-                              <Component id="textPanelistas" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="comboPanelistas" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -1516,10 +1544,20 @@
                     <Property name="text" type="java.lang.String" value="Panelistas"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="textPanelistas">
+                <Component class="javax.swing.JComboBox" name="comboPanelistas">
+                  <Properties>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="1">
+                        <StringItem index="0" value="Elige el nombre"/>
+                      </StringArray>
+                    </Property>
+                  </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textPanelistasActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="comboPanelistasActionPerformed"/>
                   </Events>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                  </AuxValues>
                 </Component>
                 <Component class="javax.swing.JLabel" name="labelTemaPanel">
                   <Properties>
@@ -1552,30 +1590,6 @@
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="1" attributes="0">
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="panelDisciplina" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="labelRelator" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="textLocutorComercial" min="-2" pref="97" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="labelLocutorComercial" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="textRelator" min="-2" pref="97" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="labelEncargadoRRSS" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="textEncargadoRRSS" min="-2" pref="97" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="labelCompetencia" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="textCompetencia" min="-2" pref="97" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="1" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="labelLugar" alignment="0" max="-2" attributes="0"/>
                                       <Component id="labelDisciplina" alignment="0" max="-2" attributes="0"/>
@@ -1585,6 +1599,37 @@
                                       <Component id="textLugar" max="32767" attributes="0"/>
                                       <Component id="comboDisciplina" max="32767" attributes="0"/>
                                   </Group>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="panelDisciplina" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <Component id="labelCompetencia" max="-2" attributes="0"/>
+                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                          <Component id="labelEncargadoRRSS" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="comboEncargadoRRSS" alignment="0" min="-2" pref="97" max="-2" attributes="0"/>
+                                      <Component id="textCompetencia" min="-2" pref="97" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <Component id="labelLocutorComercial" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="comboLocutorComercial" min="-2" pref="97" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="labelRelator" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="comboRelator" min="-2" pref="97" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
@@ -1596,17 +1641,17 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="labelRelator" alignment="3" max="-2" attributes="0"/>
-                              <Component id="textLocutorComercial" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="comboRelator" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="labelLocutorComercial" alignment="3" max="-2" attributes="0"/>
-                              <Component id="textRelator" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="comboLocutorComercial" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="labelEncargadoRRSS" alignment="3" max="-2" attributes="0"/>
-                              <Component id="textEncargadoRRSS" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="comboEncargadoRRSS" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -1631,26 +1676,65 @@
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JLabel" name="labelLocutorComercial">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Locutor Comercial"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JTextField" name="textLocutorComercial">
-                </Component>
                 <Component class="javax.swing.JLabel" name="labelRelator">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Relator"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="textRelator">
+                <Component class="javax.swing.JComboBox" name="comboRelator">
+                  <Properties>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="1">
+                        <StringItem index="0" value="Elige el nombre"/>
+                      </StringArray>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="comboRelatorActionPerformed"/>
+                  </Events>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                  </AuxValues>
+                </Component>
+                <Component class="javax.swing.JLabel" name="labelLocutorComercial">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Locutor Comercial"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JComboBox" name="comboLocutorComercial">
+                  <Properties>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="1">
+                        <StringItem index="0" value="Elige el nombre"/>
+                      </StringArray>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="comboLocutorComercialActionPerformed"/>
+                  </Events>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                  </AuxValues>
                 </Component>
                 <Component class="javax.swing.JLabel" name="labelEncargadoRRSS">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Encargado Redes Sociales"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="textEncargadoRRSS">
+                <Component class="javax.swing.JComboBox" name="comboEncargadoRRSS">
+                  <Properties>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="1">
+                        <StringItem index="0" value="Elige el nombre"/>
+                      </StringArray>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="comboEncargadoRRSSActionPerformed"/>
+                  </Events>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                  </AuxValues>
                 </Component>
                 <Component class="javax.swing.JLabel" name="labelCompetencia">
                   <Properties>
@@ -1991,17 +2075,27 @@
             <Property name="text" type="java.lang.String" value="Palabras Clave"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="textPalabrasClave">
+        <Component class="javax.swing.JComboBox" name="comboPalabrasClave">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="1">
+                <StringItem index="0" value="Elige palabras clave"/>
+              </StringArray>
+            </Property>
+          </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textPalabrasClaveActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="comboPalabrasClaveActionPerformed"/>
           </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="labelDescripcionFragmento">
           <Properties>
             <Property name="text" type="java.lang.String" value="Descripcion"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextArea" name="textAreaDescripcionAnterior2">
+        <Component class="javax.swing.JTextArea" name="textAreaDescripcionFragmento">
           <Properties>
             <Property name="columns" type="int" value="20"/>
             <Property name="rows" type="int" value="5"/>
