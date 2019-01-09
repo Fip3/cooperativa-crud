@@ -9,7 +9,9 @@ import com.cooperativa.dao.*;
 import com.cooperativa.model.*;
 import java.awt.Component;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 /**
@@ -27,10 +29,13 @@ public class VentanaRegistrar extends javax.swing.JFrame {
   private byte contadorFragmentos;
   private ConstDaoImpl constDao;
   private ArchivoDaoImpl archivoDao;
+  private String operador;
   
   
-  public VentanaRegistrar() {
+  public VentanaRegistrar(String operador) {
+    this.operador = operador;
     initComponents();
+    
     //inicializacion de paneles no visibles al cargar ventana
     panelAgregarPrograma.setVisible(false);
     panelAgregarFragmento.setVisible(false);
@@ -49,13 +54,12 @@ public class VentanaRegistrar extends javax.swing.JFrame {
     //inicializacion DAOs
     this.constDao = new ConstDaoImpl();
     this.archivoDao = new ArchivoDaoImpl();
-
     
     //inicializacion de contadores
     this.contadorProgramas = 0;
     this.contadorFragmentos = 0;
     
-    //inicializacion de combos
+    //inicializacion de comboBoxs
     completarCombo(comboResponsableDigitalizacion, "operadores");
     completarCombo(comboTipoSoporte, "soportes");
     completarCombo(comboNombrePrograma, "programas");
@@ -68,7 +72,6 @@ public class VentanaRegistrar extends javax.swing.JFrame {
     completarCombo(comboPeriodistaEntrevista,"periodistas");
     completarCombo(comboPeriodistaInforme,"periodistas");
     completarCombo(comboRelator,"periodistas");
-    
     
   }
   
@@ -84,7 +87,6 @@ public class VentanaRegistrar extends javax.swing.JFrame {
     for(Object e : listado) {
       combo.addItem(e.toString());
     }
-    
   }
   
   /**
@@ -1539,12 +1541,12 @@ public class VentanaRegistrar extends javax.swing.JFrame {
     panelAgregarPrograma.setVisible(true);
     this.contadorProgramas++;
     this.contadorFragmentos = 0;
-    Archivo archivo = new Archivo();
+    Archivo archivo = new Archivo(new Date(), this.operador);
     
     //Al presionar AgregarPrograma, se genera el Archivo y se guarda en la base de datos
     try {
+      //Creacion y llenado del Archivo
       archivo.setId(textIdArchivo.getText());
-      archivo.setFechaIngreso(new Date());
       archivo.setResponsableDigitalizacion(comboResponsableDigitalizacion.getSelectedItem().toString());
       archivo.setCodigoSoporte(textCodigoSoporte.getText());
       archivo.setTipoSoporte(comboTipoSoporte.getSelectedItem().toString());
@@ -1559,12 +1561,13 @@ public class VentanaRegistrar extends javax.swing.JFrame {
               comboCodec.getSelectedItem().toString(),
               Short.parseShort(comboTasaBits.getSelectedItem().toString())
       ));
-      archivo.setFechaDigitalizacion(new Date(
-              Integer.parseInt(textAnhoDigitalizacion.getText().toString()),
-              Integer.parseInt(textMesDigitalizacion.getText().toString()),
-              Integer.parseInt(textDiaDigitalizacion.getText().toString())
-      ));
+      archivo.setFechaDigitalizacion(new GregorianCalendar(
+              Integer.parseInt(textAnhoDigitalizacion.getText()),
+              Integer.parseInt(textMesDigitalizacion.getText()) - 1,
+              Integer.parseInt(textDiaDigitalizacion.getText())
+      ).getTime());
       
+      //guardado del Archivo en base de datos
       archivoDao.crearArchivo(archivo);
       
       
@@ -1742,7 +1745,7 @@ public class VentanaRegistrar extends javax.swing.JFrame {
     java.awt.EventQueue.invokeLater(new Runnable() {
       @Override
       public void run() {
-        new VentanaRegistrar().setVisible(true);
+        new VentanaRegistrar("OPERADOR DE PRUEBA").setVisible(true);
       }
     });
   }
