@@ -21,6 +21,7 @@ public class Archivo {
   private String id;
   
   private Date fechaIngreso;
+  private String responsableIngreso;
   private String responsableDigitalizacion;
   private String codigoSoporte;
   private String tipoSoporte;
@@ -42,6 +43,11 @@ public class Archivo {
   public Archivo() {
   }
 
+  public Archivo(Date fechaIngreso, String responsableIngreso) {
+    this.fechaIngreso = fechaIngreso;
+    this.responsableIngreso = responsableIngreso;
+  }
+  
   public String getId() {
     return id;
   }
@@ -54,8 +60,8 @@ public class Archivo {
     return fechaIngreso;
   }
 
-  public void setFechaIngreso(Date fechaIngreso) {
-    this.fechaIngreso = fechaIngreso;
+  public String getResponsableIngreso() {
+    return responsableIngreso;
   }
 
   public String getResponsableDigitalizacion() {
@@ -181,7 +187,5 @@ public class Archivo {
     
     return total;
   }
-  
-  
 
 }
