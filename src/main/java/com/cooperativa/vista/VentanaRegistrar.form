@@ -90,58 +90,51 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
-                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+              <Group type="102" alignment="0" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="labelNombreArchivo" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="labelTipoSoporte" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="labelCodigoSoporte" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="labelFechaIngreso" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="labelIdArchivo" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="labelResponsableDigitalizacion" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="labelDescripcionExterior" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="labelDuracionArchivo" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="labelFormatoArchivo" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="labelTamanhoArchivo" max="32767" attributes="0"/>
-                              </Group>
-                              <Component id="labelFechaDigitalizacion" alignment="0" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="textIdArchivo" alignment="0" max="32767" attributes="0"/>
-                              <Component id="textNombreArchivo" max="32767" attributes="0"/>
-                              <Component id="textCodigoSoporte" alignment="0" max="32767" attributes="0"/>
-                              <Component id="comboResponsableDigitalizacion" alignment="0" max="32767" attributes="0"/>
-                              <Component id="textAreaDescripcionExterior" alignment="0" pref="0" max="32767" attributes="0"/>
-                              <Component id="comboTipoSoporte" alignment="0" max="32767" attributes="0"/>
-                              <Component id="panelFechaIngreso" max="32767" attributes="0"/>
-                              <Group type="102" attributes="0">
-                                  <Component id="panelFechaDigitalizacion" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="textDuracionArchivo" min="-2" pref="90" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="labelSegundosArchivo" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="textTamanhoArchivo" max="32767" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="labelBytesArchivo" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
+                      <Component id="botonAgregarPrograma" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="panelFormato" alignment="0" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="0" attributes="0">
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="labelNombreArchivo" alignment="0" max="32767" attributes="0"/>
+                          <Component id="labelTipoSoporte" alignment="0" max="32767" attributes="0"/>
+                          <Component id="labelCodigoSoporte" alignment="0" max="32767" attributes="0"/>
+                          <Component id="labelResponsableDigitalizacion" alignment="0" max="32767" attributes="0"/>
+                          <Component id="labelDescripcionExterior" alignment="0" max="32767" attributes="0"/>
+                          <Component id="labelDuracionArchivo" alignment="0" max="32767" attributes="0"/>
+                          <Component id="labelFormatoArchivo" alignment="0" max="32767" attributes="0"/>
+                          <Component id="labelTamanhoArchivo" max="32767" attributes="0"/>
                       </Group>
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="botonAgregarPrograma" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="panelFormato" alignment="0" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                      <Component id="labelFechaDigitalizacion" alignment="0" max="32767" attributes="0"/>
+                      <Component id="labelIdArchivo" alignment="0" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="textIdArchivo" max="32767" attributes="0"/>
+                      <Component id="textNombreArchivo" max="32767" attributes="0"/>
+                      <Component id="textCodigoSoporte" alignment="0" max="32767" attributes="0"/>
+                      <Component id="comboResponsableDigitalizacion" alignment="0" max="32767" attributes="0"/>
+                      <Component id="textAreaDescripcionExterior" alignment="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="comboTipoSoporte" alignment="0" max="32767" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="panelFechaDigitalizacion" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="textDuracionArchivo" min="-2" pref="90" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="labelSegundosArchivo" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="textTamanhoArchivo" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="labelBytesArchivo" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -154,11 +147,6 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="labelIdArchivo" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="textIdArchivo" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="labelFechaIngreso" max="32767" attributes="0"/>
-                      <Component id="panelFechaIngreso" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -208,7 +196,7 @@
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="botonAgregarPrograma" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="80" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -221,89 +209,6 @@
         </Component>
         <Component class="javax.swing.JTextField" name="textIdArchivo">
         </Component>
-        <Component class="javax.swing.JLabel" name="labelFechaIngreso">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Fecha Ingreso (DD/MM/AAAA)"/>
-          </Properties>
-        </Component>
-        <Container class="javax.swing.JPanel" name="panelFechaIngreso">
-
-          <Layout>
-            <DimensionLayout dim="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="textDiaIngreso" min="-2" pref="33" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="labelSeparador1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="textMesIngreso" min="-2" pref="33" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="labelSeparador2" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="textAnhoIngreso" min="-2" pref="44" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  </Group>
-              </Group>
-            </DimensionLayout>
-            <DimensionLayout dim="1">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                              <Component id="textMesIngreso" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="labelSeparador2" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="textAnhoIngreso" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="textDiaIngreso" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="labelSeparador1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  </Group>
-              </Group>
-            </DimensionLayout>
-          </Layout>
-          <SubComponents>
-            <Component class="javax.swing.JTextField" name="textDiaIngreso">
-              <Properties>
-                <Property name="columns" type="int" value="2"/>
-                <Property name="horizontalAlignment" type="int" value="0"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textDiaIngresoActionPerformed"/>
-              </Events>
-            </Component>
-            <Component class="javax.swing.JLabel" name="labelSeparador1">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="/"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="textMesIngreso">
-              <Properties>
-                <Property name="columns" type="int" value="2"/>
-                <Property name="horizontalAlignment" type="int" value="0"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textMesIngresoActionPerformed"/>
-              </Events>
-            </Component>
-            <Component class="javax.swing.JLabel" name="labelSeparador2">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="/"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="textAnhoIngreso">
-              <Properties>
-                <Property name="columns" type="int" value="4"/>
-                <Property name="horizontalAlignment" type="int" value="0"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textAnhoIngresoActionPerformed"/>
-              </Events>
-            </Component>
-          </SubComponents>
-        </Container>
         <Component class="javax.swing.JLabel" name="labelResponsableDigitalizacion">
           <Properties>
             <Property name="text" type="java.lang.String" value="Responsable Digitalizaci&#xf3;n"/>
@@ -1032,7 +937,7 @@
                       <Component id="labelDescripcionFragmento" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="textAreaDescripcionFragmento" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="42" max="32767" attributes="0"/>
                   <Component id="botonGuardarFragmento" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
               </Group>
