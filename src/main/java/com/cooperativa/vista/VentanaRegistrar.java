@@ -5,9 +5,11 @@
  */
 package com.cooperativa.vista;
 
-import com.cooperativa.dao.ConstDaoImpl;
+import com.cooperativa.dao.*;
+import com.cooperativa.model.*;
 import java.awt.Component;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -23,6 +25,9 @@ public class VentanaRegistrar extends javax.swing.JFrame {
   //declaracion de atributos personalizados
   private byte contadorProgramas;
   private byte contadorFragmentos;
+  private ConstDaoImpl constDao;
+  private ArchivoDaoImpl archivoDao;
+  
   
   public VentanaRegistrar() {
     initComponents();
@@ -40,6 +45,11 @@ public class VentanaRegistrar extends javax.swing.JFrame {
     panelBasquetball.setVisible(false);
     panelFutbol.setVisible(false);
     panelTenis.setVisible(false);
+    
+    //inicializacion DAOs
+    this.constDao = new ConstDaoImpl();
+    this.archivoDao = new ArchivoDaoImpl();
+
     
     //inicializacion de contadores
     this.contadorProgramas = 0;
@@ -69,7 +79,6 @@ public class VentanaRegistrar extends javax.swing.JFrame {
    * @param tipo clase de elemento con que se completará el <code>JComboBox</code> 
    */
   private void completarCombo(javax.swing.JComboBox combo, String tipo){
-    ConstDaoImpl constDao = new ConstDaoImpl();
     List<Object> listado = new ArrayList<>();
     listado = constDao.listarColeccion(tipo);
     for(Object e : listado) {
@@ -1566,18 +1575,6 @@ public class VentanaRegistrar extends javax.swing.JFrame {
     // TODO add your handling code here:
   }//GEN-LAST:event_comboResponsableDigitalizacionActionPerformed
 
-  private void textAnhoIngresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textAnhoIngresoActionPerformed
-    // TODO add your handling code here:
-  }//GEN-LAST:event_textAnhoIngresoActionPerformed
-
-  private void textMesIngresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textMesIngresoActionPerformed
-    // TODO add your handling code here:
-  }//GEN-LAST:event_textMesIngresoActionPerformed
-
-  private void textDiaIngresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textDiaIngresoActionPerformed
-    // TODO add your handling code here:
-  }//GEN-LAST:event_textDiaIngresoActionPerformed
-
   private void textDiaDigitalizacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textDiaDigitalizacionActionPerformed
     // TODO add your handling code here:
   }//GEN-LAST:event_textDiaDigitalizacionActionPerformed
@@ -1618,6 +1615,38 @@ public class VentanaRegistrar extends javax.swing.JFrame {
     panelAgregarPrograma.setVisible(true);
     this.contadorProgramas++;
     this.contadorFragmentos = 0;
+    Archivo archivo = new Archivo();
+    
+    //Al presionar AgregarPrograma, se genera el Archivo y se guarda en la base de datos
+    try {
+      archivo.setId(textIdArchivo.getText());
+      archivo.setFechaIngreso(new Date());
+      archivo.setResponsableDigitalizacion(comboResponsableDigitalizacion.getSelectedItem().toString());
+      archivo.setCodigoSoporte(textCodigoSoporte.getText());
+      archivo.setTipoSoporte(comboTipoSoporte.getSelectedItem().toString());
+      archivo.setDescripcionExterior(textAreaDescripcionExterior.getText());
+      archivo.setNombreArchivo(textNombreArchivo.getText());
+      archivo.setTamanhoArchivo(Integer.parseInt(textTamanhoArchivo.getText()));
+      archivo.setDuracionArchivo(Integer.parseInt(textDuracionArchivo.getText()));
+      archivo.setFormatoArchivo(new Formato(
+              Byte.parseByte(comboCanales.getSelectedItem().toString()),
+              Byte.parseByte(comboProfundidadBits.getSelectedItem().toString()),
+              Integer.parseInt(comboFrecuenciaMuestreo.getSelectedItem().toString()),
+              comboCodec.getSelectedItem().toString(),
+              Short.parseShort(comboTasaBits.getSelectedItem().toString())
+      ));
+      archivo.setFechaDigitalizacion(new Date(
+              Integer.parseInt(textAnhoDigitalizacion.getText().toString()),
+              Integer.parseInt(textMesDigitalizacion.getText().toString()),
+              Integer.parseInt(textDiaDigitalizacion.getText().toString())
+      ));
+      
+      archivoDao.crearArchivo(archivo);
+      
+      
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
   }//GEN-LAST:event_botonAgregarProgramaActionPerformed
 
   private void botonAgregarFragmentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarFragmentoActionPerformed
@@ -1757,6 +1786,18 @@ public class VentanaRegistrar extends javax.swing.JFrame {
   private void comboPeriodistaInformeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboPeriodistaInformeActionPerformed
     // TODO add your handling code here:
   }//GEN-LAST:event_comboPeriodistaInformeActionPerformed
+
+  private void textAnhoIngresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textAnhoIngresoActionPerformed
+    // TODO add your handling code here:
+  }//GEN-LAST:event_textAnhoIngresoActionPerformed
+
+  private void textMesIngresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textMesIngresoActionPerformed
+    // TODO add your handling code here:
+  }//GEN-LAST:event_textMesIngresoActionPerformed
+
+  private void textDiaIngresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textDiaIngresoActionPerformed
+    // TODO add your handling code here:
+  }//GEN-LAST:event_textDiaIngresoActionPerformed
 
   /**
    * @param args the command line arguments
