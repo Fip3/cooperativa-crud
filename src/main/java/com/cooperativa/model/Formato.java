@@ -11,55 +11,18 @@ package com.cooperativa.model;
  */
 public class Formato {
   
-  private int canales;
-  private int profundidadBits;
+  private byte canales;
+  private byte profundidadBits;
   private int frecuenciaMuestreo;
   private String codec;
-  private int tasaBits;
+  private short tasaBits;
 
-  public Formato() {
-  }
-
-  public int getFrecuenciaMuestreo() {
-    return frecuenciaMuestreo;
-  }
-
-  public void setFrecuenciaMuestreo(int frecuenciaMuestreo) {
-    this.frecuenciaMuestreo = frecuenciaMuestreo;
-  }
-
-  public int getCanales() {
-    return canales;
-  }
-
-  public void setCanales(int canales) {
+  public Formato(byte canales, byte profundidadBits, int frecuenciaMuestreo, String codec, short tasaBits) {
     this.canales = canales;
-  }
-
-  public int getProfundidadBits() {
-    return profundidadBits;
-  }
-
-  public void setProfundidadBits(int profundidadBits) {
     this.profundidadBits = profundidadBits;
-  }
-
-  public String getCodec() {
-    return codec;
-  }
-
-  public void setCodec(String codec) {
+    this.frecuenciaMuestreo = frecuenciaMuestreo;
     this.codec = codec;
-  }
-
-  public int getTasaBits() {
-    return tasaBits;
-  }
-
-  public void setTasaBits(int tasaBits) {
     this.tasaBits = tasaBits;
   }
-  
-  
   
 }
