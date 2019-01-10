@@ -13,6 +13,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
+import javax.swing.DefaultListModel;
+import javax.swing.ListModel;
 
 /**
  *
@@ -27,14 +29,15 @@ public class VentanaRegistrar extends javax.swing.JFrame {
   //declaracion de atributos personalizados
   private byte contadorProgramas;
   private byte contadorFragmentos;
-  private ConstDaoImpl constDao;
-  private ArchivoDaoImpl archivoDao;
-  private String operador;
-  
+  private final ConstDaoImpl constDao;
+  private final ArchivoDaoImpl archivoDao;
+  private final String operador;
   
   public VentanaRegistrar(String operador) {
     this.operador = operador;
     initComponents();
+    
+    listaConductor.setVisibleRowCount(0);
     
     //inicializacion de paneles no visibles al cargar ventana
     panelAgregarPrograma.setVisible(false);
@@ -157,6 +160,8 @@ public class VentanaRegistrar extends javax.swing.JFrame {
     labelConductor = new javax.swing.JLabel();
     comboConductor = new javax.swing.JComboBox<>();
     botonAgregarFragmento = new javax.swing.JButton();
+    panelDeslizableConductor = new javax.swing.JScrollPane();
+    listaConductor = new javax.swing.JList<>();
     panelAgregarFragmento = new javax.swing.JPanel();
     labelIdAudio = new javax.swing.JLabel();
     textIdAudio = new javax.swing.JTextField();
@@ -452,15 +457,14 @@ public class VentanaRegistrar extends javax.swing.JFrame {
         .addGap(0, 0, Short.MAX_VALUE))
       .addGroup(panelCrearArchivoLayout.createSequentialGroup()
         .addGroup(panelCrearArchivoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-          .addGroup(panelCrearArchivoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-            .addComponent(labelNombreArchivo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(labelTipoSoporte, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(labelCodigoSoporte, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(labelResponsableDigitalizacion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(labelDescripcionExterior, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(labelDuracionArchivo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(labelFormatoArchivo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(labelTamanhoArchivo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+          .addComponent(labelNombreArchivo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+          .addComponent(labelTipoSoporte, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+          .addComponent(labelCodigoSoporte, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+          .addComponent(labelResponsableDigitalizacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+          .addComponent(labelDescripcionExterior, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+          .addComponent(labelDuracionArchivo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+          .addComponent(labelFormatoArchivo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+          .addComponent(labelTamanhoArchivo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
           .addComponent(labelFechaDigitalizacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
           .addComponent(labelIdArchivo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -625,6 +629,11 @@ public class VentanaRegistrar extends javax.swing.JFrame {
     labelConductor.setText("Conductor");
 
     comboConductor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Elige un conductor" }));
+    comboConductor.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        comboConductorActionPerformed(evt);
+      }
+    });
 
     botonAgregarFragmento.setText("Agregar Fragmento >>");
     botonAgregarFragmento.addActionListener(new java.awt.event.ActionListener() {
@@ -632,6 +641,11 @@ public class VentanaRegistrar extends javax.swing.JFrame {
         botonAgregarFragmentoActionPerformed(evt);
       }
     });
+
+    listaConductor.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+    listaConductor.setToolTipText("Click derecho para borrar nombre");
+    listaConductor.setMaximumSize(new java.awt.Dimension(0, 3));
+    panelDeslizableConductor.setViewportView(listaConductor);
 
     javax.swing.GroupLayout panelAgregarProgramaLayout = new javax.swing.GroupLayout(panelAgregarPrograma);
     panelAgregarPrograma.setLayout(panelAgregarProgramaLayout);
@@ -654,6 +668,7 @@ public class VentanaRegistrar extends javax.swing.JFrame {
             .addComponent(textAlturaInicioPrograma))
           .addGroup(panelAgregarProgramaLayout.createSequentialGroup()
             .addGroup(panelAgregarProgramaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+              .addComponent(botonAgregarFragmento)
               .addGroup(panelAgregarProgramaLayout.createSequentialGroup()
                 .addGroup(panelAgregarProgramaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                   .addComponent(labelConductor)
@@ -661,10 +676,11 @@ public class VentanaRegistrar extends javax.swing.JFrame {
                   .addComponent(labelNombrePrograma))
                 .addGap(23, 23, 23)
                 .addGroup(panelAgregarProgramaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                  .addComponent(panelFechaEmisionPrograma, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                  .addComponent(comboNombrePrograma, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                  .addComponent(comboConductor, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-              .addComponent(botonAgregarFragmento))
+                  .addComponent(panelDeslizableConductor, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                  .addGroup(panelAgregarProgramaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(panelFechaEmisionPrograma, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(comboNombrePrograma, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(comboConductor, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
             .addGap(0, 0, Short.MAX_VALUE)))
         .addContainerGap())
     );
@@ -695,7 +711,9 @@ public class VentanaRegistrar extends javax.swing.JFrame {
         .addGroup(panelAgregarProgramaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
           .addComponent(labelConductor)
           .addComponent(comboConductor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        .addGap(33, 33, 33)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(panelDeslizableConductor, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addGap(208, 208, 208)
         .addComponent(botonAgregarFragmento)
         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
@@ -1407,7 +1425,7 @@ public class VentanaRegistrar extends javax.swing.JFrame {
                   .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAgregarFragmentoLayout.createSequentialGroup()
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(comboPalabrasClave, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-            .addGap(0, 40, Short.MAX_VALUE))
+            .addGap(0, 0, Short.MAX_VALUE))
           .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAgregarFragmentoLayout.createSequentialGroup()
             .addGap(0, 0, Short.MAX_VALUE)
             .addComponent(botonGuardarFragmento)))
@@ -1566,7 +1584,7 @@ public class VentanaRegistrar extends javax.swing.JFrame {
       ));
       archivo.setFechaDigitalizacion(new GregorianCalendar(
               Integer.parseInt(textAnhoDigitalizacion.getText()),
-              Integer.parseInt(textMesDigitalizacion.getText()) - 1,
+              (Integer.parseInt(textMesDigitalizacion.getText()) - 1),
               Integer.parseInt(textDiaDigitalizacion.getText())
       ).getTime());
       
@@ -1577,7 +1595,7 @@ public class VentanaRegistrar extends javax.swing.JFrame {
       e.printStackTrace();
     }
     
-    //Desactiva boton AgregarPrograma para evitar reingreso de informacion
+    //Desactiva boton AgregarPrograma para evitar reingreso de Archivo
     botonAgregarPrograma.setEnabled(false);
   }//GEN-LAST:event_botonAgregarProgramaActionPerformed
 
@@ -1719,6 +1737,28 @@ public class VentanaRegistrar extends javax.swing.JFrame {
     // TODO add your handling code here:
   }//GEN-LAST:event_comboPeriodistaInformeActionPerformed
 
+  private void comboConductorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboConductorActionPerformed
+    DefaultListModel modelo = new DefaultListModel();
+    boolean elementoExiste = false;
+    
+    //ciclo para rellenar modelo nuevo con elementos previos de la lista
+    for(int i=0; i < listaConductor.getModel().getSize(); i++){
+      modelo.addElement(listaConductor.getModel().getElementAt(i));
+      //revisa si el elemento seleccionado existe previamente
+      if(!elementoExiste) {
+        if(comboConductor.getSelectedItem().equals(listaConductor.getModel().getElementAt(i))){
+          elementoExiste = true;
+        }
+      }
+    }
+    if(!elementoExiste){
+      modelo.addElement(comboConductor.getSelectedItem());
+    }
+    
+    listaConductor.setModel(modelo);
+    listaConductor.setVisibleRowCount(listaConductor.getVisibleRowCount()+1);
+  }//GEN-LAST:event_comboConductorActionPerformed
+
   /**
    * @param args the command line arguments
    */
@@ -1843,11 +1883,13 @@ public class VentanaRegistrar extends javax.swing.JFrame {
   private javax.swing.JLabel labelTipoAudio;
   private javax.swing.JLabel labelTipoSoporte;
   private javax.swing.JLabel labelTitulo;
+  private javax.swing.JList<String> listaConductor;
   private javax.swing.JPanel panelAgregarFragmento;
   private javax.swing.JPanel panelAgregarPrograma;
   private javax.swing.JPanel panelBasquetball;
   private javax.swing.JPanel panelCrearArchivo;
   private javax.swing.JPanel panelDeporte;
+  private javax.swing.JScrollPane panelDeslizableConductor;
   private javax.swing.JLayeredPane panelDisciplina;
   private javax.swing.JPanel panelEntrevista;
   private javax.swing.JPanel panelFechaDigitalizacion;
