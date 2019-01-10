@@ -1603,6 +1603,34 @@ public class VentanaRegistrar extends javax.swing.JFrame {
     panelAgregarFragmento.setVisible(true);
     this.contadorFragmentos++;
     
+    //Al presionar AgregarFragmento se inserta la informacion del programa al Archivo
+    //creación de Programa
+    Programa programa = new Programa(String.valueOf(this.contadorProgramas));
+    
+    //insercion de informacion en Programa
+    try {
+      programa.setAlturaInicio(Integer.parseInt(textAlturaInicioPrograma.getText()));
+      programa.setAlturaTermino(Integer.parseInt(textAlturaTerminoPrograma.getText()));
+      programa.setNombrePrograma(comboNombrePrograma.getSelectedItem().toString());
+      programa.setFechaEmision(new GregorianCalendar(
+              Integer.parseInt(textAnhoEmision.getText()),
+              (Integer.parseInt(textMesEmision.getText()) - 1),
+              Integer.parseInt(textDiaEmision.getText())
+      ).getTime());
+      for(int i = 0; i < listaConductor.getModel().getSize(); i++){
+        programa.agregarConductor(listaConductor.getModel().getElementAt(i));
+      }
+      
+      //agrega Programa a lista Programa
+      archivoDao.insertarPrograma(textIdArchivo.getText(), programa);
+      
+    } catch (Exception e){
+      e.printStackTrace();
+    }
+    
+    //Desactiva boton AgregarFragmento para evitar reingreso de Archivo
+    botonAgregarFragmento.setEnabled(false);
+    
   }//GEN-LAST:event_botonAgregarFragmentoActionPerformed
 
   private void textTemaPanelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textTemaPanelActionPerformed
