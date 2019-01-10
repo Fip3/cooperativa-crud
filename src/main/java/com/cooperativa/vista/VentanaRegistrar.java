@@ -1541,9 +1541,12 @@ public class VentanaRegistrar extends javax.swing.JFrame {
     panelAgregarPrograma.setVisible(true);
     this.contadorProgramas++;
     this.contadorFragmentos = 0;
-    Archivo archivo = new Archivo(new Date(), this.operador);
     
     //Al presionar AgregarPrograma, se genera el Archivo y se guarda en la base de datos
+    
+    //creacion del archivo, con parámetros de fecha y operador no modificable
+    Archivo archivo = new Archivo(new Date(), this.operador);
+    
     try {
       //Creacion y llenado del Archivo
       archivo.setId(textIdArchivo.getText());
@@ -1570,10 +1573,12 @@ public class VentanaRegistrar extends javax.swing.JFrame {
       //guardado del Archivo en base de datos
       archivoDao.crearArchivo(archivo);
       
-      
     } catch (Exception e) {
       e.printStackTrace();
     }
+    
+    //Desactiva boton AgregarPrograma para evitar reingreso de informacion
+    botonAgregarPrograma.setEnabled(false);
   }//GEN-LAST:event_botonAgregarProgramaActionPerformed
 
   private void botonAgregarFragmentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarFragmentoActionPerformed

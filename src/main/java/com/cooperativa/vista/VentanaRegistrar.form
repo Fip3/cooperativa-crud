@@ -99,16 +99,14 @@
               </Group>
               <Group type="102" alignment="0" attributes="0">
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="labelNombreArchivo" alignment="0" max="32767" attributes="0"/>
-                          <Component id="labelTipoSoporte" alignment="0" max="32767" attributes="0"/>
-                          <Component id="labelCodigoSoporte" alignment="0" max="32767" attributes="0"/>
-                          <Component id="labelResponsableDigitalizacion" alignment="0" max="32767" attributes="0"/>
-                          <Component id="labelDescripcionExterior" alignment="0" max="32767" attributes="0"/>
-                          <Component id="labelDuracionArchivo" alignment="0" max="32767" attributes="0"/>
-                          <Component id="labelFormatoArchivo" alignment="0" max="32767" attributes="0"/>
-                          <Component id="labelTamanhoArchivo" max="32767" attributes="0"/>
-                      </Group>
+                      <Component id="labelNombreArchivo" alignment="0" max="32767" attributes="0"/>
+                      <Component id="labelTipoSoporte" alignment="0" max="32767" attributes="0"/>
+                      <Component id="labelCodigoSoporte" alignment="0" max="32767" attributes="0"/>
+                      <Component id="labelResponsableDigitalizacion" alignment="0" max="32767" attributes="0"/>
+                      <Component id="labelDescripcionExterior" alignment="0" max="32767" attributes="0"/>
+                      <Component id="labelDuracionArchivo" alignment="0" max="32767" attributes="0"/>
+                      <Component id="labelFormatoArchivo" alignment="0" max="32767" attributes="0"/>
+                      <Component id="labelTamanhoArchivo" alignment="1" max="32767" attributes="0"/>
                       <Component id="labelFechaDigitalizacion" alignment="0" max="32767" attributes="0"/>
                       <Component id="labelIdArchivo" alignment="0" max="32767" attributes="0"/>
                   </Group>
