@@ -26,8 +26,8 @@ public class Seccion extends Audio{
   @Embedded
   private List<String> invitado = new ArrayList<>();
 
-  public Seccion() {
-    super("Seccion");
+  public Seccion(String idAudio) {
+    super(idAudio, "Seccion");
   }
 
   public String getNombre() {

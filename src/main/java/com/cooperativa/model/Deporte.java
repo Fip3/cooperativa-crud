@@ -31,12 +31,12 @@ public abstract class Deporte extends Audio{
   private String competencia;
   private String lugar;
 
-  public Deporte() {
-    super("Deporte");
+  public Deporte(String idAudio) {
+    super(idAudio, "Deporte");
   }
   
-  public Deporte(String disciplina) {
-    super("Deporte");
+  public Deporte(String idAudio, String disciplina) {
+    super(idAudio, "Deporte");
     this.disciplina = disciplina;
   }
 

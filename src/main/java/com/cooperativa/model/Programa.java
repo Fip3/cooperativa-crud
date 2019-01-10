@@ -31,13 +31,13 @@ public class Programa {
 
   public Programa() {
   }
+  
+  public Programa(String idPrograma){
+    this.idPrograma = idPrograma;
+  }
 
   public String getIdPrograma() {
     return idPrograma;
-  }
-
-  public void setIdPrograma(String idPrograma) {
-    this.idPrograma = idPrograma;
   }
 
   public int getAlturaInicio() {

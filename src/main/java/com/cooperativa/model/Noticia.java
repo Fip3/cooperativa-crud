@@ -17,8 +17,8 @@ public class Noticia extends Audio{
   @Embedded
   private List<String> tema = new ArrayList<>();
 
-  public Noticia() {
-    super("Noticia");
+  public Noticia(String idAudio) {
+    super(idAudio, "Noticia");
   }
 
   public List<String> getTema() {

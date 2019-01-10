@@ -21,8 +21,8 @@ public class Panel extends Audio{
   @Embedded
   public List<String> tema = new ArrayList<>();
 
-  public Panel() {
-    super("Panel");
+  public Panel(String idAudio) {
+    super(idAudio, "Panel");
   }
 
   public List<Personaje> getPanelista() {

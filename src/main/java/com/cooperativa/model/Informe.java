@@ -25,8 +25,8 @@ public class Informe extends Audio{
   private List<String> tema = new ArrayList<>();
   private String lugar;
 
-  public Informe() {
-    super("Informe");
+  public Informe(String idAudio) {
+    super(idAudio, "Informe");
   }
 
   public String getLugar() {
