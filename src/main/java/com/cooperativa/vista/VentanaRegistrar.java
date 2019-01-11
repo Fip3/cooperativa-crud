@@ -9,12 +9,10 @@ import com.cooperativa.dao.*;
 import com.cooperativa.model.*;
 import java.awt.Component;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 import javax.swing.DefaultListModel;
-import javax.swing.ListModel;
 
 /**
  *
