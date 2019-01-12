@@ -151,7 +151,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
   }//GEN-LAST:event_botonABusquedaActionPerformed
 
   private void enlaceSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_enlaceSalirMouseClicked
-    
+    System.exit(0);
   }//GEN-LAST:event_enlaceSalirMouseClicked
 
   /**
