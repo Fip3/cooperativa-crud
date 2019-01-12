@@ -23,18 +23,21 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-              <Component id="enlaceSalir" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
-          </Group>
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="labelTitulo" min="-2" max="-2" attributes="0"/>
-                          <Component id="labelSubtitulo" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="labelTitulo" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace pref="223" max="32767" attributes="0"/>
+                              <Component id="labelSaludo" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="labelSubtitulo" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="enlaceSalir" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -46,13 +49,13 @@
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="labelRegistrar" min="-2" max="-2" attributes="0"/>
-                          <Component id="labelRegistrar1" min="-2" max="-2" attributes="0"/>
-                          <Component id="labelRegistrar2" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelARegistrar" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelAModificar" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelABuscar" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="32" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -61,25 +64,28 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="enlaceSalir" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="labelTitulo" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="labelSaludo" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="labelSubtitulo" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="labelSubtitulo" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="enlaceSalir" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="botonARegistrar" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
-                  <Component id="labelRegistrar" alignment="3" max="32767" attributes="0"/>
+                  <Component id="labelARegistrar" alignment="3" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="botonAModificar" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
-                  <Component id="labelRegistrar1" alignment="3" max="32767" attributes="0"/>
+                  <Component id="labelAModificar" alignment="3" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="botonABusqueda" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
-                  <Component id="labelRegistrar2" alignment="3" max="32767" attributes="0"/>
+                  <Component id="labelABuscar" alignment="3" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
           </Group>
@@ -87,38 +93,6 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JButton" name="botonARegistrar">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Registrar"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonARegistrarActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="botonAModificar">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Modificar"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonAModificarActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="botonABusqueda">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Buscar"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonABusquedaActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JLabel" name="enlaceSalir">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Salir"/>
-      </Properties>
-      <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="enlaceSalirMouseClicked"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JLabel" name="labelTitulo">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -132,7 +106,25 @@
         <Property name="text" type="java.lang.String" value="Archivo Radio Cooperativa"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="labelRegistrar">
+    <Component class="javax.swing.JLabel" name="enlaceSalir">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Salir"/>
+      </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="enlaceSalirMouseClicked"/>
+        <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="enlaceSalirMouseEntered"/>
+        <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="enlaceSalirMouseExited"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="botonARegistrar">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Registrar"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonARegistrarActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="labelARegistrar">
       <Properties>
         <Property name="labelFor" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
           <ComponentRef name="botonARegistrar"/>
@@ -141,7 +133,15 @@
         <Property name="inheritsPopupMenu" type="boolean" value="false"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="labelRegistrar1">
+    <Component class="javax.swing.JButton" name="botonAModificar">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Modificar"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonAModificarActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="labelAModificar">
       <Properties>
         <Property name="labelFor" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
           <ComponentRef name="botonARegistrar"/>
@@ -150,13 +150,26 @@
         <Property name="inheritsPopupMenu" type="boolean" value="false"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="labelRegistrar2">
+    <Component class="javax.swing.JButton" name="botonABusqueda">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Buscar"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonABusquedaActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="labelABuscar">
       <Properties>
         <Property name="labelFor" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
           <ComponentRef name="botonARegistrar"/>
         </Property>
         <Property name="text" type="java.lang.String" value="&lt;html&gt;Si quieres buscar en nuestra colecci&#xf3;n, &#xe9;ste es el lugar&lt;/html&gt;"/>
         <Property name="inheritsPopupMenu" type="boolean" value="false"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="labelSaludo">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Archivo Radio Cooperativa"/>
       </Properties>
     </Component>
   </SubComponents>

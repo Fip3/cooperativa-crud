@@ -5,17 +5,26 @@
  */
 package com.cooperativa.vista;
 
+import java.awt.Color;
+
 /**
  *
  * @author ftorrejon
  */
 public class VentanaPrincipal extends javax.swing.JFrame {
-
+    
   /**
    * Creates new form VentanaPrincipal
    */
-  public VentanaPrincipal() {
+  
+  //declaracion de atributos personalizados
+  private final String operador;
+  
+  public VentanaPrincipal(String operador) {
+    this.operador = operador;
     initComponents();
+    
+    labelSaludo.setText("Hola, " + operador);
   }
 
   /**
@@ -26,17 +35,36 @@ public class VentanaPrincipal extends javax.swing.JFrame {
   // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
   private void initComponents() {
 
-    botonARegistrar = new javax.swing.JButton();
-    botonAModificar = new javax.swing.JButton();
-    botonABusqueda = new javax.swing.JButton();
-    enlaceSalir = new javax.swing.JLabel();
     labelTitulo = new javax.swing.JLabel();
     labelSubtitulo = new javax.swing.JLabel();
-    labelRegistrar = new javax.swing.JLabel();
-    labelRegistrar1 = new javax.swing.JLabel();
-    labelRegistrar2 = new javax.swing.JLabel();
+    enlaceSalir = new javax.swing.JLabel();
+    botonARegistrar = new javax.swing.JButton();
+    labelARegistrar = new javax.swing.JLabel();
+    botonAModificar = new javax.swing.JButton();
+    labelAModificar = new javax.swing.JLabel();
+    botonABusqueda = new javax.swing.JButton();
+    labelABuscar = new javax.swing.JLabel();
+    labelSaludo = new javax.swing.JLabel();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+    labelTitulo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+    labelTitulo.setText("BASE DE DATOS");
+
+    labelSubtitulo.setText("Archivo Radio Cooperativa");
+
+    enlaceSalir.setText("Salir");
+    enlaceSalir.addMouseListener(new java.awt.event.MouseAdapter() {
+      public void mouseClicked(java.awt.event.MouseEvent evt) {
+        enlaceSalirMouseClicked(evt);
+      }
+      public void mouseEntered(java.awt.event.MouseEvent evt) {
+        enlaceSalirMouseEntered(evt);
+      }
+      public void mouseExited(java.awt.event.MouseEvent evt) {
+        enlaceSalirMouseExited(evt);
+      }
+    });
 
     botonARegistrar.setText("Registrar");
     botonARegistrar.addActionListener(new java.awt.event.ActionListener() {
@@ -45,12 +73,20 @@ public class VentanaPrincipal extends javax.swing.JFrame {
       }
     });
 
+    labelARegistrar.setLabelFor(botonARegistrar);
+    labelARegistrar.setText("<html>Acá podrás ingresar un nuevo archivo a la colección</html>");
+    labelARegistrar.setInheritsPopupMenu(false);
+
     botonAModificar.setText("Modificar");
     botonAModificar.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
         botonAModificarActionPerformed(evt);
       }
     });
+
+    labelAModificar.setLabelFor(botonARegistrar);
+    labelAModificar.setText("<html>Acá podrás modificar o eliminar un archivo de la colección</html>");
+    labelAModificar.setInheritsPopupMenu(false);
 
     botonABusqueda.setText("Buscar");
     botonABusqueda.addActionListener(new java.awt.event.ActionListener() {
@@ -59,45 +95,29 @@ public class VentanaPrincipal extends javax.swing.JFrame {
       }
     });
 
-    enlaceSalir.setText("Salir");
-    enlaceSalir.addMouseListener(new java.awt.event.MouseAdapter() {
-      public void mouseClicked(java.awt.event.MouseEvent evt) {
-        enlaceSalirMouseClicked(evt);
-      }
-    });
+    labelABuscar.setLabelFor(botonARegistrar);
+    labelABuscar.setText("<html>Si quieres buscar en nuestra colección, éste es el lugar</html>");
+    labelABuscar.setInheritsPopupMenu(false);
 
-    labelTitulo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-    labelTitulo.setText("BASE DE DATOS");
-
-    labelSubtitulo.setText("Archivo Radio Cooperativa");
-
-    labelRegistrar.setLabelFor(botonARegistrar);
-    labelRegistrar.setText("<html>Acá podrás ingresar un nuevo archivo a la colección</html>");
-    labelRegistrar.setInheritsPopupMenu(false);
-
-    labelRegistrar1.setLabelFor(botonARegistrar);
-    labelRegistrar1.setText("<html>Acá podrás modificar o eliminar un archivo de la colección</html>");
-    labelRegistrar1.setInheritsPopupMenu(false);
-
-    labelRegistrar2.setLabelFor(botonARegistrar);
-    labelRegistrar2.setText("<html>Si quieres buscar en nuestra colección, éste es el lugar</html>");
-    labelRegistrar2.setInheritsPopupMenu(false);
+    labelSaludo.setText("Archivo Radio Cooperativa");
 
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
     getContentPane().setLayout(layout);
     layout.setHorizontalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-        .addGap(0, 0, Short.MAX_VALUE)
-        .addComponent(enlaceSalir)
-        .addGap(19, 19, 19))
       .addGroup(layout.createSequentialGroup()
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
           .addGroup(layout.createSequentialGroup()
             .addContainerGap()
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-              .addComponent(labelTitulo)
-              .addComponent(labelSubtitulo)))
+              .addGroup(layout.createSequentialGroup()
+                .addComponent(labelTitulo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 223, Short.MAX_VALUE)
+                .addComponent(labelSaludo))
+              .addGroup(layout.createSequentialGroup()
+                .addComponent(labelSubtitulo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(enlaceSalir))))
           .addGroup(layout.createSequentialGroup()
             .addGap(33, 33, 33)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
@@ -106,32 +126,34 @@ public class VentanaPrincipal extends javax.swing.JFrame {
               .addComponent(botonABusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGap(18, 18, 18)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-              .addComponent(labelRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-              .addComponent(labelRegistrar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-              .addComponent(labelRegistrar2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-        .addContainerGap(32, Short.MAX_VALUE))
+              .addComponent(labelARegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+              .addComponent(labelAModificar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+              .addComponent(labelABuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+        .addGap(18, 18, 18))
     );
     layout.setVerticalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(layout.createSequentialGroup()
         .addContainerGap()
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-          .addComponent(enlaceSalir)
-          .addComponent(labelTitulo))
+          .addComponent(labelTitulo)
+          .addComponent(labelSaludo))
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-        .addComponent(labelSubtitulo)
+        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+          .addComponent(labelSubtitulo)
+          .addComponent(enlaceSalir))
         .addGap(41, 41, 41)
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(botonARegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-          .addComponent(labelRegistrar))
+          .addComponent(labelARegistrar))
         .addGap(40, 40, 40)
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(botonAModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-          .addComponent(labelRegistrar1))
+          .addComponent(labelAModificar))
         .addGap(38, 38, 38)
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(botonABusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-          .addComponent(labelRegistrar2))
+          .addComponent(labelABuscar))
         .addGap(34, 34, 34))
     );
 
@@ -139,7 +161,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
   }// </editor-fold>//GEN-END:initComponents
 
   private void botonARegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonARegistrarActionPerformed
-    // TODO add your handling code here:
+    java.awt.EventQueue.invokeLater(new Runnable() {
+      @Override
+      public void run() {
+        new VentanaRegistrar("OPERADOR DE PRUEBA").setVisible(true);
+      }
+    });
   }//GEN-LAST:event_botonARegistrarActionPerformed
 
   private void botonAModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAModificarActionPerformed
@@ -153,6 +180,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
   private void enlaceSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_enlaceSalirMouseClicked
     System.exit(0);
   }//GEN-LAST:event_enlaceSalirMouseClicked
+
+  private void enlaceSalirMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_enlaceSalirMouseEntered
+    enlaceSalir.setForeground(Color.BLUE);
+  }//GEN-LAST:event_enlaceSalirMouseEntered
+
+  private void enlaceSalirMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_enlaceSalirMouseExited
+    enlaceSalir.setForeground(Color.BLACK);
+  }//GEN-LAST:event_enlaceSalirMouseExited
 
   /**
    * @param args the command line arguments
@@ -183,8 +218,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     /* Create and display the form */
     java.awt.EventQueue.invokeLater(new Runnable() {
+      @Override
       public void run() {
-        new VentanaPrincipal().setVisible(true);
+        new VentanaPrincipal("OPERADOR DE PRUEBA").setVisible(true);
       }
     });
   }
@@ -194,9 +230,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
   private javax.swing.JButton botonAModificar;
   private javax.swing.JButton botonARegistrar;
   private javax.swing.JLabel enlaceSalir;
-  private javax.swing.JLabel labelRegistrar;
-  private javax.swing.JLabel labelRegistrar1;
-  private javax.swing.JLabel labelRegistrar2;
+  private javax.swing.JLabel labelABuscar;
+  private javax.swing.JLabel labelAModificar;
+  private javax.swing.JLabel labelARegistrar;
+  private javax.swing.JLabel labelSaludo;
   private javax.swing.JLabel labelSubtitulo;
   private javax.swing.JLabel labelTitulo;
   // End of variables declaration//GEN-END:variables
