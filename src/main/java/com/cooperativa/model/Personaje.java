@@ -11,35 +11,25 @@ package com.cooperativa.model;
  */
 public class Personaje {
   
-  private String nombreCompleto;
-  private String cargo;
-  private String institucion;
+  private final String nombreCompleto;
+  private final String cargo;
+  private final String institucion;
 
-  public Personaje() {
+  public Personaje(String nombreCompleto, String cargo, String institucion) {
+    this.nombreCompleto = nombreCompleto;
+    this.cargo = cargo;
+    this.institucion = institucion;
   }
 
   public String getNombreCompleto() {
     return nombreCompleto;
   }
 
-  public void setNombreCompleto(String nombreCompleto) {
-    this.nombreCompleto = nombreCompleto;
-  }
-
   public String getCargo() {
     return cargo;
   }
 
-  public void setCargo(String cargo) {
-    this.cargo = cargo;
-  }
-
   public String getInstitucion() {
     return institucion;
-  }
-
-  public void setInstitucion(String institucion) {
-    this.institucion = institucion;
-  }
-  
+  } 
 }
