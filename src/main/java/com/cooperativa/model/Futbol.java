@@ -25,6 +25,10 @@ public class Futbol extends Deporte{
   public Futbol() {
     super("Futbol");
   }
+  
+  public Futbol(String idAudio) {
+    super(idAudio, "Futbol");
+  }
 
   public String getEquipoLocal() {
     return equipoLocal;

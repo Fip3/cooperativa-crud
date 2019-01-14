@@ -18,6 +18,10 @@ public class Basquetball extends Deporte{
   public Basquetball() {
     super("Basquetball");
   }
+  
+  public Basquetball(String idAudio) {
+    super(idAudio, "Basquetball");
+  }
 
   public String getEquipoLocal() {
     return equipoLocal;

@@ -22,6 +22,10 @@ public class Tenis extends Deporte{
   public Tenis() {
     super("Tenis");
   }
+  
+  public Tenis(String idAudio){
+    super(idAudio,"Tenis");
+  }
 
   public String getMarcador() {
     return marcador;
