@@ -24,7 +24,7 @@ public class Seccion extends Audio{
   private List<String> tema = new ArrayList<>();
   
   @Embedded
-  private List<String> invitado = new ArrayList<>();
+  private List<Personaje> invitado = new ArrayList<>();
 
   public Seccion(String idAudio) {
     super(idAudio, "Seccion");
@@ -46,14 +46,10 @@ public class Seccion extends Audio{
     return tema;
   }
   
-  public List<String> getInvitado() {
+  public List<Personaje> getInvitado() {
     return invitado;
   }
 
-  public void setInvitado(List<String> invitados) {
-    this.invitado = invitados;
-  }
-  
   /**
    * Método para agregar Panelista a la lista de Panelistas.
    * @param p - String que se almacenará en la lista de panelistas.
@@ -70,5 +66,14 @@ public class Seccion extends Audio{
    */
   public boolean agregarTema(String t) {
     return this.tema.add(t);
+  }
+  
+  /**
+   * Método para agregar Personaje a la lista de Invitados.
+   * @param p - Personaje que se almacenará en la lista de panelistas.
+   * @return boolean - Valor que verifica que el Personaje se insertó correctamente en la lista.
+   */
+  public boolean agregarInvitado(Personaje p) {
+    return this.invitado.add(p);
   }
 }
