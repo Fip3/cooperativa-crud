@@ -903,7 +903,7 @@
                           </Group>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
-                                  <EmptySpace pref="40" max="32767" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
                                   <Component id="comboPalabrasClave" min="-2" pref="149" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
@@ -1033,11 +1033,15 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
-                          <Component id="labelTemaNoticia" pref="113" max="32767" attributes="0"/>
+                          <Component id="labelTemaNoticia" pref="112" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="scrollTemaNoticia" pref="0" max="32767" attributes="0"/>
-                              <Component id="textTemaNoticia" pref="117" max="32767" attributes="0"/>
+                              <Component id="scrollTemaNoticia" min="-2" pref="117" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Component id="textTemaNoticia" min="-2" pref="75" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="botonTemaNoticia" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -1049,6 +1053,7 @@
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="labelTemaNoticia" alignment="3" max="-2" attributes="0"/>
                               <Component id="textTemaNoticia" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="botonTemaNoticia" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
                           <Component id="scrollTemaNoticia" min="-2" pref="45" max="-2" attributes="0"/>
@@ -1066,6 +1071,17 @@
                 <Component class="javax.swing.JTextField" name="textTemaNoticia">
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textTemaNoticiaActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JButton" name="botonTemaNoticia">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="+"/>
+                    <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
+                      <Insets value="[2, 5, 2, 5]"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonTemaNoticiaActionPerformed"/>
                   </Events>
                 </Component>
                 <Container class="javax.swing.JScrollPane" name="scrollTemaNoticia">
@@ -1118,40 +1134,45 @@
                               <Group type="102" alignment="1" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="labelLugarInforme" alignment="1" max="32767" attributes="0"/>
-                                      <Component id="labelTemaInforme" max="32767" attributes="0"/>
-                                      <Component id="labelPersonajeInforme" max="32767" attributes="0"/>
+                                      <Component id="labelTemaInforme" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="labelLugarInforme" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="labelPersonajeInforme" alignment="0" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                                          <Component id="textPersonajeInforme" min="-2" pref="104" max="-2" attributes="0"/>
-                                          <Component id="scrollPersonajeInforme" min="-2" pref="158" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="102" attributes="0">
+                                                  <Component id="textPersonajeInforme" min="-2" pref="104" max="-2" attributes="0"/>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="botonPersonajeInforme" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Component id="scrollPersonajeInforme" min="-2" pref="158" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                                       </Group>
                                       <Component id="textLugarInforme" alignment="1" min="-2" pref="158" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
-                                  <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                                  <EmptySpace min="6" max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" alignment="1" attributes="0">
-                                          <Component id="labelPeriodistaInforme" max="32767" attributes="0"/>
-                                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                                          <Component id="labelPeriodistaInforme" min="-2" pref="181" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="textTemaInforme" min="-2" pref="107" max="-2" attributes="0"/>
+                                              <Group type="102" attributes="0">
+                                                  <Component id="textTemaInforme" min="-2" pref="107" max="-2" attributes="0"/>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="botonTemaInforme" min="-2" max="-2" attributes="0"/>
+                                              </Group>
                                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                                   <Component id="scrollPeriodistaInforme" pref="0" max="32767" attributes="0"/>
                                                   <Component id="comboPeriodistaInforme" pref="158" max="32767" attributes="0"/>
                                               </Group>
                                           </Group>
                                       </Group>
-                                      <Group type="102" alignment="1" attributes="0">
-                                          <EmptySpace min="0" pref="187" max="32767" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="scrollTemaInforme" alignment="1" min="-2" pref="158" max="-2" attributes="0"/>
-                                              <Component id="scrollLugarInforme" alignment="1" min="-2" pref="158" max="-2" attributes="0"/>
-                                          </Group>
-                                      </Group>
+                                      <Component id="scrollTemaInforme" alignment="1" min="-2" pref="158" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -1172,6 +1193,7 @@
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="labelTemaInforme" alignment="3" max="-2" attributes="0"/>
                               <Component id="textTemaInforme" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="botonTemaInforme" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="scrollTemaInforme" min="-2" pref="45" max="-2" attributes="0"/>
@@ -1181,15 +1203,14 @@
                               <Component id="textLugarInforme" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="scrollLugarInforme" min="-2" pref="45" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="labelPersonajeInforme" alignment="3" max="-2" attributes="0"/>
                               <Component id="textPersonajeInforme" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="botonPersonajeInforme" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="scrollPersonajeInforme" min="-2" pref="45" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -1252,6 +1273,17 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textTemaInformeActionPerformed"/>
                   </Events>
                 </Component>
+                <Component class="javax.swing.JButton" name="botonTemaInforme">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="+"/>
+                    <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
+                      <Insets value="[2, 5, 2, 5]"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonTemaInformeActionPerformed"/>
+                  </Events>
+                </Component>
                 <Container class="javax.swing.JScrollPane" name="scrollTemaInforme">
                   <AuxValues>
                     <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
@@ -1289,33 +1321,6 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textLugarInformeActionPerformed"/>
                   </Events>
                 </Component>
-                <Container class="javax.swing.JScrollPane" name="scrollLugarInforme">
-                  <AuxValues>
-                    <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-                  </AuxValues>
-
-                  <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-                  <SubComponents>
-                    <Component class="javax.swing.JList" name="listaLugarInforme">
-                      <Properties>
-                        <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
-                          <StringArray count="0"/>
-                        </Property>
-                        <Property name="selectionMode" type="int" value="0"/>
-                        <Property name="toolTipText" type="java.lang.String" value="Click derecho para borrar nombre"/>
-                        <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                          <Dimension value="[0, 3]"/>
-                        </Property>
-                      </Properties>
-                      <Events>
-                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="listaLugarInformeMouseClicked"/>
-                      </Events>
-                      <AuxValues>
-                        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-                      </AuxValues>
-                    </Component>
-                  </SubComponents>
-                </Container>
                 <Component class="javax.swing.JLabel" name="labelPersonajeInforme">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Cu&#xf1;as de..."/>
@@ -1324,6 +1329,17 @@
                 <Component class="javax.swing.JTextField" name="textPersonajeInforme">
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textPersonajeInformeActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JButton" name="botonPersonajeInforme">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="+"/>
+                    <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
+                      <Insets value="[2, 5, 2, 5]"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonPersonajeInformeActionPerformed"/>
                   </Events>
                 </Component>
                 <Container class="javax.swing.JScrollPane" name="scrollPersonajeInforme">
@@ -1383,8 +1399,16 @@
                               <Component id="scrollEntrevistados" alignment="1" pref="0" max="32767" attributes="0"/>
                               <Component id="scrollPeriodistaEntrevista" alignment="1" pref="0" max="32767" attributes="0"/>
                               <Component id="comboPeriodistaEntrevista" pref="165" max="32767" attributes="0"/>
-                              <Component id="textTemaEntrevista" max="32767" attributes="0"/>
-                              <Component id="textEntrevistados" alignment="0" max="32767" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="textEntrevistados" min="-2" pref="114" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="botonEntrevistados" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="textTemaEntrevista" min="-2" pref="112" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="botonTemaEntrevista" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -1403,6 +1427,7 @@
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="labelEntrevistados" alignment="3" max="-2" attributes="0"/>
                               <Component id="textEntrevistados" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="botonEntrevistados" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="scrollEntrevistados" min="-2" pref="45" max="-2" attributes="0"/>
@@ -1410,6 +1435,7 @@
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="labelTemaEntrevista" alignment="3" max="-2" attributes="0"/>
                               <Component id="textTemaEntrevista" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="botonTemaEntrevista" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="scrollTemaEntrevista" min="-2" pref="45" max="-2" attributes="0"/>
@@ -1476,6 +1502,17 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textEntrevistadosActionPerformed"/>
                   </Events>
                 </Component>
+                <Component class="javax.swing.JButton" name="botonEntrevistados">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="+"/>
+                    <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
+                      <Insets value="[2, 5, 2, 5]"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonEntrevistadosActionPerformed"/>
+                  </Events>
+                </Component>
                 <Container class="javax.swing.JScrollPane" name="scrollEntrevistados">
                   <AuxValues>
                     <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
@@ -1511,6 +1548,17 @@
                 <Component class="javax.swing.JTextField" name="textTemaEntrevista">
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textTemaEntrevistaActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JButton" name="botonTemaEntrevista">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="+"/>
+                    <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
+                      <Insets value="[2, 5, 2, 5]"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonTemaEntrevistaActionPerformed"/>
                   </Events>
                 </Component>
                 <Container class="javax.swing.JScrollPane" name="scrollTemaEntrevista">
@@ -1568,13 +1616,20 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="scrollInvitadosSeccion" pref="0" max="32767" attributes="0"/>
-                              <Component id="textInvitadosSeccion" max="32767" attributes="0"/>
                               <Component id="scrollTemaSeccion" alignment="1" pref="0" max="32767" attributes="0"/>
-                              <Component id="scrollNombreSeccion" pref="0" max="32767" attributes="0"/>
-                              <Component id="textNombreSeccion" pref="153" max="32767" attributes="0"/>
                               <Component id="comboPanelistasSeccion" max="32767" attributes="0"/>
                               <Component id="scrollPanelistasSeccion" alignment="0" pref="0" max="32767" attributes="0"/>
-                              <Component id="textTemaSeccion" max="32767" attributes="0"/>
+                              <Component id="comboNombreSeccion" alignment="1" max="32767" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="textTemaSeccion" max="32767" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="botonTemaSeccion" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="textInvitadosSeccion" min="-2" pref="108" max="-2" attributes="0"/>
+                                  <EmptySpace pref="8" max="32767" attributes="0"/>
+                                  <Component id="botonInvitadosSeccion" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -1585,11 +1640,9 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="labelNombreSeccion" alignment="3" max="-2" attributes="0"/>
-                              <Component id="textNombreSeccion" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="comboNombreSeccion" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="scrollNombreSeccion" min="-2" pref="45" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="labelPanelistasSeccion" alignment="3" max="-2" attributes="0"/>
                               <Component id="comboPanelistasSeccion" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -1600,17 +1653,19 @@
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="labelTemaSeccion" alignment="3" max="-2" attributes="0"/>
                               <Component id="textTemaSeccion" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="botonTemaSeccion" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                           <Component id="scrollTemaSeccion" min="-2" pref="45" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="labelInvitadosSeccion" alignment="3" max="-2" attributes="0"/>
                               <Component id="textInvitadosSeccion" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="botonInvitadosSeccion" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                          <Component id="scrollInvitadosSeccion" min="-2" pref="45" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="scrollInvitadosSeccion" min="-2" pref="58" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -1621,35 +1676,21 @@
                     <Property name="text" type="java.lang.String" value="Nombre de la Secci&#xf3;n"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="textNombreSeccion">
-                </Component>
-                <Container class="javax.swing.JScrollPane" name="scrollNombreSeccion">
+                <Component class="javax.swing.JComboBox" name="comboNombreSeccion">
+                  <Properties>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="1">
+                        <StringItem index="0" value="Elige el nombre"/>
+                      </StringArray>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="comboNombreSeccionActionPerformed"/>
+                  </Events>
                   <AuxValues>
-                    <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                   </AuxValues>
-
-                  <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-                  <SubComponents>
-                    <Component class="javax.swing.JList" name="listaNombreSeccion">
-                      <Properties>
-                        <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
-                          <StringArray count="0"/>
-                        </Property>
-                        <Property name="selectionMode" type="int" value="0"/>
-                        <Property name="toolTipText" type="java.lang.String" value="Click derecho para borrar nombre"/>
-                        <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                          <Dimension value="[0, 3]"/>
-                        </Property>
-                      </Properties>
-                      <Events>
-                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="listaNombreSeccionMouseClicked"/>
-                      </Events>
-                      <AuxValues>
-                        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-                      </AuxValues>
-                    </Component>
-                  </SubComponents>
-                </Container>
+                </Component>
                 <Component class="javax.swing.JLabel" name="labelPanelistasSeccion">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Panelistas"/>
@@ -1704,6 +1745,17 @@
                 </Component>
                 <Component class="javax.swing.JTextField" name="textTemaSeccion">
                 </Component>
+                <Component class="javax.swing.JButton" name="botonTemaSeccion">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="+"/>
+                    <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
+                      <Insets value="[2, 5, 2, 5]"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonTemaSeccionActionPerformed"/>
+                  </Events>
+                </Component>
                 <Container class="javax.swing.JScrollPane" name="scrollTemaSeccion">
                   <AuxValues>
                     <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
@@ -1737,6 +1789,17 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="textInvitadosSeccion">
+                </Component>
+                <Component class="javax.swing.JButton" name="botonInvitadosSeccion">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="+"/>
+                    <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
+                      <Insets value="[2, 5, 2, 5]"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonInvitadosSeccionActionPerformed"/>
+                  </Events>
                 </Component>
                 <Container class="javax.swing.JScrollPane" name="scrollInvitadosSeccion">
                   <AuxValues>
@@ -1791,9 +1854,14 @@
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="scrollTemaPanel" pref="0" max="32767" attributes="0"/>
-                              <Component id="comboPanelistas" pref="149" max="32767" attributes="0"/>
-                              <Component id="textTemaPanel" max="32767" attributes="0"/>
+                              <Component id="comboPanelistas" max="32767" attributes="0"/>
                               <Component id="scrollPanelistas" alignment="0" pref="0" max="32767" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="textTemaPanel" min="-2" pref="114" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="botonTemaPanel" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              </Group>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -1812,6 +1880,7 @@
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="labelTemaPanel" alignment="3" max="-2" attributes="0"/>
                               <Component id="textTemaPanel" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="botonTemaPanel" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="scrollTemaPanel" min="-2" pref="45" max="-2" attributes="0"/>
@@ -1905,6 +1974,17 @@
                     </Component>
                   </SubComponents>
                 </Container>
+                <Component class="javax.swing.JButton" name="botonTemaPanel">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="+"/>
+                    <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
+                      <Insets value="[2, 5, 2, 5]"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonTemaPanelActionPerformed"/>
+                  </Events>
+                </Component>
               </SubComponents>
             </Container>
             <Container class="javax.swing.JPanel" name="panelDeporte">
@@ -2557,6 +2637,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Guardar Fragmento"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonGuardarFragmentoActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
