@@ -9,12 +9,28 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import org.mongodb.morphia.annotations.Embedded;
+import org.mongodb.morphia.annotations.Entity;
+import org.mongodb.morphia.annotations.Field;
 import org.mongodb.morphia.annotations.Id;
+import org.mongodb.morphia.annotations.Index;
+import org.mongodb.morphia.annotations.IndexOptions;
+import org.mongodb.morphia.annotations.Indexes;
+import static org.mongodb.morphia.utils.IndexType.TEXT;
 
 /**
  *
  * @author Felipe Torrejon (ftorrejon@cooperativa.cl)
  */
+@Entity(value = "archivo", noClassnameStored = true)
+@Indexes({
+  @Index(fields = @Field(value = "$**", type = TEXT)),
+  @Index(fields = {
+    @Field("_id"),
+    @Field("programas.idPrograma"),
+    @Field("programas.fragmentos.idAudio")
+  }, options = @IndexOptions( unique = true ))
+})
+
 public class Archivo {
 
   @Id
