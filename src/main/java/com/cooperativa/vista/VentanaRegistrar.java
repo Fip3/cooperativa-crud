@@ -2245,11 +2245,27 @@ public class VentanaRegistrar extends javax.swing.JFrame {
       
       switch(comboTipoAudio.getSelectedIndex()){
         case 1: {
+          //panel
+          Panel audioTemp = new Panel(String.valueOf(this.contadorFragmentos));
+          for(int i = 0; i < listaPanelistas.getModel().getSize(); i++){
+            audioTemp.agregarPanelista( new Personaje(
+                    listaPanelistas.getModel().getElementAt(i),
+                    listaPanelistas.getModel().getElementAt(i),
+                    listaPanelistas.getModel().getElementAt(i)
+            ));
+          }
+          for(int i = 0; i < listaTemaPanel.getModel().getSize(); i++){
+            audioTemp.agregarTema(listaTemaPanel.getModel().getElementAt(i));
+          }
+          audio = audioTemp;
+          break;
+        }
+        case 2: {
           //deporte
           switch(comboDisciplina.getSelectedIndex()){
             case 1: {
               //tenis
-              Tenis audioTemp = new Tenis(textIdArchivo.getText());
+              Tenis audioTemp = new Tenis(String.valueOf(this.contadorFragmentos));
               for(String s : textJugadores.getText().split(";")){
                 audioTemp.agregarJugador(s);
               }
@@ -2260,7 +2276,7 @@ public class VentanaRegistrar extends javax.swing.JFrame {
             }
             case 2: {
               //basquetball
-              Basquetball audioTemp = new Basquetball(textIdArchivo.getText());
+              Basquetball audioTemp = new Basquetball(String.valueOf(this.contadorFragmentos));
               audioTemp.setEquipoLocal(textEquipoLocalBasquetball.getText());
               audioTemp.setEquipoVisita(textEquipoVisitaBasquetball.getText());
               audioTemp.setMarcador(textMarcadorFinalBasquetball.getText());
@@ -2270,7 +2286,7 @@ public class VentanaRegistrar extends javax.swing.JFrame {
             }
             case 3: {
               //futbol
-              Futbol audioTemp = new Futbol(textIdArchivo.getText());
+              Futbol audioTemp = new Futbol(String.valueOf(this.contadorFragmentos));
               audioTemp.setEquipoLocal(textEquipoLocalFutbol.getText());
               audioTemp.setEquipoVisita(textEquipoVisitaFutbol.getText());
               audioTemp.setMarcador(textMarcadorFinalFutbol.getText());
@@ -2297,25 +2313,9 @@ public class VentanaRegistrar extends javax.swing.JFrame {
           
           break;
         }
-        case 2: {
-          //panel
-          Panel audioTemp = new Panel(textIdArchivo.getText());
-          for(int i = 0; i < listaPanelistas.getModel().getSize(); i++){
-            audioTemp.agregarPanelista( new Personaje(
-                    listaPanelistas.getModel().getElementAt(i),
-                    listaPanelistas.getModel().getElementAt(i),
-                    listaPanelistas.getModel().getElementAt(i)
-            ));
-          }
-          for(int i = 0; i < listaTemaPanel.getModel().getSize(); i++){
-            audioTemp.agregarTema(listaTemaPanel.getModel().getElementAt(i));
-          }
-          audio = audioTemp;
-          break;
-        }
         case 3: {
           //entrevista
-          Entrevista audioTemp = new Entrevista(textIdArchivo.getText());
+          Entrevista audioTemp = new Entrevista(String.valueOf(this.contadorFragmentos));
           for(int i = 0; i < listaPeriodistaEntrevista.getModel().getSize(); i++){
             audioTemp.agregarPeriodista(listaPeriodistaEntrevista.getModel().getElementAt(i));
           }
@@ -2335,7 +2335,7 @@ public class VentanaRegistrar extends javax.swing.JFrame {
         }
         case 4: {
           //seccion
-          Seccion audioTemp = new Seccion(textIdArchivo.getText());
+          Seccion audioTemp = new Seccion(String.valueOf(this.contadorFragmentos));
           audioTemp.setNombre(comboNombreSeccion.getSelectedItem().toString());
           for(int i = 0; i < listaPanelistasSeccion.getModel().getSize(); i++){
             audioTemp.agregarPanelista(listaPanelistasSeccion.getModel().getElementAt(i));
@@ -2355,7 +2355,7 @@ public class VentanaRegistrar extends javax.swing.JFrame {
         }
         case 5: {
           //informe
-          Informe audioTemp = new Informe(textIdArchivo.getText());
+          Informe audioTemp = new Informe(String.valueOf(this.contadorFragmentos));
           for(int i = 0; i < listaPeriodistaInforme.getModel().getSize(); i++){
             audioTemp.agregarPeriodista(listaPeriodistaInforme.getModel().getElementAt(i));
           }
@@ -2376,7 +2376,7 @@ public class VentanaRegistrar extends javax.swing.JFrame {
         }
         case 6: {
           //noticia
-          Noticia audioTemp = new Noticia(textIdArchivo.getText());
+          Noticia audioTemp = new Noticia(String.valueOf(this.contadorFragmentos));
           for(int i = 0; i < listaTemaNoticia.getModel().getSize(); i++){
             audioTemp.agregarTema(listaTemaNoticia.getModel().getElementAt(i));
           }
@@ -2393,6 +2393,10 @@ public class VentanaRegistrar extends javax.swing.JFrame {
       
       //se inserta el archivo en la lista Fragmentos del programa en la base de datos
       archivoDao.insertarAudio(textIdArchivo.getText(), String.valueOf(this.contadorProgramas), audio);
+      
+      //se incrementa el contador de fragmentos
+      this.contadorFragmentos++;
+      
     } catch (Exception e) {
       e.printStackTrace();
     }
