@@ -221,6 +221,9 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="labelIdArchivo">
           <Properties>
+            <Property name="labelFor" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+              <ComponentRef name="textIdArchivo"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Id Archivo"/>
           </Properties>
         </Component>

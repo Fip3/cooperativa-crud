@@ -7,6 +7,7 @@ package com.cooperativa.vista;
 
 import com.cooperativa.dao.*;
 import com.cooperativa.model.*;
+import java.awt.Color;
 import java.awt.Component;
 import java.util.ArrayList;
 import java.util.Date;
@@ -14,6 +15,7 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.SwingUtilities;
+import javax.swing.border.Border;
 
 /**
  *
@@ -72,6 +74,7 @@ public class VentanaRegistrar extends javax.swing.JFrame {
     completarCombo(comboPeriodistaEntrevista,"periodistas");
     completarCombo(comboPeriodistaInforme,"periodistas");
     completarCombo(comboRelator,"periodistas");
+    
     
   }
   
@@ -142,7 +145,8 @@ public class VentanaRegistrar extends javax.swing.JFrame {
   }
   
   /**
-   * 
+   * Eliminar el elemento seleccionado desde la <code>JList</code>
+   * @param lista <code>JList</code> donde se desea eliminar el elemento
    */
   private void eliminarElementoEnLista(javax.swing.JList lista){
     DefaultListModel modelo = new DefaultListModel();
@@ -152,6 +156,23 @@ public class VentanaRegistrar extends javax.swing.JFrame {
       }
     }
     lista.setModel(modelo);
+  }
+  
+  /**
+   * Habilita o deshabilita un <code>JPanel</code> y todos sus componentes
+   * @param panel <code>JPanel</code> que se desea habilitar o deshabilitar
+   * @param set si se indica como <code>true</code> habilita el <code>JPanel</code> y sus componentes; <code>false</code> deshabilita el panel y sus componentes.
+   * 
+   */
+  private void setPanelEnabled(javax.swing.JPanel panel, boolean set){
+    panel.setEnabled(set);
+    for(Component c : panel.getComponents()){
+      if(c instanceof javax.swing.JPanel){
+        this.setPanelEnabled((javax.swing.JPanel)c, set);
+      } else {
+        c.setEnabled(set);
+      }
+    }
   }
   
   /**
@@ -364,6 +385,7 @@ public class VentanaRegistrar extends javax.swing.JFrame {
 
     panelCrearArchivo.setBorder(javax.swing.BorderFactory.createTitledBorder("Crear Archivo"));
 
+    labelIdArchivo.setLabelFor(textIdArchivo);
     labelIdArchivo.setText("Id Archivo");
 
     labelResponsableDigitalizacion.setText("Responsable Digitalización");
@@ -1790,7 +1812,7 @@ public class VentanaRegistrar extends javax.swing.JFrame {
       .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAgregarFragmentoLayout.createSequentialGroup()
         .addContainerGap()
         .addGroup(panelAgregarFragmentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-          .addComponent(panelTipos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
+          .addComponent(panelTipos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
           .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelAgregarFragmentoLayout.createSequentialGroup()
             .addComponent(labelAlturaInicioFragmento)
             .addGap(32, 32, 32)
@@ -1940,9 +1962,12 @@ public class VentanaRegistrar extends javax.swing.JFrame {
   }//GEN-LAST:event_textAnhoEmisionActionPerformed
 
   private void botonAgregarProgramaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarProgramaActionPerformed
-    panelAgregarPrograma.setVisible(true);
+    // inicializacion
     this.contadorProgramas++;
     this.contadorFragmentos = 0;
+    
+    //variables
+    boolean formularioListo = true;
     
     //Al presionar AgregarPrograma, se genera el Archivo y se guarda en la base de datos
     
@@ -1951,14 +1976,65 @@ public class VentanaRegistrar extends javax.swing.JFrame {
     
     try {
       //Creacion y llenado del Archivo
-      archivo.setId(textIdArchivo.getText());
-      archivo.setResponsableDigitalizacion(comboResponsableDigitalizacion.getSelectedItem().toString());
+      if(!textIdArchivo.getText().equals("")){
+        labelIdArchivo.setForeground(null);
+        archivo.setId(textIdArchivo.getText());
+      } else {
+        labelIdArchivo.setForeground(Color.red);
+        formularioListo = false;
+      }
+      
+      if(comboResponsableDigitalizacion.getSelectedIndex() != 0){
+        labelResponsableDigitalizacion.setForeground(null);
+        archivo.setResponsableDigitalizacion(comboResponsableDigitalizacion.getSelectedItem().toString());
+      } else {
+        labelResponsableDigitalizacion.setForeground(Color.red);
+        formularioListo = false;
+      }
+      
+      if(textCodigoSoporte.getText().equals("")){
+        textCodigoSoporte.setText("{}");
+        textCodigoSoporte.setEditable(false);
+      }
       archivo.setCodigoSoporte(textCodigoSoporte.getText());
-      archivo.setTipoSoporte(comboTipoSoporte.getSelectedItem().toString());
+      
+      if(comboTipoSoporte.getSelectedIndex() != 0){
+        labelTipoSoporte.setForeground(null);
+        archivo.setTipoSoporte(comboTipoSoporte.getSelectedItem().toString());
+      } else {
+        labelTipoSoporte.setForeground(Color.red);
+        formularioListo = false;
+      }
+      
+      if(!textAreaDescripcionExterior.getText().equals("")){
+        textAreaDescripcionExterior.setText("{}");
+        textAreaDescripcionExterior.setEditable(false);
+      }
       archivo.setDescripcionExterior(textAreaDescripcionExterior.getText());
-      archivo.setNombreArchivo(textNombreArchivo.getText());
-      archivo.setTamanhoArchivo(Integer.parseInt(textTamanhoArchivo.getText()));
-      archivo.setDuracionArchivo(Integer.parseInt(textDuracionArchivo.getText()));
+      
+      if(!textNombreArchivo.getText().equals("")){
+        labelNombreArchivo.setForeground(null);
+        archivo.setNombreArchivo(textNombreArchivo.getText());
+      } else {
+        labelNombreArchivo.setForeground(Color.red);
+        formularioListo = false;
+      }
+      
+      if(!textTamanhoArchivo.getText().equals("")){
+        labelTamanhoArchivo.setForeground(null);
+        archivo.setTamanhoArchivo(Integer.parseInt(textTamanhoArchivo.getText()));
+      } else {
+        labelTamanhoArchivo.setForeground(Color.red);
+        formularioListo = false;
+      }
+      if(!textDuracionArchivo.getText().equals("")){
+        labelDuracionArchivo.setForeground(null);
+        archivo.setDuracionArchivo(Integer.parseInt(textDuracionArchivo.getText()));
+      } else {
+        labelDuracionArchivo.setForeground(Color.red);
+        formularioListo = false;
+      }
+      
       archivo.setFormatoArchivo(new Formato(
               Byte.parseByte(comboCanales.getSelectedItem().toString()),
               Byte.parseByte(comboProfundidadBits.getSelectedItem().toString()),
@@ -1966,21 +2042,31 @@ public class VentanaRegistrar extends javax.swing.JFrame {
               comboCodec.getSelectedItem().toString(),
               Short.parseShort(comboTasaBits.getSelectedItem().toString())
       ));
+      
       archivo.setFechaDigitalizacion(new GregorianCalendar(
               Integer.parseInt(textAnhoDigitalizacion.getText()),
               (Integer.parseInt(textMesDigitalizacion.getText()) - 1),
               Integer.parseInt(textDiaDigitalizacion.getText())
       ).getTime());
       
-      //guardado del Archivo en base de datos
-      archivoDao.crearArchivo(archivo);
+      
+      if(formularioListo){
+        //guardado del Archivo en base de datos
+        archivoDao.crearArchivo(archivo);
+
+        //Desactiva panel para evitar reingreso de Archivo
+        this.setPanelEnabled(panelCrearArchivo, false);
+        
+        //revela panel Agregar Fragmento
+        panelAgregarPrograma.setVisible(true);
+    
+      }
       
     } catch (Exception e) {
       e.printStackTrace();
     }
     
-    //Desactiva boton AgregarPrograma para evitar reingreso de Archivo
-    botonAgregarPrograma.setEnabled(false);
+    
   }//GEN-LAST:event_botonAgregarProgramaActionPerformed
 
   private void botonAgregarFragmentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarFragmentoActionPerformed
