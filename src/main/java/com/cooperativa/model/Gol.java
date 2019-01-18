@@ -58,5 +58,5 @@ public class Gol {
   public void setMarcadorParcial(String marcadorParcial) {
     this.marcadorParcial = marcadorParcial;
   }
-  
+
 }

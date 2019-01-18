@@ -55,6 +55,6 @@ public class Tenis extends Deporte{
   public boolean agregarJugador(String j) {
     return this.jugador.add(j);
   }
-  
+
   
 }

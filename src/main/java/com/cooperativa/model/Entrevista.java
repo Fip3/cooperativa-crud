@@ -23,6 +23,10 @@ public class Entrevista extends Audio{
   @Embedded
   private List<String> tema = new ArrayList<>();
 
+  public Entrevista() {
+    super("Entrevista");
+  }
+  
   public Entrevista(String idAudio) {
     super(idAudio, "Entrevista");
   }

@@ -28,6 +28,10 @@ public abstract class Audio {
 
   public Audio() {
   }
+  
+  public Audio(String tipo){
+    this.tipo = tipo;
+  }
 
   public Audio(String idAudio, String tipo) {
     this.idAudio = idAudio;

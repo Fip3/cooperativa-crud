@@ -31,6 +31,10 @@ public abstract class Deporte extends Audio{
   private String competencia;
   private String lugar;
 
+  public Deporte() {
+    super("Deporte");
+  }
+  
   public Deporte(String idAudio) {
     super(idAudio, "Deporte");
   }

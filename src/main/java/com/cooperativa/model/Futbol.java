@@ -66,6 +66,6 @@ public class Futbol extends Deporte{
   public boolean agregarGol(Gol g) {
     return this.gol.add(g);
   }
-  
+
   
 }
