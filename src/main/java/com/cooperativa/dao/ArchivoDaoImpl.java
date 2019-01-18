@@ -152,6 +152,32 @@ public class ArchivoDaoImpl implements IArchivoDao {
   }
   
   @Override
+  public Archivo buscarPorId(String idArchivo){
+    Conexion conexion = new Conexion();
+    MongoClient cliente = null;
+    Morphia morphia = null;
+    Archivo archivo = null;
+    
+    try {
+      cliente = conexion.conectar();
+      morphia = new Morphia();
+      morphia.mapPackage("com.cooperativa.model");
+      final Datastore datastore = morphia.createDatastore(cliente, "cooperativa");
+      
+      archivo = datastore.createQuery(Archivo.class)
+              .filter("_id ==", idArchivo)
+              .get();
+      
+    } catch (Exception e) {
+      System.out.print("ERROR: Clase ArchivoDaoImpl, método buscarPorId");
+      e.printStackTrace();
+    }
+    
+    cliente.close();
+    return archivo;
+  }
+  
+  @Override
   public boolean modificarArchivo(Archivo archivo){
     Conexion conexion = new Conexion();
     MongoClient cliente = null;

@@ -18,6 +18,7 @@ public interface IArchivoDao {
   public boolean insertarAudio(String idArchivo, String idPrograma, Audio audio);
   public List<Archivo> obtenerTodos();
   public List<Archivo> buscar(String cadenaBusqueda);
+  public Archivo buscarPorId(String idArchivo);
   public boolean modificarArchivo(Archivo archivo);
   public boolean modificarPrograma(String idArchivo, int indicePrograma, Programa programa);
   public boolean modificarAudio(String idArchivo, int indicePrograma, int indiceAudio, Audio audio);
