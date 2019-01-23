@@ -18,11 +18,7 @@ public class Conexion {
     String url = "localhost";
     
     try {
-      mongoClient = new MongoClient(url,27017);
-      if (mongoClient != null){
-        System.out.println("Conectado");
-      }
-      
+      mongoClient = new MongoClient(url,27017);      
     } catch (Exception e){
       System.out.println("No se pudo conectar a la base de datos");
     }
@@ -35,11 +31,7 @@ public class Conexion {
     MongoClientURI uri = new MongoClientURI("mongodb+srv://"+usuario+":"+password+"@ftcluster-3njpm.mongodb.net/test?retryWrites=true");
     
     try {
-      mongoClient = new MongoClient(uri);
-      if (mongoClient != null){
-        System.out.println("Conectado");
-      }
-      
+      mongoClient = new MongoClient(uri);    
     } catch (Exception e){
       System.out.println("No se pudo conectar a la base de datos");
     }
