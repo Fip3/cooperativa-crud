@@ -2071,28 +2071,58 @@ public class VentanaRegistrar extends javax.swing.JFrame {
 
   private void botonAgregarFragmentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarFragmentoActionPerformed
     panelAgregarFragmento.setVisible(true);
-    this.contadorFragmentos++;
     
     //Al presionar AgregarFragmento se inserta la informacion del programa al Archivo
     //creación de Programa
     Programa programa = new Programa(String.valueOf(this.contadorProgramas));
+    boolean formularioListo = true;
     
     //insercion de informacion en Programa
     try {
-      programa.setAlturaInicio(Integer.parseInt(textAlturaInicioPrograma.getText()));
-      programa.setAlturaTermino(Integer.parseInt(textAlturaTerminoPrograma.getText()));
-      programa.setNombrePrograma(comboNombrePrograma.getSelectedItem().toString());
+      if(!textAlturaInicioPrograma.getText().equals("")){
+        labelAlturaInicioPrograma.setForeground(null);
+        programa.setAlturaInicio(Integer.parseInt(textAlturaInicioPrograma.getText()));
+      } else {
+        formularioListo = false;
+        labelAlturaInicioPrograma.setForeground(Color.red);        
+      }
+      
+      if(!textAlturaTerminoPrograma.getText().equals("")){
+        labelAlturaTerminoPrograma.setForeground(null);
+        programa.setAlturaTermino(Integer.parseInt(textAlturaTerminoPrograma.getText()));
+      } else {
+        formularioListo = false;
+        labelAlturaTerminoPrograma.setForeground(Color.red);
+      }
+      
+      if(comboNombrePrograma.getSelectedIndex() != 0){
+        labelNombrePrograma.setForeground(null);
+        programa.setNombrePrograma(comboNombrePrograma.getSelectedItem().toString());
+      } else {
+        formularioListo = false;
+        labelNombrePrograma.setForeground(Color.red);
+      }
+      
       programa.setFechaEmision(new GregorianCalendar(
               Integer.parseInt(textAnhoEmision.getText()),
               (Integer.parseInt(textMesEmision.getText()) - 1),
               Integer.parseInt(textDiaEmision.getText())
       ).getTime());
-      for(int i = 0; i < listaConductor.getModel().getSize(); i++){
-        programa.agregarConductor(listaConductor.getModel().getElementAt(i));
+      
+      if(listaConductor.getModel().getSize() != 0){
+        labelConductor.setForeground(null);
+        for(int i = 0; i < listaConductor.getModel().getSize(); i++){
+          programa.agregarConductor(listaConductor.getModel().getElementAt(i));
+        }
+      } else {
+        formularioListo = false;
+        labelConductor.setForeground(Color.red);
       }
       
       //agrega Programa a lista Programas en base de datos
       archivoDao.insertarPrograma(textIdArchivo.getText(), programa);
+      //incrementar contador de programas
+      this.contadorFragmentos++;
       
     } catch (Exception e){
       e.printStackTrace();
