@@ -15,7 +15,6 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.SwingUtilities;
-import javax.swing.border.Border;
 
 /**
  *
@@ -293,7 +292,7 @@ public class VentanaRegistrar extends javax.swing.JFrame {
     listaTemaEntrevista = new javax.swing.JList<>();
     panelSeccion = new javax.swing.JPanel();
     labelNombreSeccion = new javax.swing.JLabel();
-    comboNombreSeccion = new javax.swing.JComboBox<>();
+    textNombreSeccion = new javax.swing.JTextField();
     labelPanelistasSeccion = new javax.swing.JLabel();
     comboPanelistasSeccion = new javax.swing.JComboBox<>();
     scrollPanelistasSeccion = new javax.swing.JScrollPane();
@@ -601,7 +600,7 @@ public class VentanaRegistrar extends javax.swing.JFrame {
           .addComponent(textNombreArchivo)
           .addComponent(textCodigoSoporte)
           .addComponent(comboResponsableDigitalizacion, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-          .addComponent(textAreaDescripcionExterior, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
+          .addComponent(textAreaDescripcionExterior, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
           .addComponent(comboTipoSoporte, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
           .addGroup(panelCrearArchivoLayout.createSequentialGroup()
             .addComponent(panelFechaDigitalizacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1208,10 +1207,9 @@ public class VentanaRegistrar extends javax.swing.JFrame {
 
     labelNombreSeccion.setText("Nombre de la Sección");
 
-    comboNombreSeccion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Elige el nombre" }));
-    comboNombreSeccion.addActionListener(new java.awt.event.ActionListener() {
+    textNombreSeccion.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
-        comboNombreSeccionActionPerformed(evt);
+        textNombreSeccionActionPerformed(evt);
       }
     });
 
@@ -1290,7 +1288,6 @@ public class VentanaRegistrar extends javax.swing.JFrame {
           .addComponent(scrollTemaSeccion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
           .addComponent(comboPanelistasSeccion, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
           .addComponent(scrollPanelistasSeccion, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-          .addComponent(comboNombreSeccion, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
           .addGroup(panelSeccionLayout.createSequentialGroup()
             .addComponent(textTemaSeccion)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1298,7 +1295,8 @@ public class VentanaRegistrar extends javax.swing.JFrame {
           .addGroup(panelSeccionLayout.createSequentialGroup()
             .addComponent(textInvitadosSeccion, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
-            .addComponent(botonInvitadosSeccion)))
+            .addComponent(botonInvitadosSeccion))
+          .addComponent(textNombreSeccion))
         .addContainerGap())
     );
     panelSeccionLayout.setVerticalGroup(
@@ -1306,8 +1304,8 @@ public class VentanaRegistrar extends javax.swing.JFrame {
       .addGroup(panelSeccionLayout.createSequentialGroup()
         .addGroup(panelSeccionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(labelNombreSeccion)
-          .addComponent(comboNombreSeccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        .addGap(0, 0, 0)
+          .addComponent(textNombreSeccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        .addGap(3, 3, 3)
         .addGroup(panelSeccionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(labelPanelistasSeccion)
           .addComponent(comboPanelistasSeccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -1812,7 +1810,7 @@ public class VentanaRegistrar extends javax.swing.JFrame {
       .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAgregarFragmentoLayout.createSequentialGroup()
         .addContainerGap()
         .addGroup(panelAgregarFragmentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-          .addComponent(panelTipos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+          .addComponent(panelTipos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
           .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelAgregarFragmentoLayout.createSequentialGroup()
             .addComponent(labelAlturaInicioFragmento)
             .addGap(32, 32, 32)
@@ -1835,7 +1833,7 @@ public class VentanaRegistrar extends javax.swing.JFrame {
                 .addComponent(comboPalabrasClave, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
               .addGroup(panelAgregarFragmentoLayout.createSequentialGroup()
                 .addGap(40, 40, 40)
-                .addComponent(textAreaDescripcionFragmento, javax.swing.GroupLayout.DEFAULT_SIZE, 1, Short.MAX_VALUE))))
+                .addComponent(textAreaDescripcionFragmento, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))))
           .addGroup(panelAgregarFragmentoLayout.createSequentialGroup()
             .addGap(0, 0, Short.MAX_VALUE)
             .addGroup(panelAgregarFragmentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -2119,10 +2117,16 @@ public class VentanaRegistrar extends javax.swing.JFrame {
         labelConductor.setForeground(Color.red);
       }
       
-      //agrega Programa a lista Programas en base de datos
-      archivoDao.insertarPrograma(textIdArchivo.getText(), programa);
-      //incrementar contador de programas
-      this.contadorFragmentos++;
+      
+      if(formularioListo){
+        //agrega Programa a lista Programas en base de datos
+        archivoDao.insertarPrograma(textIdArchivo.getText(), programa);
+        //incrementar contador de programas
+        this.contadorFragmentos++;
+        //desactiva panel para evitar doble grabación del encabezado
+        this.setPanelEnabled(panelAgregarPrograma, false);
+      }
+      
       
     } catch (Exception e){
       e.printStackTrace();
@@ -2355,6 +2359,7 @@ public class VentanaRegistrar extends javax.swing.JFrame {
     //se crea un Audio para agregar al listado fragmentos en la base de datos
     //creacion Audio
     Audio audio = null;
+    boolean formularioListo = true;
     
     //se completa Audio según opciones elegidas
     try {
@@ -2370,8 +2375,15 @@ public class VentanaRegistrar extends javax.swing.JFrame {
                     listaPanelistas.getModel().getElementAt(i)
             ));
           }
-          for(int i = 0; i < listaTemaPanel.getModel().getSize(); i++){
-            audioTemp.agregarTema(listaTemaPanel.getModel().getElementAt(i));
+          
+          if(listaTemaPanel.getModel().getSize() != 0){
+            labelTemaPanel.setForeground(null);
+            for(int i = 0; i < listaTemaPanel.getModel().getSize(); i++){
+              audioTemp.agregarTema(listaTemaPanel.getModel().getElementAt(i));
+            }
+          } else {
+            formularioListo = false;
+            labelTemaPanel.setForeground(Color.red);
           }
           audio = audioTemp;
           break;
@@ -2382,20 +2394,48 @@ public class VentanaRegistrar extends javax.swing.JFrame {
             case 1: {
               //tenis
               Tenis audioTemp = new Tenis(String.valueOf(this.contadorFragmentos));
-              for(String s : textJugadores.getText().split(";")){
-                audioTemp.agregarJugador(s);
+              if(!textJugadores.getText().equals("") && ((textJugadores.getText().split(";").length % 2) == 0)){
+                labelJugadores.setForeground(null);
+                for(String s : textJugadores.getText().split(";")){
+                  audioTemp.agregarJugador(s);
+                }
+              } else {
+                formularioListo = false;
+                labelJugadores.setForeground(Color.red);
               }
               audioTemp.setDobles(textJugadores.getText().split(";").length > 2);
-              audioTemp.setMarcador(textMarcadorFinalTenis.getText());
+              if(!textMarcadorFinalTenis.getText().equals("")){
+                labelMarcadorFinalTenis.setForeground(null);
+                audioTemp.setMarcador(textMarcadorFinalTenis.getText());
+              } else {
+                labelMarcadorFinalTenis.setForeground(Color.red);
+                formularioListo = false;
+              }
               audio = audioTemp;
               break;
             }
             case 2: {
               //basquetball
               Basquetball audioTemp = new Basquetball(String.valueOf(this.contadorFragmentos));
-              audioTemp.setEquipoLocal(textEquipoLocalBasquetball.getText());
-              audioTemp.setEquipoVisita(textEquipoVisitaBasquetball.getText());
+              
+              if(!textEquipoLocalBasquetball.getText().equals("")){
+                labelEquipoLocalBasquetball.setForeground(null);
+                audioTemp.setEquipoLocal(textEquipoLocalBasquetball.getText());
+              } else {
+                formularioListo = false;
+                labelEquipoLocalBasquetball.setForeground(Color.red);
+              }
+              
+              if(!textEquipoVisitaBasquetball.getText().equals("")){
+                labelEquipoVisitaBasquetball.setForeground(null);
+                audioTemp.setEquipoVisita(textEquipoVisitaBasquetball.getText());
+              } else {
+                formularioListo = false;
+                labelEquipoVisitaBasquetball.setForeground(Color.red);
+              }
+              
               audioTemp.setMarcador(textMarcadorFinalBasquetball.getText());
+              
               audio = audioTemp;
               
               break;
@@ -2403,9 +2443,28 @@ public class VentanaRegistrar extends javax.swing.JFrame {
             case 3: {
               //futbol
               Futbol audioTemp = new Futbol(String.valueOf(this.contadorFragmentos));
-              audioTemp.setEquipoLocal(textEquipoLocalFutbol.getText());
-              audioTemp.setEquipoVisita(textEquipoVisitaFutbol.getText());
-              audioTemp.setMarcador(textMarcadorFinalFutbol.getText());
+              if(!textEquipoLocalFutbol.getText().equals("")){
+                labelEquipoLocalFutbol.setForeground(null);
+                audioTemp.setEquipoLocal(textEquipoLocalFutbol.getText());
+              } else {
+                formularioListo = false;
+                labelEquipoLocalFutbol.setForeground(Color.red);
+              }
+              if(!textEquipoVisitaFutbol.getText().equals("")){
+                labelEquipoVisitaFutbol.setForeground(null);
+                audioTemp.setEquipoVisita(textEquipoVisitaFutbol.getText());
+              } else {
+                formularioListo = false;
+                labelEquipoVisitaFutbol.setForeground(Color.red);
+              }
+              if(!textMarcadorFinalFutbol.getText().equals("")){
+                labelMarcadorFinalFutbol.setForeground(null);
+                audioTemp.setMarcador(textMarcadorFinalFutbol.getText());
+              } else {
+                formularioListo = false;
+                labelMarcadorFinalFutbol.setForeground(Color.red);
+              }
+              
               audio = audioTemp;
               
               break;
@@ -2413,16 +2472,27 @@ public class VentanaRegistrar extends javax.swing.JFrame {
           }
           
           Deporte audioTemp = (Deporte)audio;
-          for(int i = 0; i < listaRelator.getModel().getSize(); i++){
-            audioTemp.agregarRelator(listaRelator.getModel().getElementAt(i));
+          
+          if(listaRelator.getModel().getSize() != 0){
+            labelRelator.setForeground(null);
+            for(int i = 0; i < listaRelator.getModel().getSize(); i++){
+              audioTemp.agregarRelator(listaRelator.getModel().getElementAt(i));
+            }
+          } else {
+            formularioListo = false;
+            labelRelator.setForeground(Color.red);
           }
+          
           for(int i = 0; i < listaLocutorComercial.getModel().getSize(); i++){
             audioTemp.agregarLocutorComercial(listaLocutorComercial.getModel().getElementAt(i));
           }
+          
           for(int i = 0; i < listaEncargadoRRSS.getModel().getSize(); i++){
             audioTemp.agregarEncargadoRS(listaEncargadoRRSS.getModel().getElementAt(i));
           }
+          
           audioTemp.setCompetencia(textCompetencia.getText());
+          
           audioTemp.setLugar(textLugar.getText());
           
           audio = audioTemp;
@@ -2432,6 +2502,7 @@ public class VentanaRegistrar extends javax.swing.JFrame {
         case 3: {
           //entrevista
           Entrevista audioTemp = new Entrevista(String.valueOf(this.contadorFragmentos));
+          
           for(int i = 0; i < listaPeriodistaEntrevista.getModel().getSize(); i++){
             audioTemp.agregarPeriodista(listaPeriodistaEntrevista.getModel().getElementAt(i));
           }
@@ -2442,8 +2513,14 @@ public class VentanaRegistrar extends javax.swing.JFrame {
                     listaPeriodistaEntrevista.getModel().getElementAt(i)
             ));
           }
-          for(int i = 0; i < listaTemaEntrevista.getModel().getSize(); i++){
-            audioTemp.agregarTema(listaTemaEntrevista.getModel().getElementAt(i));
+          if(listaTemaEntrevista.getModel().getSize() != 0){
+            labelTemaEntrevista.setForeground(null);
+            for(int i = 0; i < listaTemaEntrevista.getModel().getSize(); i++){
+              audioTemp.agregarTema(listaTemaEntrevista.getModel().getElementAt(i));
+            }
+          } else {
+            formularioListo = false;
+            labelTemaEntrevista.setForeground(Color.red);
           }
           
           audio = audioTemp;
@@ -2452,20 +2529,39 @@ public class VentanaRegistrar extends javax.swing.JFrame {
         case 4: {
           //seccion
           Seccion audioTemp = new Seccion(String.valueOf(this.contadorFragmentos));
-          audioTemp.setNombre(comboNombreSeccion.getSelectedItem().toString());
+          if(!textNombreSeccion.getText().equals("")){
+            labelNombreSeccion.setForeground(null);
+            audioTemp.setNombre(textNombreSeccion.getText());
+          } else {
+            formularioListo = false;
+            labelNombreSeccion.setForeground(Color.red);
+          }
+          
           for(int i = 0; i < listaPanelistasSeccion.getModel().getSize(); i++){
             audioTemp.agregarPanelista(listaPanelistasSeccion.getModel().getElementAt(i));
           }
-          for(int i = 0; i < listaTemaSeccion.getModel().getSize(); i++){
-            audioTemp.agregarTema(listaTemaSeccion.getModel().getElementAt(i));
+          
+          if(listaTemaSeccion.getModel().getSize() != 0){
+            labelTemaSeccion.setForeground(null);
+            for(int i = 0; i < listaTemaSeccion.getModel().getSize(); i++){
+              audioTemp.agregarTema(listaTemaSeccion.getModel().getElementAt(i));
+            }
+          } else {
+            formularioListo = false;
+            labelTemaSeccion.setForeground(Color.red);
           }
-          for(int i = 0; i < listaInvitadosSeccion.getModel().getSize(); i++){
-            audioTemp.agregarInvitado(new Personaje(
-                    listaInvitadosSeccion.getModel().getElementAt(i),
-                    listaInvitadosSeccion.getModel().getElementAt(i),
-                    listaInvitadosSeccion.getModel().getElementAt(i)
-            ));
+          if(listaInvitadosSeccion.getModel().getSize() != 0) {
+            for(int i = 0; i < listaInvitadosSeccion.getModel().getSize(); i++){
+              audioTemp.agregarInvitado(new Personaje(
+                      listaInvitadosSeccion.getModel().getElementAt(i),
+                      listaInvitadosSeccion.getModel().getElementAt(i),
+                      listaInvitadosSeccion.getModel().getElementAt(i)
+              ));
+            }
+          } else {
+            audioTemp.agregarInvitado(new Personaje());
           }
+          
           audio = audioTemp;
           break;
         }
@@ -2475,16 +2571,28 @@ public class VentanaRegistrar extends javax.swing.JFrame {
           for(int i = 0; i < listaPeriodistaInforme.getModel().getSize(); i++){
             audioTemp.agregarPeriodista(listaPeriodistaInforme.getModel().getElementAt(i));
           }
-          for(int i = 0; i < listaTemaInforme.getModel().getSize(); i++){
-            audioTemp.agregarTema(listaTemaInforme.getModel().getElementAt(i));
+          if(listaTemaInforme.getModel().getSize() != 0){
+            labelTemaInforme.setForeground(null);
+            for(int i = 0; i < listaTemaInforme.getModel().getSize(); i++){
+              audioTemp.agregarTema(listaTemaInforme.getModel().getElementAt(i));
+            }
+          } else {
+            formularioListo = false;
+            labelTemaInforme.setForeground(Color.red);
           }
+          
           audioTemp.setLugar(textLugarInforme.getText());
-          for(int i = 0; i < listaPersonajeInforme.getModel().getSize(); i++){
-            audioTemp.agregarCunha(new Personaje(
-                    listaPersonajeInforme.getModel().getElementAt(i),
-                    listaPersonajeInforme.getModel().getElementAt(i),
-                    listaPersonajeInforme.getModel().getElementAt(i)
-            ));
+          
+          if(listaPersonajeInforme.getModel().getSize() != 0){
+            for(int i = 0; i < listaPersonajeInforme.getModel().getSize(); i++){
+              audioTemp.agregarCunha(new Personaje(
+                      listaPersonajeInforme.getModel().getElementAt(i),
+                      listaPersonajeInforme.getModel().getElementAt(i),
+                      listaPersonajeInforme.getModel().getElementAt(i)
+              ));
+            }
+          } else {
+            audioTemp.agregarCunha(new Personaje());
           }
           
           audio = audioTemp;
@@ -2493,34 +2601,67 @@ public class VentanaRegistrar extends javax.swing.JFrame {
         case 6: {
           //noticia
           Noticia audioTemp = new Noticia(String.valueOf(this.contadorFragmentos));
-          for(int i = 0; i < listaTemaNoticia.getModel().getSize(); i++){
-            audioTemp.agregarTema(listaTemaNoticia.getModel().getElementAt(i));
+          if(listaTemaNoticia.getModel().getSize() != 0){
+            labelTemaNoticia.setForeground(null);
+            for(int i = 0; i < listaTemaNoticia.getModel().getSize(); i++){
+              audioTemp.agregarTema(listaTemaNoticia.getModel().getElementAt(i));
+            }
+          } else {
+            formularioListo = false;
+            labelTemaNoticia.setForeground(Color.red);
           }
           audio = audioTemp;
           break;
         }
       }
-      audio.setAlturaInicio(Integer.parseInt(textAlturaInicioFragmento.getText()));
-      audio.setAlturaTermino(Integer.parseInt(textAlturaTerminoFragmento.getText()));
-      for(int i = 0; i < listaPalabrasClave.getModel().getSize(); i++){
-        audio.agregarPalabraClave(listaPalabrasClave.getModel().getElementAt(i));
+      if(!textAlturaInicioFragmento.getText().equals("")){
+        labelAlturaInicioFragmento.setForeground(null);
+        audio.setAlturaInicio(Integer.parseInt(textAlturaInicioFragmento.getText()));
+      } else {
+        formularioListo = false;
+        labelAlturaInicioFragmento.setForeground(Color.red);
       }
-      audio.setDescripcion(textAreaDescripcionFragmento.getText());
       
-      //se inserta el archivo en la lista Fragmentos del programa en la base de datos
-      archivoDao.insertarAudio(textIdArchivo.getText(), String.valueOf(this.contadorProgramas), audio);
+      if(!textAlturaTerminoFragmento.getText().equals("")){
+        labelAlturaTerminoFragmento.setForeground(null);
+        audio.setAlturaTermino(Integer.parseInt(textAlturaTerminoFragmento.getText()));
+      } else {
+        formularioListo = false;
+        labelAlturaTerminoFragmento.setForeground(Color.red);
+      }
       
-      //se incrementa el contador de fragmentos
-      this.contadorFragmentos++;
+      if(listaPalabrasClave.getModel().getSize() != 0){
+        labelPalabrasClave.setForeground(null);
+        for(int i = 0; i < listaPalabrasClave.getModel().getSize(); i++){
+          audio.agregarPalabraClave(listaPalabrasClave.getModel().getElementAt(i));
+        }
+      } else {
+        formularioListo = false;
+        labelPalabrasClave.setForeground(Color.red);
+      }
+      
+      if(!textAreaDescripcionFragmento.getText().equals("")){
+        labelDescripcionFragmento.setForeground(null);
+        audio.setDescripcion(textAreaDescripcionFragmento.getText());
+      } else {
+        formularioListo = false;
+        labelDescripcionFragmento.setForeground(Color.red);
+      }
+      
+      if(formularioListo){
+        //se inserta el archivo en la lista Fragmentos del programa en la base de datos
+        archivoDao.insertarAudio(textIdArchivo.getText(), String.valueOf(this.contadorProgramas), audio);
+        //se incrementa el contador de fragmentos
+        this.contadorFragmentos++;
+      }
+      
+      
+      
       
     } catch (Exception e) {
       e.printStackTrace();
     }
   }//GEN-LAST:event_botonGuardarFragmentoActionPerformed
-
-  private void comboNombreSeccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboNombreSeccionActionPerformed
-    // TODO add your handling code here:
-  }//GEN-LAST:event_comboNombreSeccionActionPerformed
 
   private void listaPersonajeInformeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaPersonajeInformeMouseClicked
     listaPersonajeInforme.setSelectedIndex(listaPersonajeInforme.locationToIndex(evt.getPoint()));
@@ -2591,6 +2732,10 @@ public class VentanaRegistrar extends javax.swing.JFrame {
     this.agregarALista(textTemaPanel, listaTemaPanel);
   }//GEN-LAST:event_botonTemaPanelActionPerformed
 
+  private void textNombreSeccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textNombreSeccionActionPerformed
+    // TODO add your handling code here:
+  }//GEN-LAST:event_textNombreSeccionActionPerformed
+
   /**
    * @param args the command line arguments
    */
@@ -2648,7 +2793,6 @@ public class VentanaRegistrar extends javax.swing.JFrame {
   private javax.swing.JComboBox<String> comboFrecuenciaMuestreo;
   private javax.swing.JComboBox<String> comboLocutorComercial;
   private javax.swing.JComboBox<String> comboNombrePrograma;
-  private javax.swing.JComboBox<String> comboNombreSeccion;
   private javax.swing.JComboBox<String> comboPalabrasClave;
   private javax.swing.JComboBox<String> comboPanelistas;
   private javax.swing.JComboBox<String> comboPanelistasSeccion;
@@ -2804,6 +2948,7 @@ public class VentanaRegistrar extends javax.swing.JFrame {
   private javax.swing.JTextField textMesDigitalizacion;
   private javax.swing.JTextField textMesEmision;
   private javax.swing.JTextField textNombreArchivo;
+  private javax.swing.JTextField textNombreSeccion;
   private javax.swing.JTextField textPersonajeInforme;
   private javax.swing.JTextField textTamanhoArchivo;
   private javax.swing.JTextField textTemaEntrevista;
