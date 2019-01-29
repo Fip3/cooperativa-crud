@@ -213,7 +213,7 @@
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="botonAgregarPrograma" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="168" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -880,54 +880,48 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="panelTipos" alignment="0" pref="0" max="32767" attributes="0"/>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="labelAlturaInicioFragmento" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                          <Component id="textAlturaInicioFragmento" min="-2" pref="108" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="labelAlturaTerminoFragmento" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="labelTipoAudio" alignment="0" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="textAlturaTerminoFragmento" max="32767" attributes="0"/>
-                              <Component id="comboTipoAudio" max="32767" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="labelDescripcionFragmento" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="labelPalabrasClave" alignment="0" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="comboPalabrasClave" min="-2" pref="149" max="-2" attributes="0"/>
+                              <Component id="panelTipos" alignment="0" pref="0" max="32767" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="labelAlturaInicioFragmento" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                                  <Component id="textAlturaInicioFragmento" min="-2" pref="108" max="-2" attributes="0"/>
                               </Group>
-                              <Group type="102" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="labelAlturaTerminoFragmento" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="labelTipoAudio" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="textAlturaTerminoFragmento" max="32767" attributes="0"/>
+                                      <Component id="comboTipoAudio" max="32767" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="labelDescripcionFragmento" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="labelPalabrasClave" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                                   <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-                                  <Component id="textAreaDescripcionFragmento" pref="0" max="32767" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="scrollPalabrasClave" pref="0" max="32767" attributes="0"/>
+                                      <Component id="textAreaDescripcionFragmento" pref="0" max="32767" attributes="0"/>
+                                      <Component id="comboPalabrasClave" alignment="0" pref="165" max="32767" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  <Component id="botonGuardarFragmento" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="scrollPalabrasClave" alignment="1" min="-2" pref="149" max="-2" attributes="0"/>
-                              <Component id="botonGuardarFragmento" alignment="1" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
+                      <Component id="panelAgregarOtro" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
-              </Group>
-              <Group type="102" alignment="0" attributes="0">
-                  <Component id="panelAgregarOtro" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -950,22 +944,22 @@
                       <Component id="comboTipoAudio" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="panelTipos" min="-2" pref="273" max="-2" attributes="0"/>
+                  <Component id="panelTipos" pref="0" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="labelPalabrasClave" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="comboPalabrasClave" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="labelPalabrasClave" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="scrollPalabrasClave" min="-2" pref="58" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="labelDescripcionFragmento" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="textAreaDescripcionFragmento" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="botonGuardarFragmento" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Component id="panelAgregarOtro" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -2002,52 +1996,45 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
+                      <Group type="102" alignment="1" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <Component id="labelDisciplina" max="-2" attributes="0"/>
-                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                      </Group>
-                                      <Component id="labelLugar" max="32767" attributes="0"/>
+                              <Component id="labelLugar" max="32767" attributes="0"/>
+                              <Component id="labelDisciplina" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="textLugar" max="32767" attributes="0"/>
+                              <Component id="comboDisciplina" pref="145" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                      <Component id="labelEncargadoRRSS" alignment="1" pref="164" max="32767" attributes="0"/>
+                                      <Component id="labelLocutorComercial" max="32767" attributes="0"/>
+                                      <Component id="labelRelator" alignment="0" max="32767" attributes="0"/>
                                   </Group>
+                                  <EmptySpace max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <Component id="labelCompetencia" max="32767" attributes="0"/>
                                   <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="textLugar" max="32767" attributes="0"/>
-                                      <Component id="comboDisciplina" pref="145" max="32767" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="panelDisciplina" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                              <Component id="labelEncargadoRRSS" alignment="1" pref="164" max="32767" attributes="0"/>
-                                              <Component id="labelLocutorComercial" max="32767" attributes="0"/>
-                                              <Component id="labelRelator" alignment="0" max="32767" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" attributes="0">
-                                          <Component id="labelCompetencia" max="32767" attributes="0"/>
-                                          <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="scrollRelator" alignment="1" pref="0" max="32767" attributes="0"/>
-                                      <Component id="comboRelator" alignment="0" pref="145" max="32767" attributes="0"/>
-                                      <Component id="comboEncargadoRRSS" alignment="1" max="32767" attributes="0"/>
-                                      <Component id="scrollLocutorComercial" alignment="0" pref="0" max="32767" attributes="0"/>
-                                      <Component id="comboLocutorComercial" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="scrollEncargadoRRSS" alignment="1" pref="0" max="32767" attributes="0"/>
-                                      <Component id="textCompetencia" alignment="1" max="32767" attributes="0"/>
-                                  </Group>
                               </Group>
                           </Group>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="scrollRelator" alignment="1" pref="0" max="32767" attributes="0"/>
+                              <Component id="comboRelator" alignment="0" pref="156" max="32767" attributes="0"/>
+                              <Component id="comboEncargadoRRSS" alignment="1" max="32767" attributes="0"/>
+                              <Component id="scrollLocutorComercial" alignment="0" pref="0" max="32767" attributes="0"/>
+                              <Component id="comboLocutorComercial" alignment="0" max="32767" attributes="0"/>
+                              <Component id="scrollEncargadoRRSS" alignment="1" pref="0" max="32767" attributes="0"/>
+                              <Component id="textCompetencia" alignment="1" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="panelDisciplina" pref="0" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -2080,7 +2067,7 @@
                               <Component id="labelCompetencia" alignment="3" max="-2" attributes="0"/>
                               <Component id="textCompetencia" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="labelLugar" alignment="3" max="-2" attributes="0"/>
                               <Component id="textLugar" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -2090,9 +2077,9 @@
                               <Component id="labelDisciplina" alignment="3" max="-2" attributes="0"/>
                               <Component id="comboDisciplina" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="panelDisciplina" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                          <Component id="panelDisciplina" pref="158" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -2296,7 +2283,7 @@
                       </AuxValues>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                          <AbsoluteConstraints x="0" y="0" width="-1" height="-1"/>
+                          <AbsoluteConstraints x="0" y="0" width="320" height="170"/>
                         </Constraint>
                       </Constraints>
 
@@ -2305,26 +2292,21 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <Component id="labelEquipoLocalFutbol" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="32767" attributes="0"/>
-                                          <Component id="textEquipoLocalFutbol" min="-2" pref="77" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="labelEquipoVisitaFutbol" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="32767" attributes="0"/>
-                                          <Component id="textEquipoVisitaFutbol" min="-2" pref="77" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" alignment="1" attributes="0">
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="labelMarcadorFinalFutbol" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Component id="labelGoles" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace max="32767" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="labelMarcadorFinalFutbol" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="labelGoles" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="labelEquipoVisitaFutbol" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="labelEquipoLocalFutbol" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace pref="109" max="32767" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="textEquipoLocalFutbol" pref="121" max="32767" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="textEquipoVisitaFutbol" pref="121" max="32767" attributes="0"/>
+                                          <Group type="102" alignment="1" attributes="0">
                                               <Component id="botonAgregarGoles" min="-2" max="-2" attributes="0"/>
-                                              <Component id="textMarcadorFinalFutbol" min="-2" pref="77" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                                           </Group>
+                                          <Component id="textMarcadorFinalFutbol" alignment="0" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
@@ -2411,7 +2393,7 @@
                       </AuxValues>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                          <AbsoluteConstraints x="0" y="0" width="-1" height="-1"/>
+                          <AbsoluteConstraints x="0" y="0" width="320" height="170"/>
                         </Constraint>
                       </Constraints>
 
@@ -2428,7 +2410,7 @@
                                       <Component id="textJugadores" min="-2" pref="77" max="-2" attributes="0"/>
                                       <Component id="textMarcadorFinalTenis" min="-2" pref="77" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  <EmptySpace min="0" pref="147" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -2483,7 +2465,7 @@
                       </AuxValues>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                          <AbsoluteConstraints x="0" y="0" width="-1" height="-1"/>
+                          <AbsoluteConstraints x="0" y="0" width="320" height="170"/>
                         </Constraint>
                       </Constraints>
 
@@ -2500,12 +2482,12 @@
                                       <Group type="102" attributes="0">
                                           <Component id="labelMarcadorFinalBasquetball" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
-                                          <Component id="textMarcadorFinalBasquetball" pref="83" max="32767" attributes="0"/>
+                                          <Component id="textMarcadorFinalBasquetball" pref="228" max="32767" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="labelEquipoVisitaBasquetball" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="textEquipoVisitaBasquetball" pref="83" max="32767" attributes="0"/>
+                                          <Component id="textEquipoVisitaBasquetball" pref="229" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
@@ -2647,7 +2629,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="botonOtroFragmento" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="40" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Component id="botonOtroPrograma" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
