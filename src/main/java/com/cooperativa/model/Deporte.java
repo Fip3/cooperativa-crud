@@ -19,6 +19,9 @@ public abstract class Deporte extends Audio{
   private List<String> relator = new ArrayList<>();
   
   @Embedded
+  private List<String> comentarista = new ArrayList<>();
+  
+  @Embedded
   private List<String> locutorComercial = new ArrayList<>();
   
   @Embedded
@@ -46,6 +49,10 @@ public abstract class Deporte extends Audio{
 
   public List<String> getRelator() {
     return relator;
+  }
+  
+  public List<String> getComentarista() {
+    return comentarista;
   }
 
   public List<String> getLocutorComercial() {
@@ -90,7 +97,7 @@ public abstract class Deporte extends Audio{
    * @return boolean - Valor que verifica que el String se insertó correctamente en la lista.
    */
   public boolean agregarRelator(String r) {
-    return true;
+    return this.relator.add(r);
   }
   
   /**
@@ -99,7 +106,7 @@ public abstract class Deporte extends Audio{
    * @return boolean - Valor que verifica que el String se insertó correctamente en la lista.
    */
   public boolean agregarComentarista(String c) {
-    return true;
+    return this.comentarista.add(c);
   }
   
   /**
@@ -108,7 +115,7 @@ public abstract class Deporte extends Audio{
    * @return boolean - Valor que verifica que el String se insertó correctamente en la lista.
    */
   public boolean agregarLocutorComercial(String lc) {
-    return true;
+    return this.locutorComercial.add(lc);
   }
   
   /**
@@ -117,7 +124,7 @@ public abstract class Deporte extends Audio{
    * @return boolean - Valor que verifica que el String se insertó correctamente en la lista.
    */
   public boolean agregarEncargadoRS(String ers) {
-    return true;
+    return this.encargadoRedesSociales.add(ers);
   }
   
   /**
@@ -126,9 +133,6 @@ public abstract class Deporte extends Audio{
    * @return boolean - Valor que verifica que el String se insertó correctamente en la lista.
    */
   public boolean agregarReportero(String r) {
-    return true;
+    return this.reportero.add(r);
   }
-  
-  
-  
 }
