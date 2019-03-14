@@ -210,7 +210,20 @@ public class VentanaRegistrar extends javax.swing.JFrame {
    */
   private void setPanelEnabled(javax.swing.JScrollPane panel, boolean set){
     panel.setEnabled(set);
-    for(Component c : panel.getComponents()){
+    panel.getVerticalScrollBar().setEnabled(set);
+    panel.getHorizontalScrollBar().setEnabled(set);
+    this.setViewportEnabled(panel.getViewport(),set);
+  }
+  
+  /**
+   * Habilita o deshabilita el <code>JViewport</code> dentro de un <code>JScrollPane</code> y todos sus componentes
+   * @param viewport <code>JViewport</code> que se desea habilitar o deshabilitar
+   * @param set si se indica como <code>true</code> habilita el <code>JViewport</code> y sus componentes; <code>false</code> deshabilita el viewport y sus componentes.
+   * 
+   */
+  private void setViewportEnabled(javax.swing.JViewport viewport, boolean set){
+    viewport.setEnabled(set);
+    for(Component c : viewport.getComponents()){
       if(c instanceof javax.swing.JPanel){
         this.setPanelEnabled((javax.swing.JPanel)c, set);
       } else if(c instanceof javax.swing.JLayeredPane){
@@ -276,7 +289,11 @@ public class VentanaRegistrar extends javax.swing.JFrame {
   }
   
   private void limpiarPanel(javax.swing.JScrollPane panel){
-    for(Component c : panel.getComponents()){
+    limpiarViewport(panel.getViewport());
+  }
+  
+  private void limpiarViewport(javax.swing.JViewport viewport){
+    for(Component c : viewport.getComponents()){
       if(c instanceof javax.swing.JTextField){
         ((javax.swing.JTextField) c).setText("");
       }
