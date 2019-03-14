@@ -213,7 +213,7 @@
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="botonAgregarPrograma" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="168" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="243" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -910,7 +910,7 @@
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="scrollPalabrasClave" pref="0" max="32767" attributes="0"/>
                                       <Component id="textAreaDescripcionFragmento" pref="0" max="32767" attributes="0"/>
-                                      <Component id="comboPalabrasClave" alignment="0" pref="165" max="32767" attributes="0"/>
+                                      <Component id="comboPalabrasClave" alignment="0" pref="174" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
@@ -1997,31 +1997,18 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="labelLugar" max="32767" attributes="0"/>
-                              <Component id="labelDisciplina" max="32767" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="textLugar" max="32767" attributes="0"/>
-                              <Component id="comboDisciplina" pref="145" max="32767" attributes="0"/>
-                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="panelDisciplina" pref="0" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                      <Component id="labelEncargadoRRSS" alignment="1" pref="164" max="32767" attributes="0"/>
-                                      <Component id="labelLocutorComercial" max="32767" attributes="0"/>
-                                      <Component id="labelRelator" alignment="0" max="32767" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" attributes="0">
-                                  <Component id="labelCompetencia" max="32767" attributes="0"/>
-                                  <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
-                              </Group>
+                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="labelComentarista" max="32767" attributes="0"/>
+                              <Component id="labelEncargadoRRSS" alignment="1" pref="164" max="32767" attributes="0"/>
+                              <Component id="labelLocutorComercial" max="32767" attributes="0"/>
+                              <Component id="labelRelator" alignment="0" max="32767" attributes="0"/>
                           </Group>
+                          <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="scrollRelator" alignment="1" pref="0" max="32767" attributes="0"/>
                               <Component id="comboRelator" alignment="0" pref="156" max="32767" attributes="0"/>
@@ -2029,13 +2016,25 @@
                               <Component id="scrollLocutorComercial" alignment="0" pref="0" max="32767" attributes="0"/>
                               <Component id="comboLocutorComercial" alignment="0" max="32767" attributes="0"/>
                               <Component id="scrollEncargadoRRSS" alignment="1" pref="0" max="32767" attributes="0"/>
-                              <Component id="textCompetencia" alignment="1" max="32767" attributes="0"/>
+                              <Component id="comboComentarista" alignment="1" max="32767" attributes="0"/>
+                              <Component id="scrollComentarista" alignment="1" pref="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="labelReportero" max="32767" attributes="0"/>
+                              <Component id="labelCompetencia" max="32767" attributes="0"/>
+                              <Component id="labelLugar" max="32767" attributes="0"/>
+                              <Component id="labelDisciplina" max="32767" attributes="0"/>
+                          </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="panelDisciplina" pref="0" max="32767" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="comboDisciplina" pref="156" max="32767" attributes="0"/>
+                              <Component id="textLugar" max="32767" attributes="0"/>
+                              <Component id="textCompetencia" max="32767" attributes="0"/>
+                              <Component id="comboReportero" max="32767" attributes="0"/>
+                              <Component id="scrollReportero" pref="0" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -2064,10 +2063,24 @@
                           <Component id="scrollEncargadoRRSS" min="-2" pref="45" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="labelComentarista" alignment="3" max="-2" attributes="0"/>
+                              <Component id="comboComentarista" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                          <Component id="scrollComentarista" min="-2" pref="45" max="-2" attributes="0"/>
+                          <EmptySpace pref="10" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="labelReportero" alignment="3" max="-2" attributes="0"/>
+                              <Component id="comboReportero" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                          <Component id="scrollReportero" min="-2" pref="45" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="labelCompetencia" alignment="3" max="-2" attributes="0"/>
                               <Component id="textCompetencia" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="labelLugar" alignment="3" max="-2" attributes="0"/>
                               <Component id="textLugar" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -2077,8 +2090,8 @@
                               <Component id="labelDisciplina" alignment="3" max="-2" attributes="0"/>
                               <Component id="comboDisciplina" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                          <Component id="panelDisciplina" pref="158" max="32767" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="panelDisciplina" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -2226,6 +2239,100 @@
                     </Component>
                   </SubComponents>
                 </Container>
+                <Component class="javax.swing.JLabel" name="labelComentarista">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Comentarista"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JComboBox" name="comboComentarista">
+                  <Properties>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="1">
+                        <StringItem index="0" value="Elige el nombre"/>
+                      </StringArray>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="comboComentaristaActionPerformed"/>
+                  </Events>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                  </AuxValues>
+                </Component>
+                <Container class="javax.swing.JScrollPane" name="scrollComentarista">
+                  <AuxValues>
+                    <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+                  </AuxValues>
+
+                  <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                  <SubComponents>
+                    <Component class="javax.swing.JList" name="listaComentarista">
+                      <Properties>
+                        <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
+                          <StringArray count="0"/>
+                        </Property>
+                        <Property name="selectionMode" type="int" value="0"/>
+                        <Property name="toolTipText" type="java.lang.String" value="Click derecho para borrar nombre"/>
+                        <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                          <Dimension value="[0, 3]"/>
+                        </Property>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="listaComentaristaMouseClicked"/>
+                      </Events>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                      </AuxValues>
+                    </Component>
+                  </SubComponents>
+                </Container>
+                <Component class="javax.swing.JLabel" name="labelReportero">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Reportero en Cancha"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JComboBox" name="comboReportero">
+                  <Properties>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="1">
+                        <StringItem index="0" value="Elige el nombre"/>
+                      </StringArray>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="comboReporteroActionPerformed"/>
+                  </Events>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                  </AuxValues>
+                </Component>
+                <Container class="javax.swing.JScrollPane" name="scrollReportero">
+                  <AuxValues>
+                    <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+                  </AuxValues>
+
+                  <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                  <SubComponents>
+                    <Component class="javax.swing.JList" name="listaComentarista1">
+                      <Properties>
+                        <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
+                          <StringArray count="0"/>
+                        </Property>
+                        <Property name="selectionMode" type="int" value="0"/>
+                        <Property name="toolTipText" type="java.lang.String" value="Click derecho para borrar nombre"/>
+                        <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                          <Dimension value="[0, 3]"/>
+                        </Property>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="listaComentarista1MouseClicked"/>
+                      </Events>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                      </AuxValues>
+                    </Component>
+                  </SubComponents>
+                </Container>
                 <Component class="javax.swing.JLabel" name="labelCompetencia">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Competencia"/>
@@ -2297,17 +2404,15 @@
                                       <Component id="labelEquipoVisitaFutbol" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Component id="labelEquipoLocalFutbol" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace pref="109" max="32767" attributes="0"/>
+                                  <EmptySpace pref="119" max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                       <Component id="textEquipoLocalFutbol" pref="121" max="32767" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="textEquipoVisitaFutbol" pref="121" max="32767" attributes="0"/>
-                                          <Group type="102" alignment="1" attributes="0">
-                                              <Component id="botonAgregarGoles" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Component id="textMarcadorFinalFutbol" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="textEquipoVisitaFutbol" pref="121" max="32767" attributes="0"/>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Component id="botonAgregarGoles" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                                       </Group>
+                                      <Component id="textMarcadorFinalFutbol" alignment="0" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                               </Group>
@@ -2410,7 +2515,7 @@
                                       <Component id="textJugadores" min="-2" pref="77" max="-2" attributes="0"/>
                                       <Component id="textMarcadorFinalTenis" min="-2" pref="77" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace min="0" pref="147" max="32767" attributes="0"/>
+                                  <EmptySpace min="0" pref="163" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -2482,7 +2587,7 @@
                                       <Group type="102" attributes="0">
                                           <Component id="labelMarcadorFinalBasquetball" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
-                                          <Component id="textMarcadorFinalBasquetball" pref="228" max="32767" attributes="0"/>
+                                          <Component id="textMarcadorFinalBasquetball" pref="242" max="32767" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="labelEquipoVisitaBasquetball" min="-2" max="-2" attributes="0"/>

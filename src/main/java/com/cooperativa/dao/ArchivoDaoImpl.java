@@ -16,7 +16,6 @@ import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.Morphia;
 import org.mongodb.morphia.query.Query;
 import org.mongodb.morphia.query.UpdateOperations;
-import org.mongodb.morphia.query.UpdateResults;
 
 
 /**
@@ -70,7 +69,7 @@ public class ArchivoDaoImpl implements IArchivoDao {
       morphia = new Morphia();
       morphia.mapPackage("com.cooperativa.model");
       final Datastore datastore = morphia.createDatastore(cliente, "cooperativa");
-      //datastore.ensureIndexes(true);
+      datastore.ensureIndexes(true);
       
       Query<Archivo> updateQuery = datastore.createQuery(Archivo.class)
               .filter("_id ==", idArchivo);
@@ -104,7 +103,7 @@ public class ArchivoDaoImpl implements IArchivoDao {
       morphia = new Morphia();
       morphia.mapPackage("com.cooperativa.model");
       final Datastore datastore = morphia.createDatastore(cliente, "cooperativa");
-      //datastore.ensureIndexes(true);
+      datastore.ensureIndexes(true);
       
       Query<Archivo> updateQuery = datastore.createQuery(Archivo.class)
               .filter("_id ==", idArchivo)
