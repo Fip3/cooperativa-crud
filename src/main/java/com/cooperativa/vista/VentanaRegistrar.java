@@ -40,7 +40,7 @@ public class VentanaRegistrar extends javax.swing.JFrame {
     //inicializacion de paneles no visibles al cargar ventana
     panelAgregarPrograma.setVisible(false);
     panelAgregarFragmento.setVisible(false);
-    panelTipos.setVisible(false);
+    scrollTipos.setVisible(false);
     panelNoticia.setVisible(false);
     panelInforme.setVisible(false);
     panelEntrevista.setVisible(false);
@@ -395,6 +395,7 @@ public class VentanaRegistrar extends javax.swing.JFrame {
     textAlturaTerminoFragmento = new javax.swing.JTextField();
     labelTipoAudio = new javax.swing.JLabel();
     comboTipoAudio = new javax.swing.JComboBox<>();
+    scrollTipos = new javax.swing.JScrollPane();
     panelTipos = new javax.swing.JLayeredPane();
     panelNoticia = new javax.swing.JPanel();
     labelTemaNoticia = new javax.swing.JLabel();
@@ -1018,6 +1019,8 @@ public class VentanaRegistrar extends javax.swing.JFrame {
         comboTipoAudioActionPerformed(evt);
       }
     });
+
+    scrollTipos.setBorder(null);
 
     panelTipos.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -1970,6 +1973,8 @@ public class VentanaRegistrar extends javax.swing.JFrame {
     panelTipos.setLayer(panelDeporte, 5);
     panelTipos.add(panelDeporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
+    scrollTipos.setViewportView(panelTipos);
+
     labelPalabrasClave.setText("Palabras Clave");
 
     comboPalabrasClave.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Elige palabras clave" }));
@@ -2040,10 +2045,10 @@ public class VentanaRegistrar extends javax.swing.JFrame {
       panelAgregarFragmentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(panelAgregarFragmentoLayout.createSequentialGroup()
         .addGroup(panelAgregarFragmentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addComponent(panelAgregarOtro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
           .addGroup(panelAgregarFragmentoLayout.createSequentialGroup()
             .addContainerGap()
             .addGroup(panelAgregarFragmentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-              .addComponent(panelTipos, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
               .addGroup(panelAgregarFragmentoLayout.createSequentialGroup()
                 .addComponent(labelAlturaInicioFragmento)
                 .addGap(32, 32, 32)
@@ -2067,8 +2072,8 @@ public class VentanaRegistrar extends javax.swing.JFrame {
                   .addComponent(comboPalabrasClave, 0, 174, Short.MAX_VALUE)))
               .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAgregarFragmentoLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(botonGuardarFragmento))))
-          .addComponent(panelAgregarOtro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(botonGuardarFragmento))
+              .addComponent(scrollTipos, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE))))
         .addContainerGap())
     );
     panelAgregarFragmentoLayout.setVerticalGroup(
@@ -2087,7 +2092,7 @@ public class VentanaRegistrar extends javax.swing.JFrame {
           .addComponent(labelTipoAudio)
           .addComponent(comboTipoAudio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-        .addComponent(panelTipos, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+        .addComponent(scrollTipos, javax.swing.GroupLayout.DEFAULT_SIZE, 322, Short.MAX_VALUE)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addGroup(panelAgregarFragmentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(comboPalabrasClave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2377,8 +2382,8 @@ public class VentanaRegistrar extends javax.swing.JFrame {
   private void comboTipoAudioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboTipoAudioActionPerformed
 
     if(!(comboTipoAudio.getSelectedIndex() == 0)){
-      if(!panelTipos.isVisible()){
-        panelTipos.setVisible(true);
+      if(!scrollTipos.isVisible()){
+        scrollTipos.setVisible(true);
       }
 
       for(Component c: panelTipos.getComponents()){
@@ -2994,6 +2999,8 @@ public class VentanaRegistrar extends javax.swing.JFrame {
     this.limpiarPanel(panelAgregarFragmento);
     //invisibiliza panel AgregarOtro
     panelAgregarOtro.setVisible(false);
+    //invisibiliza panel Tipos
+    scrollTipos.setVisible(false);
   }//GEN-LAST:event_botonOtroFragmentoActionPerformed
 
   private void botonOtroProgramaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonOtroProgramaActionPerformed
@@ -3006,8 +3013,10 @@ public class VentanaRegistrar extends javax.swing.JFrame {
     this.setPanelEnabled(panelAgregarPrograma, true);
     //invisibiliza panel AgregarOtro
     panelAgregarOtro.setVisible(false);
-    //invisibiliza panel AgregarFragmento
+    //invisibiliza paneles AgregarFragmento, Tipos y Disciplina
     panelAgregarFragmento.setVisible(false);
+    scrollTipos.setVisible(false);
+    panelDisciplina.setVisible(false);
   }//GEN-LAST:event_botonOtroProgramaActionPerformed
 
   private void comboComentaristaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboComentaristaActionPerformed
@@ -3226,6 +3235,7 @@ public class VentanaRegistrar extends javax.swing.JFrame {
   private javax.swing.JScrollPane scrollTemaNoticia;
   private javax.swing.JScrollPane scrollTemaPanel;
   private javax.swing.JScrollPane scrollTemaSeccion;
+  private javax.swing.JScrollPane scrollTipos;
   private javax.swing.JTextField textAlturaInicioFragmento;
   private javax.swing.JTextField textAlturaInicioPrograma;
   private javax.swing.JTextField textAlturaTerminoFragmento;
