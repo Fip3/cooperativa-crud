@@ -2956,34 +2956,50 @@ public class VentanaRegistrar extends javax.swing.JFrame {
 
   private void botonTemaNoticiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonTemaNoticiaActionPerformed
     this.agregarALista(textTemaNoticia, listaTemaNoticia);
+    textTemaNoticia.setText(null);
+    textTemaNoticia.requestFocus();
   }//GEN-LAST:event_botonTemaNoticiaActionPerformed
 
   private void botonTemaInformeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonTemaInformeActionPerformed
     this.agregarALista(textTemaInforme, listaTemaInforme);
+    textTemaInforme.setText(null);
+    textTemaInforme.requestFocus();
   }//GEN-LAST:event_botonTemaInformeActionPerformed
 
   private void botonPersonajeInformeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonPersonajeInformeActionPerformed
     this.agregarALista(textPersonajeInforme, listaPersonajeInforme);
+    textPersonajeInforme.setText(null);
+    textPersonajeInforme.requestFocus();
   }//GEN-LAST:event_botonPersonajeInformeActionPerformed
 
   private void botonEntrevistadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEntrevistadosActionPerformed
     this.agregarALista(textEntrevistados, listaEntrevistados);
+    textEntrevistados.setText(null);
+    textEntrevistados.requestFocus();
   }//GEN-LAST:event_botonEntrevistadosActionPerformed
 
   private void botonTemaEntrevistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonTemaEntrevistaActionPerformed
     this.agregarALista(textTemaEntrevista, listaTemaEntrevista);
+    textTemaEntrevista.setText(null);
+    textTemaEntrevista.requestFocus();
   }//GEN-LAST:event_botonTemaEntrevistaActionPerformed
 
   private void botonTemaSeccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonTemaSeccionActionPerformed
     this.agregarALista(textTemaSeccion, listaTemaSeccion);
+    textTemaSeccion.setText(null);
+    textTemaSeccion.requestFocus();
   }//GEN-LAST:event_botonTemaSeccionActionPerformed
 
   private void botonInvitadosSeccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonInvitadosSeccionActionPerformed
     this.agregarALista(textInvitadosSeccion, listaInvitadosSeccion);
+    textInvitadosSeccion.setText(null);
+    textInvitadosSeccion.requestFocus();
   }//GEN-LAST:event_botonInvitadosSeccionActionPerformed
 
   private void botonTemaPanelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonTemaPanelActionPerformed
     this.agregarALista(textTemaPanel, listaTemaPanel);
+    textTemaPanel.setText(null);
+    textTemaPanel.requestFocus();
   }//GEN-LAST:event_botonTemaPanelActionPerformed
 
   private void textNombreSeccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textNombreSeccionActionPerformed
