@@ -122,7 +122,7 @@ public class ArchivoDaoImpl implements IArchivoDao {
     
     cliente.close();
     
-    return true;
+    return registrado;
   }
 
   @Override
