@@ -131,17 +131,10 @@
                       <Component id="textNombreArchivo" max="32767" attributes="0"/>
                       <Component id="textCodigoSoporte" alignment="0" max="32767" attributes="0"/>
                       <Component id="comboResponsableDigitalizacion" alignment="0" max="32767" attributes="0"/>
-                      <Component id="textAreaDescripcionExterior" alignment="0" pref="0" max="32767" attributes="0"/>
                       <Component id="comboTipoSoporte" alignment="0" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="panelFechaDigitalizacion" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="textDuracionArchivo" min="-2" pref="90" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="labelSegundosArchivo" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="textTamanhoArchivo" max="32767" attributes="0"/>
@@ -149,6 +142,11 @@
                           <Component id="labelBytesArchivo" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
                       </Group>
+                      <Group type="102" attributes="0">
+                          <Component id="panelDuracionArchivo" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="scrollDescripcionExterior" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <Group type="102" alignment="0" attributes="0">
@@ -183,9 +181,9 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="labelDescripcionExterior" min="-2" max="-2" attributes="0"/>
-                      <Component id="textAreaDescripcionExterior" min="-2" pref="56" max="-2" attributes="0"/>
+                      <Component id="scrollDescripcionExterior" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="labelNombreArchivo" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="textNombreArchivo" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -197,10 +195,9 @@
                       <Component id="labelBytesArchivo" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="labelDuracionArchivo" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="textDuracionArchivo" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="labelSegundosArchivo" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="labelDuracionArchivo" min="-2" max="-2" attributes="0"/>
+                      <Component id="panelDuracionArchivo" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="labelFormatoArchivo" min="-2" max="-2" attributes="0"/>
@@ -213,7 +210,7 @@
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="botonAgregarPrograma" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="243" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="203" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -266,13 +263,19 @@
             <Property name="text" type="java.lang.String" value="Descripcion Exterior"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextArea" name="textAreaDescripcionExterior">
-          <Properties>
-            <Property name="columns" type="int" value="20"/>
-            <Property name="rows" type="int" value="5"/>
-            <Property name="wrapStyleWord" type="boolean" value="true"/>
-          </Properties>
-        </Component>
+        <Container class="javax.swing.JScrollPane" name="scrollDescripcionExterior">
+
+          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+          <SubComponents>
+            <Component class="javax.swing.JTextArea" name="textAreaDescripcionExterior">
+              <Properties>
+                <Property name="columns" type="int" value="20"/>
+                <Property name="rows" type="int" value="5"/>
+                <Property name="wrapStyleWord" type="boolean" value="true"/>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
         <Component class="javax.swing.JLabel" name="labelNombreArchivo">
           <Properties>
             <Property name="text" type="java.lang.String" value="Nombre de Archivo"/>
@@ -292,8 +295,74 @@
             <Property name="text" type="java.lang.String" value="Duraci&#xf3;n"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="textDuracionArchivo">
-        </Component>
+        <Container class="javax.swing.JPanel" name="panelDuracionArchivo">
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                      <Component id="textDuracionArchivoHora" min="-2" pref="26" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="labelHoraArchivo" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="textDuracionArchivoMinutos" min="-2" pref="26" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="labelMinutosArchivo" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="textDuracionArchivoSegundos" min="-2" pref="26" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="labelSegundosArchivo" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                              <Component id="textDuracionArchivoHora" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="labelHoraArchivo" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="textDuracionArchivoMinutos" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="labelMinutosArchivo" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="textDuracionArchivoSegundos" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="labelSegundosArchivo" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JTextField" name="textDuracionArchivoHora">
+            </Component>
+            <Component class="javax.swing.JLabel" name="labelHoraArchivo">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="h"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="textDuracionArchivoMinutos">
+            </Component>
+            <Component class="javax.swing.JLabel" name="labelMinutosArchivo">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="m"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="textDuracionArchivoSegundos">
+            </Component>
+            <Component class="javax.swing.JLabel" name="labelSegundosArchivo">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="s"/>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
         <Component class="javax.swing.JLabel" name="labelFormatoArchivo">
           <Properties>
             <Property name="text" type="java.lang.String" value="Formato"/>
@@ -519,11 +588,6 @@
             <Property name="text" type="java.lang.String" value="bytes"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="labelSegundosArchivo">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="segundos"/>
-          </Properties>
-        </Component>
         <Container class="javax.swing.JPanel" name="panelFechaDigitalizacion">
 
           <Layout>
@@ -625,32 +689,27 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="labelAlturaTerminoPrograma" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
-                          <Component id="textAlturaTerminoPrograma" max="32767" attributes="0"/>
+                          <Component id="panelAlturaTerminoPrograma" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="labelAlturaInicioPrograma" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
-                          <Component id="textAlturaInicioPrograma" max="32767" attributes="0"/>
+                          <Component id="panelAlturaInicioPrograma" max="32767" attributes="0"/>
                       </Group>
-                      <Group type="102" attributes="0">
+                      <Component id="botonAgregarFragmento" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="botonAgregarFragmento" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="labelConductor" alignment="0" max="-2" attributes="0"/>
-                                      <Component id="labelFechaEmisionPrograma" alignment="0" max="-2" attributes="0"/>
-                                      <Component id="labelNombrePrograma" alignment="0" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="scrollConductor" pref="0" max="32767" attributes="0"/>
-                                      <Component id="panelFechaEmisionPrograma" max="32767" attributes="0"/>
-                                      <Component id="comboNombrePrograma" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="comboConductor" alignment="0" max="32767" attributes="0"/>
-                                  </Group>
-                              </Group>
+                              <Component id="labelConductor" alignment="0" max="-2" attributes="0"/>
+                              <Component id="labelFechaEmisionPrograma" alignment="0" max="-2" attributes="0"/>
+                              <Component id="labelNombrePrograma" alignment="0" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="scrollConductor" pref="0" max="32767" attributes="0"/>
+                              <Component id="panelFechaEmisionPrograma" max="32767" attributes="0"/>
+                              <Component id="comboNombrePrograma" alignment="0" max="32767" attributes="0"/>
+                              <Component id="comboConductor" alignment="0" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -661,14 +720,14 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="labelAlturaInicioPrograma" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="textAlturaInicioPrograma" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="labelAlturaInicioPrograma" min="-2" max="-2" attributes="0"/>
+                      <Component id="panelAlturaInicioPrograma" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="labelAlturaTerminoPrograma" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="textAlturaTerminoPrograma" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="labelAlturaTerminoPrograma" min="-2" max="-2" attributes="0"/>
+                      <Component id="panelAlturaTerminoPrograma" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -700,21 +759,159 @@
             <Property name="text" type="java.lang.String" value="Altura Inicio"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="textAlturaInicioPrograma">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textAlturaInicioProgramaActionPerformed"/>
-          </Events>
-        </Component>
+        <Container class="javax.swing.JPanel" name="panelAlturaInicioPrograma">
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                      <Component id="textAlturaInicioProgramaHora" min="-2" pref="26" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="labelAlturaInicioProgramaHora" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="textAlturaInicioProgramaMinutos" min="-2" pref="26" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="labelAlturaInicioProgramaMinutos" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="textAlturaInicioProgramaSegundos" min="-2" pref="26" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="labelAlturaInicioProgramaSegundos" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="textAlturaInicioProgramaSegundos" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelAlturaInicioProgramaSegundos" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="textAlturaInicioProgramaMinutos" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelAlturaInicioProgramaMinutos" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="textAlturaInicioProgramaHora" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelAlturaInicioProgramaHora" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JTextField" name="textAlturaInicioProgramaHora">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textAlturaInicioProgramaHoraActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="labelAlturaInicioProgramaHora">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="h"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="textAlturaInicioProgramaMinutos">
+            </Component>
+            <Component class="javax.swing.JLabel" name="labelAlturaInicioProgramaMinutos">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="m"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="textAlturaInicioProgramaSegundos">
+            </Component>
+            <Component class="javax.swing.JLabel" name="labelAlturaInicioProgramaSegundos">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="s"/>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
         <Component class="javax.swing.JLabel" name="labelAlturaTerminoPrograma">
           <Properties>
             <Property name="text" type="java.lang.String" value="Altura T&#xe9;rmino"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="textAlturaTerminoPrograma">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textAlturaTerminoProgramaActionPerformed"/>
-          </Events>
-        </Component>
+        <Container class="javax.swing.JPanel" name="panelAlturaTerminoPrograma">
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="valorAlturaTerminoProgramaHora" min="-2" pref="26" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="labelAlturaTerminoProgramaHora" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                      <Component id="valorAlturaTerminoProgramaMinutos" min="-2" pref="30" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="labelAlturaTerminoProgramaMinutos" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="valorAlturaTerminoProgramaSegundos" min="-2" pref="30" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="labelAlturaTerminoProgramaSegundos" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="3" pref="3" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="labelAlturaTerminoProgramaSegundos" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelAlturaTerminoProgramaMinutos" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelAlturaTerminoProgramaHora" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="valorAlturaTerminoProgramaHora" alignment="3" min="-2" pref="15" max="-2" attributes="0"/>
+                          <Component id="valorAlturaTerminoProgramaMinutos" alignment="3" min="-2" pref="15" max="-2" attributes="0"/>
+                          <Component id="valorAlturaTerminoProgramaSegundos" alignment="3" min="-2" pref="15" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="valorAlturaTerminoProgramaHora">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="11" style="1"/>
+                </Property>
+                <Property name="horizontalAlignment" type="int" value="11"/>
+                <Property name="text" type="java.lang.String" value="--"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="labelAlturaTerminoProgramaHora">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="h"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="valorAlturaTerminoProgramaMinutos">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="11" style="1"/>
+                </Property>
+                <Property name="horizontalAlignment" type="int" value="11"/>
+                <Property name="text" type="java.lang.String" value="--"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="labelAlturaTerminoProgramaMinutos">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="m"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="valorAlturaTerminoProgramaSegundos">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="11" style="1"/>
+                </Property>
+                <Property name="horizontalAlignment" type="int" value="11"/>
+                <Property name="text" type="java.lang.String" value="--"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="labelAlturaTerminoProgramaSegundos">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="s"/>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
         <Component class="javax.swing.JLabel" name="labelNombrePrograma">
           <Properties>
             <Property name="text" type="java.lang.String" value="Nombre del Programa"/>
@@ -886,22 +1083,6 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="labelAlturaInicioFragmento" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                                  <Component id="textAlturaInicioFragmento" min="-2" pref="108" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="labelAlturaTerminoFragmento" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="labelTipoAudio" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="textAlturaTerminoFragmento" max="32767" attributes="0"/>
-                                      <Component id="comboTipoAudio" max="32767" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="labelDescripcionFragmento" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Component id="labelPalabrasClave" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -910,14 +1091,30 @@
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="scrollPalabrasClave" pref="0" max="32767" attributes="0"/>
                                       <Component id="textAreaDescripcionFragmento" pref="0" max="32767" attributes="0"/>
-                                      <Component id="comboPalabrasClave" alignment="0" pref="174" max="32767" attributes="0"/>
+                                      <Component id="comboPalabrasClave" alignment="0" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   <Component id="botonGuardarFragmento" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="scrollTipos" alignment="0" pref="285" max="32767" attributes="0"/>
+                              <Component id="scrollTipos" alignment="0" pref="246" max="32767" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="labelAlturaTerminoFragmento" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="labelTipoAudio" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="labelAlturaInicioFragmento" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="panelAlturaInicioFragmento" max="32767" attributes="0"/>
+                                      <Group type="102" attributes="0">
+                                          <Component id="comboTipoAudio" max="-2" attributes="0"/>
+                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                      </Group>
+                                      <Component id="panelAlturaTerminoPrograma1" max="32767" attributes="0"/>
+                                  </Group>
+                              </Group>
                           </Group>
                       </Group>
                   </Group>
@@ -929,19 +1126,19 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="labelAlturaInicioFragmento" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="textAlturaInicioFragmento" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="labelAlturaInicioFragmento" min="-2" max="-2" attributes="0"/>
+                      <Component id="panelAlturaInicioFragmento" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="labelAlturaTerminoFragmento" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="textAlturaTerminoFragmento" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="labelAlturaTerminoFragmento" min="-2" max="-2" attributes="0"/>
+                      <Component id="panelAlturaTerminoPrograma1" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="labelTipoAudio" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="comboTipoAudio" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="comboTipoAudio" alignment="3" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="scrollTipos" pref="322" max="32767" attributes="0"/>
@@ -972,21 +1169,135 @@
             <Property name="text" type="java.lang.String" value="Altura de Inicio"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="textAlturaInicioFragmento">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textAlturaInicioFragmentoActionPerformed"/>
-          </Events>
-        </Component>
+        <Container class="javax.swing.JPanel" name="panelAlturaInicioFragmento">
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                      <Component id="textAlturaInicioFragmentoHora" min="-2" pref="26" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="labelAlturaInicioFragmentoHora" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="textAlturaInicioFragmentoMinutos" min="-2" pref="26" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="labelAlturaInicioFragmentoMinutos" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="textAlturaInicioFragmentoSegundos" min="-2" pref="26" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="labelAlturaInicioFragmentoSegundos" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="textAlturaInicioFragmentoSegundos" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelAlturaInicioFragmentoSegundos" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="textAlturaInicioFragmentoMinutos" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelAlturaInicioFragmentoMinutos" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="textAlturaInicioFragmentoHora" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelAlturaInicioFragmentoHora" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JTextField" name="textAlturaInicioFragmentoHora">
+            </Component>
+            <Component class="javax.swing.JLabel" name="labelAlturaInicioFragmentoHora">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="h"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="textAlturaInicioFragmentoMinutos">
+            </Component>
+            <Component class="javax.swing.JLabel" name="labelAlturaInicioFragmentoMinutos">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="m"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="textAlturaInicioFragmentoSegundos">
+            </Component>
+            <Component class="javax.swing.JLabel" name="labelAlturaInicioFragmentoSegundos">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="s"/>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
         <Component class="javax.swing.JLabel" name="labelAlturaTerminoFragmento">
           <Properties>
             <Property name="text" type="java.lang.String" value="Altura de T&#xe9;rmino"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="textAlturaTerminoFragmento">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textAlturaTerminoFragmentoActionPerformed"/>
-          </Events>
-        </Component>
+        <Container class="javax.swing.JPanel" name="panelAlturaTerminoPrograma1">
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                      <Component id="textAlturaTerminoFragmentoHora" min="-2" pref="26" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="labelAlturaTerminoFragmentoHora" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="textAlturaTerminoFragmentoMinutos" min="-2" pref="26" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="labelAlturaTerminoFragmentoMinutos" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="textAlturaTerminoFragmentoSegundos" min="-2" pref="26" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="labelAlturaTerminoFragmentoSegundos" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="textAlturaTerminoFragmentoSegundos" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelAlturaTerminoFragmentoSegundos" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="textAlturaTerminoFragmentoMinutos" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelAlturaTerminoFragmentoMinutos" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="textAlturaTerminoFragmentoHora" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelAlturaTerminoFragmentoHora" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JTextField" name="textAlturaTerminoFragmentoHora">
+            </Component>
+            <Component class="javax.swing.JLabel" name="labelAlturaTerminoFragmentoHora">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="h"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="textAlturaTerminoFragmentoMinutos">
+            </Component>
+            <Component class="javax.swing.JLabel" name="labelAlturaTerminoFragmentoMinutos">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="m"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="textAlturaTerminoFragmentoSegundos">
+            </Component>
+            <Component class="javax.swing.JLabel" name="labelAlturaTerminoFragmentoSegundos">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="s"/>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
         <Component class="javax.swing.JLabel" name="labelTipoAudio">
           <Properties>
             <Property name="text" type="java.lang.String" value="Tipo de Audio"/>

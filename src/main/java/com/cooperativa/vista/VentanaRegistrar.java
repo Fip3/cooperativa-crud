@@ -14,6 +14,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
 /**
@@ -32,6 +33,9 @@ public class VentanaRegistrar extends javax.swing.JFrame {
   private final ConstDaoImpl constDao;
   private final ArchivoDaoImpl archivoDao;
   private final String operador;
+  private short alturaFinProgramaAnterior;
+  private short alturaFinFragmentoAnterior;
+  private short duracion;
   
   public VentanaRegistrar(String operador) {
     this.operador = operador;
@@ -60,6 +64,10 @@ public class VentanaRegistrar extends javax.swing.JFrame {
     //inicializacion de contadores
     this.contadorProgramas = 0;
     this.contadorFragmentos = 0;
+    
+    //inicializacion alturas
+    this.alturaFinProgramaAnterior = 0;
+    this.alturaFinFragmentoAnterior = 0;
     
     //inicializacion de comboBoxs
     completarCombo(comboResponsableDigitalizacion, "operadores");
@@ -339,13 +347,20 @@ public class VentanaRegistrar extends javax.swing.JFrame {
     textCodigoSoporte = new javax.swing.JTextField();
     labelTipoSoporte = new javax.swing.JLabel();
     labelDescripcionExterior = new javax.swing.JLabel();
+    scrollDescripcionExterior = new javax.swing.JScrollPane();
     textAreaDescripcionExterior = new javax.swing.JTextArea();
     labelNombreArchivo = new javax.swing.JLabel();
     textNombreArchivo = new javax.swing.JTextField();
     labelTamanhoArchivo = new javax.swing.JLabel();
     textTamanhoArchivo = new javax.swing.JTextField();
     labelDuracionArchivo = new javax.swing.JLabel();
-    textDuracionArchivo = new javax.swing.JTextField();
+    panelDuracionArchivo = new javax.swing.JPanel();
+    textDuracionArchivoHora = new javax.swing.JTextField();
+    labelHoraArchivo = new javax.swing.JLabel();
+    textDuracionArchivoMinutos = new javax.swing.JTextField();
+    labelMinutosArchivo = new javax.swing.JLabel();
+    textDuracionArchivoSegundos = new javax.swing.JTextField();
+    labelSegundosArchivo = new javax.swing.JLabel();
     labelFormatoArchivo = new javax.swing.JLabel();
     panelFormato = new javax.swing.JPanel();
     labelCanales = new javax.swing.JLabel();
@@ -361,7 +376,6 @@ public class VentanaRegistrar extends javax.swing.JFrame {
     labelFechaDigitalizacion = new javax.swing.JLabel();
     comboTipoSoporte = new javax.swing.JComboBox<>();
     labelBytesArchivo = new javax.swing.JLabel();
-    labelSegundosArchivo = new javax.swing.JLabel();
     panelFechaDigitalizacion = new javax.swing.JPanel();
     textDiaDigitalizacion = new javax.swing.JTextField();
     labelSeparador3 = new javax.swing.JLabel();
@@ -371,9 +385,21 @@ public class VentanaRegistrar extends javax.swing.JFrame {
     botonAgregarPrograma = new javax.swing.JButton();
     panelAgregarPrograma = new javax.swing.JPanel();
     labelAlturaInicioPrograma = new javax.swing.JLabel();
-    textAlturaInicioPrograma = new javax.swing.JTextField();
+    panelAlturaInicioPrograma = new javax.swing.JPanel();
+    textAlturaInicioProgramaHora = new javax.swing.JTextField();
+    labelAlturaInicioProgramaHora = new javax.swing.JLabel();
+    textAlturaInicioProgramaMinutos = new javax.swing.JTextField();
+    labelAlturaInicioProgramaMinutos = new javax.swing.JLabel();
+    textAlturaInicioProgramaSegundos = new javax.swing.JTextField();
+    labelAlturaInicioProgramaSegundos = new javax.swing.JLabel();
     labelAlturaTerminoPrograma = new javax.swing.JLabel();
-    textAlturaTerminoPrograma = new javax.swing.JTextField();
+    panelAlturaTerminoPrograma = new javax.swing.JPanel();
+    valorAlturaTerminoProgramaHora = new javax.swing.JLabel();
+    labelAlturaTerminoProgramaHora = new javax.swing.JLabel();
+    valorAlturaTerminoProgramaMinutos = new javax.swing.JLabel();
+    labelAlturaTerminoProgramaMinutos = new javax.swing.JLabel();
+    valorAlturaTerminoProgramaSegundos = new javax.swing.JLabel();
+    labelAlturaTerminoProgramaSegundos = new javax.swing.JLabel();
     labelNombrePrograma = new javax.swing.JLabel();
     comboNombrePrograma = new javax.swing.JComboBox<>();
     labelFechaEmisionPrograma = new javax.swing.JLabel();
@@ -390,9 +416,21 @@ public class VentanaRegistrar extends javax.swing.JFrame {
     listaConductor = new javax.swing.JList<>();
     panelAgregarFragmento = new javax.swing.JPanel();
     labelAlturaInicioFragmento = new javax.swing.JLabel();
-    textAlturaInicioFragmento = new javax.swing.JTextField();
+    panelAlturaInicioFragmento = new javax.swing.JPanel();
+    textAlturaInicioFragmentoHora = new javax.swing.JTextField();
+    labelAlturaInicioFragmentoHora = new javax.swing.JLabel();
+    textAlturaInicioFragmentoMinutos = new javax.swing.JTextField();
+    labelAlturaInicioFragmentoMinutos = new javax.swing.JLabel();
+    textAlturaInicioFragmentoSegundos = new javax.swing.JTextField();
+    labelAlturaInicioFragmentoSegundos = new javax.swing.JLabel();
     labelAlturaTerminoFragmento = new javax.swing.JLabel();
-    textAlturaTerminoFragmento = new javax.swing.JTextField();
+    panelAlturaTerminoPrograma1 = new javax.swing.JPanel();
+    textAlturaTerminoFragmentoHora = new javax.swing.JTextField();
+    labelAlturaTerminoFragmentoHora = new javax.swing.JLabel();
+    textAlturaTerminoFragmentoMinutos = new javax.swing.JTextField();
+    labelAlturaTerminoFragmentoMinutos = new javax.swing.JLabel();
+    textAlturaTerminoFragmentoSegundos = new javax.swing.JTextField();
+    labelAlturaTerminoFragmentoSegundos = new javax.swing.JLabel();
     labelTipoAudio = new javax.swing.JLabel();
     comboTipoAudio = new javax.swing.JComboBox<>();
     scrollTipos = new javax.swing.JScrollPane();
@@ -561,12 +599,54 @@ public class VentanaRegistrar extends javax.swing.JFrame {
     textAreaDescripcionExterior.setColumns(20);
     textAreaDescripcionExterior.setRows(5);
     textAreaDescripcionExterior.setWrapStyleWord(true);
+    scrollDescripcionExterior.setViewportView(textAreaDescripcionExterior);
 
     labelNombreArchivo.setText("Nombre de Archivo");
 
     labelTamanhoArchivo.setText("Tamaño");
 
     labelDuracionArchivo.setText("Duración");
+
+    labelHoraArchivo.setText("h");
+
+    labelMinutosArchivo.setText("m");
+
+    labelSegundosArchivo.setText("s");
+
+    javax.swing.GroupLayout panelDuracionArchivoLayout = new javax.swing.GroupLayout(panelDuracionArchivo);
+    panelDuracionArchivo.setLayout(panelDuracionArchivoLayout);
+    panelDuracionArchivoLayout.setHorizontalGroup(
+      panelDuracionArchivoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(panelDuracionArchivoLayout.createSequentialGroup()
+        .addGap(0, 0, 0)
+        .addComponent(textDuracionArchivoHora, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(labelHoraArchivo)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+        .addComponent(textDuracionArchivoMinutos, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(labelMinutosArchivo)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+        .addComponent(textDuracionArchivoSegundos, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(labelSegundosArchivo))
+    );
+    panelDuracionArchivoLayout.setVerticalGroup(
+      panelDuracionArchivoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(panelDuracionArchivoLayout.createSequentialGroup()
+        .addGap(0, 0, 0)
+        .addGroup(panelDuracionArchivoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addGroup(panelDuracionArchivoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+            .addComponent(textDuracionArchivoHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(labelHoraArchivo))
+          .addGroup(panelDuracionArchivoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+            .addComponent(textDuracionArchivoMinutos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(labelMinutosArchivo))
+          .addGroup(panelDuracionArchivoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+            .addComponent(textDuracionArchivoSegundos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(labelSegundosArchivo)))
+        .addGap(0, 0, 0))
+    );
 
     labelFormatoArchivo.setText("Formato");
 
@@ -668,8 +748,6 @@ public class VentanaRegistrar extends javax.swing.JFrame {
 
     labelBytesArchivo.setText("bytes");
 
-    labelSegundosArchivo.setText("segundos");
-
     textDiaDigitalizacion.setColumns(2);
     textDiaDigitalizacion.setHorizontalAlignment(javax.swing.JTextField.CENTER);
     textDiaDigitalizacion.addActionListener(new java.awt.event.ActionListener() {
@@ -756,21 +834,19 @@ public class VentanaRegistrar extends javax.swing.JFrame {
           .addComponent(textNombreArchivo)
           .addComponent(textCodigoSoporte)
           .addComponent(comboResponsableDigitalizacion, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-          .addComponent(textAreaDescripcionExterior, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
           .addComponent(comboTipoSoporte, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
           .addGroup(panelCrearArchivoLayout.createSequentialGroup()
             .addComponent(panelFechaDigitalizacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGap(0, 0, Short.MAX_VALUE))
           .addGroup(panelCrearArchivoLayout.createSequentialGroup()
-            .addComponent(textDuracionArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(labelSegundosArchivo)
-            .addGap(18, 18, 18))
-          .addGroup(panelCrearArchivoLayout.createSequentialGroup()
             .addComponent(textTamanhoArchivo)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(labelBytesArchivo)
-            .addGap(45, 45, 45))))
+            .addGap(45, 45, 45))
+          .addGroup(panelCrearArchivoLayout.createSequentialGroup()
+            .addComponent(panelDuracionArchivo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addContainerGap())
+          .addComponent(scrollDescripcionExterior)))
       .addGroup(panelCrearArchivoLayout.createSequentialGroup()
         .addComponent(botonAgregarPrograma)
         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -797,8 +873,8 @@ public class VentanaRegistrar extends javax.swing.JFrame {
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addGroup(panelCrearArchivoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
           .addComponent(labelDescripcionExterior)
-          .addComponent(textAreaDescripcionExterior, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+          .addComponent(scrollDescripcionExterior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        .addGap(11, 11, 11)
         .addGroup(panelCrearArchivoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(labelNombreArchivo)
           .addComponent(textNombreArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -808,10 +884,9 @@ public class VentanaRegistrar extends javax.swing.JFrame {
           .addComponent(textTamanhoArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
           .addComponent(labelBytesArchivo))
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-        .addGroup(panelCrearArchivoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+        .addGroup(panelCrearArchivoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
           .addComponent(labelDuracionArchivo)
-          .addComponent(textDuracionArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-          .addComponent(labelSegundosArchivo))
+          .addComponent(panelDuracionArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addComponent(labelFormatoArchivo)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -822,7 +897,7 @@ public class VentanaRegistrar extends javax.swing.JFrame {
           .addComponent(labelFechaDigitalizacion))
         .addGap(18, 18, 18)
         .addComponent(botonAgregarPrograma)
-        .addGap(0, 243, Short.MAX_VALUE))
+        .addGap(0, 203, Short.MAX_VALUE))
     );
 
     panelAgregarPrograma.setBorder(javax.swing.BorderFactory.createTitledBorder("Agregar Programa"));
@@ -830,19 +905,101 @@ public class VentanaRegistrar extends javax.swing.JFrame {
 
     labelAlturaInicioPrograma.setText("Altura Inicio");
 
-    textAlturaInicioPrograma.addActionListener(new java.awt.event.ActionListener() {
+    textAlturaInicioProgramaHora.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
-        textAlturaInicioProgramaActionPerformed(evt);
+        textAlturaInicioProgramaHoraActionPerformed(evt);
       }
     });
+
+    labelAlturaInicioProgramaHora.setText("h");
+
+    labelAlturaInicioProgramaMinutos.setText("m");
+
+    labelAlturaInicioProgramaSegundos.setText("s");
+
+    javax.swing.GroupLayout panelAlturaInicioProgramaLayout = new javax.swing.GroupLayout(panelAlturaInicioPrograma);
+    panelAlturaInicioPrograma.setLayout(panelAlturaInicioProgramaLayout);
+    panelAlturaInicioProgramaLayout.setHorizontalGroup(
+      panelAlturaInicioProgramaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(panelAlturaInicioProgramaLayout.createSequentialGroup()
+        .addGap(0, 0, 0)
+        .addComponent(textAlturaInicioProgramaHora, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(labelAlturaInicioProgramaHora)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+        .addComponent(textAlturaInicioProgramaMinutos, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(labelAlturaInicioProgramaMinutos)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+        .addComponent(textAlturaInicioProgramaSegundos, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(labelAlturaInicioProgramaSegundos))
+    );
+    panelAlturaInicioProgramaLayout.setVerticalGroup(
+      panelAlturaInicioProgramaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(panelAlturaInicioProgramaLayout.createSequentialGroup()
+        .addGap(0, 0, 0)
+        .addGroup(panelAlturaInicioProgramaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+          .addComponent(textAlturaInicioProgramaSegundos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(labelAlturaInicioProgramaSegundos)
+          .addComponent(textAlturaInicioProgramaMinutos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(labelAlturaInicioProgramaMinutos)
+          .addComponent(textAlturaInicioProgramaHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(labelAlturaInicioProgramaHora))
+        .addGap(0, 0, 0))
+    );
 
     labelAlturaTerminoPrograma.setText("Altura Término");
 
-    textAlturaTerminoPrograma.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(java.awt.event.ActionEvent evt) {
-        textAlturaTerminoProgramaActionPerformed(evt);
-      }
-    });
+    valorAlturaTerminoProgramaHora.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+    valorAlturaTerminoProgramaHora.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+    valorAlturaTerminoProgramaHora.setText("--");
+
+    labelAlturaTerminoProgramaHora.setText("h");
+
+    valorAlturaTerminoProgramaMinutos.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+    valorAlturaTerminoProgramaMinutos.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+    valorAlturaTerminoProgramaMinutos.setText("--");
+
+    labelAlturaTerminoProgramaMinutos.setText("m");
+
+    valorAlturaTerminoProgramaSegundos.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+    valorAlturaTerminoProgramaSegundos.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+    valorAlturaTerminoProgramaSegundos.setText("--");
+
+    labelAlturaTerminoProgramaSegundos.setText("s");
+
+    javax.swing.GroupLayout panelAlturaTerminoProgramaLayout = new javax.swing.GroupLayout(panelAlturaTerminoPrograma);
+    panelAlturaTerminoPrograma.setLayout(panelAlturaTerminoProgramaLayout);
+    panelAlturaTerminoProgramaLayout.setHorizontalGroup(
+      panelAlturaTerminoProgramaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(panelAlturaTerminoProgramaLayout.createSequentialGroup()
+        .addComponent(valorAlturaTerminoProgramaHora, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+        .addComponent(labelAlturaTerminoProgramaHora)
+        .addGap(12, 12, 12)
+        .addComponent(valorAlturaTerminoProgramaMinutos, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(labelAlturaTerminoProgramaMinutos)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+        .addComponent(valorAlturaTerminoProgramaSegundos, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(labelAlturaTerminoProgramaSegundos)
+        .addContainerGap())
+    );
+    panelAlturaTerminoProgramaLayout.setVerticalGroup(
+      panelAlturaTerminoProgramaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(panelAlturaTerminoProgramaLayout.createSequentialGroup()
+        .addGap(3, 3, 3)
+        .addGroup(panelAlturaTerminoProgramaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+          .addComponent(labelAlturaTerminoProgramaSegundos)
+          .addComponent(labelAlturaTerminoProgramaMinutos)
+          .addComponent(labelAlturaTerminoProgramaHora)
+          .addComponent(valorAlturaTerminoProgramaHora, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(valorAlturaTerminoProgramaMinutos, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(valorAlturaTerminoProgramaSegundos, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
+        .addGap(0, 0, 0))
+    );
 
     labelNombrePrograma.setText("Nombre del Programa");
 
@@ -940,39 +1097,36 @@ public class VentanaRegistrar extends javax.swing.JFrame {
           .addGroup(panelAgregarProgramaLayout.createSequentialGroup()
             .addComponent(labelAlturaTerminoPrograma)
             .addGap(56, 56, 56)
-            .addComponent(textAlturaTerminoPrograma))
+            .addComponent(panelAlturaTerminoPrograma, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
           .addGroup(panelAgregarProgramaLayout.createSequentialGroup()
             .addComponent(labelAlturaInicioPrograma)
             .addGap(69, 69, 69)
-            .addComponent(textAlturaInicioPrograma))
+            .addComponent(panelAlturaInicioPrograma, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+          .addComponent(botonAgregarFragmento)
           .addGroup(panelAgregarProgramaLayout.createSequentialGroup()
             .addGroup(panelAgregarProgramaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-              .addComponent(botonAgregarFragmento)
-              .addGroup(panelAgregarProgramaLayout.createSequentialGroup()
-                .addGroup(panelAgregarProgramaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                  .addComponent(labelConductor)
-                  .addComponent(labelFechaEmisionPrograma)
-                  .addComponent(labelNombrePrograma))
-                .addGap(23, 23, 23)
-                .addGroup(panelAgregarProgramaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                  .addComponent(scrollConductor, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                  .addComponent(panelFechaEmisionPrograma, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                  .addComponent(comboNombrePrograma, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                  .addComponent(comboConductor, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-            .addGap(0, 0, Short.MAX_VALUE)))
+              .addComponent(labelConductor)
+              .addComponent(labelFechaEmisionPrograma)
+              .addComponent(labelNombrePrograma))
+            .addGap(23, 23, 23)
+            .addGroup(panelAgregarProgramaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+              .addComponent(scrollConductor, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+              .addComponent(panelFechaEmisionPrograma, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+              .addComponent(comboNombrePrograma, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+              .addComponent(comboConductor, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         .addContainerGap())
     );
     panelAgregarProgramaLayout.setVerticalGroup(
       panelAgregarProgramaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(panelAgregarProgramaLayout.createSequentialGroup()
         .addContainerGap()
-        .addGroup(panelAgregarProgramaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+        .addGroup(panelAgregarProgramaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
           .addComponent(labelAlturaInicioPrograma)
-          .addComponent(textAlturaInicioPrograma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+          .addComponent(panelAlturaInicioPrograma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-        .addGroup(panelAgregarProgramaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+        .addGroup(panelAgregarProgramaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
           .addComponent(labelAlturaTerminoPrograma)
-          .addComponent(textAlturaTerminoPrograma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+          .addComponent(panelAlturaTerminoPrograma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addGroup(panelAgregarProgramaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(labelNombrePrograma)
@@ -997,19 +1151,83 @@ public class VentanaRegistrar extends javax.swing.JFrame {
 
     labelAlturaInicioFragmento.setText("Altura de Inicio");
 
-    textAlturaInicioFragmento.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(java.awt.event.ActionEvent evt) {
-        textAlturaInicioFragmentoActionPerformed(evt);
-      }
-    });
+    labelAlturaInicioFragmentoHora.setText("h");
+
+    labelAlturaInicioFragmentoMinutos.setText("m");
+
+    labelAlturaInicioFragmentoSegundos.setText("s");
+
+    javax.swing.GroupLayout panelAlturaInicioFragmentoLayout = new javax.swing.GroupLayout(panelAlturaInicioFragmento);
+    panelAlturaInicioFragmento.setLayout(panelAlturaInicioFragmentoLayout);
+    panelAlturaInicioFragmentoLayout.setHorizontalGroup(
+      panelAlturaInicioFragmentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(panelAlturaInicioFragmentoLayout.createSequentialGroup()
+        .addGap(0, 0, 0)
+        .addComponent(textAlturaInicioFragmentoHora, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(labelAlturaInicioFragmentoHora)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+        .addComponent(textAlturaInicioFragmentoMinutos, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(labelAlturaInicioFragmentoMinutos)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+        .addComponent(textAlturaInicioFragmentoSegundos, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(labelAlturaInicioFragmentoSegundos))
+    );
+    panelAlturaInicioFragmentoLayout.setVerticalGroup(
+      panelAlturaInicioFragmentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(panelAlturaInicioFragmentoLayout.createSequentialGroup()
+        .addGap(0, 0, 0)
+        .addGroup(panelAlturaInicioFragmentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+          .addComponent(textAlturaInicioFragmentoSegundos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(labelAlturaInicioFragmentoSegundos)
+          .addComponent(textAlturaInicioFragmentoMinutos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(labelAlturaInicioFragmentoMinutos)
+          .addComponent(textAlturaInicioFragmentoHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(labelAlturaInicioFragmentoHora))
+        .addGap(0, 0, 0))
+    );
 
     labelAlturaTerminoFragmento.setText("Altura de Término");
 
-    textAlturaTerminoFragmento.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(java.awt.event.ActionEvent evt) {
-        textAlturaTerminoFragmentoActionPerformed(evt);
-      }
-    });
+    labelAlturaTerminoFragmentoHora.setText("h");
+
+    labelAlturaTerminoFragmentoMinutos.setText("m");
+
+    labelAlturaTerminoFragmentoSegundos.setText("s");
+
+    javax.swing.GroupLayout panelAlturaTerminoPrograma1Layout = new javax.swing.GroupLayout(panelAlturaTerminoPrograma1);
+    panelAlturaTerminoPrograma1.setLayout(panelAlturaTerminoPrograma1Layout);
+    panelAlturaTerminoPrograma1Layout.setHorizontalGroup(
+      panelAlturaTerminoPrograma1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(panelAlturaTerminoPrograma1Layout.createSequentialGroup()
+        .addGap(0, 0, 0)
+        .addComponent(textAlturaTerminoFragmentoHora, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(labelAlturaTerminoFragmentoHora)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+        .addComponent(textAlturaTerminoFragmentoMinutos, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(labelAlturaTerminoFragmentoMinutos)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+        .addComponent(textAlturaTerminoFragmentoSegundos, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(labelAlturaTerminoFragmentoSegundos))
+    );
+    panelAlturaTerminoPrograma1Layout.setVerticalGroup(
+      panelAlturaTerminoPrograma1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(panelAlturaTerminoPrograma1Layout.createSequentialGroup()
+        .addGap(0, 0, 0)
+        .addGroup(panelAlturaTerminoPrograma1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+          .addComponent(textAlturaTerminoFragmentoSegundos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(labelAlturaTerminoFragmentoSegundos)
+          .addComponent(textAlturaTerminoFragmentoMinutos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(labelAlturaTerminoFragmentoMinutos)
+          .addComponent(textAlturaTerminoFragmentoHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(labelAlturaTerminoFragmentoHora))
+        .addGap(0, 0, 0))
+    );
 
     labelTipoAudio.setText("Tipo de Audio");
 
@@ -2050,18 +2268,6 @@ public class VentanaRegistrar extends javax.swing.JFrame {
             .addContainerGap()
             .addGroup(panelAgregarFragmentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
               .addGroup(panelAgregarFragmentoLayout.createSequentialGroup()
-                .addComponent(labelAlturaInicioFragmento)
-                .addGap(32, 32, 32)
-                .addComponent(textAlturaInicioFragmento, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
-              .addGroup(panelAgregarFragmentoLayout.createSequentialGroup()
-                .addGroup(panelAgregarFragmentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                  .addComponent(labelAlturaTerminoFragmento)
-                  .addComponent(labelTipoAudio))
-                .addGap(18, 18, 18)
-                .addGroup(panelAgregarFragmentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                  .addComponent(textAlturaTerminoFragmento)
-                  .addComponent(comboTipoAudio, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-              .addGroup(panelAgregarFragmentoLayout.createSequentialGroup()
                 .addGroup(panelAgregarFragmentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                   .addComponent(labelDescripcionFragmento)
                   .addComponent(labelPalabrasClave))
@@ -2069,28 +2275,40 @@ public class VentanaRegistrar extends javax.swing.JFrame {
                 .addGroup(panelAgregarFragmentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                   .addComponent(scrollPalabrasClave, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                   .addComponent(textAreaDescripcionFragmento, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
-                  .addComponent(comboPalabrasClave, 0, 174, Short.MAX_VALUE)))
+                  .addComponent(comboPalabrasClave, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
               .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAgregarFragmentoLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(botonGuardarFragmento))
-              .addComponent(scrollTipos, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE))))
+              .addComponent(scrollTipos, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
+              .addGroup(panelAgregarFragmentoLayout.createSequentialGroup()
+                .addGroup(panelAgregarFragmentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                  .addComponent(labelAlturaTerminoFragmento)
+                  .addComponent(labelTipoAudio)
+                  .addComponent(labelAlturaInicioFragmento))
+                .addGap(18, 18, 18)
+                .addGroup(panelAgregarFragmentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                  .addComponent(panelAlturaInicioFragmento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                  .addGroup(panelAgregarFragmentoLayout.createSequentialGroup()
+                    .addComponent(comboTipoAudio, 0, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE))
+                  .addComponent(panelAlturaTerminoPrograma1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
         .addContainerGap())
     );
     panelAgregarFragmentoLayout.setVerticalGroup(
       panelAgregarFragmentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(panelAgregarFragmentoLayout.createSequentialGroup()
         .addContainerGap()
-        .addGroup(panelAgregarFragmentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+        .addGroup(panelAgregarFragmentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
           .addComponent(labelAlturaInicioFragmento)
-          .addComponent(textAlturaInicioFragmento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+          .addComponent(panelAlturaInicioFragmento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-        .addGroup(panelAgregarFragmentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+        .addGroup(panelAgregarFragmentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
           .addComponent(labelAlturaTerminoFragmento)
-          .addComponent(textAlturaTerminoFragmento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+          .addComponent(panelAlturaTerminoPrograma1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addGroup(panelAgregarFragmentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(labelTipoAudio)
-          .addComponent(comboTipoAudio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+          .addComponent(comboTipoAudio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addComponent(scrollTipos, javax.swing.GroupLayout.DEFAULT_SIZE, 322, Short.MAX_VALUE)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -2176,14 +2394,6 @@ public class VentanaRegistrar extends javax.swing.JFrame {
     // TODO add your handling code here:
   }//GEN-LAST:event_textAnhoDigitalizacionActionPerformed
 
-  private void textAlturaInicioProgramaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textAlturaInicioProgramaActionPerformed
-    // TODO add your handling code here:
-  }//GEN-LAST:event_textAlturaInicioProgramaActionPerformed
-
-  private void textAlturaTerminoProgramaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textAlturaTerminoProgramaActionPerformed
-    // TODO add your handling code here:
-  }//GEN-LAST:event_textAlturaTerminoProgramaActionPerformed
-
   private void textDiaEmisionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textDiaEmisionActionPerformed
     // TODO add your handling code here:
   }//GEN-LAST:event_textDiaEmisionActionPerformed
@@ -2259,12 +2469,18 @@ public class VentanaRegistrar extends javax.swing.JFrame {
         labelTamanhoArchivo.setForeground(Color.red);
         formularioListo = false;
       }
-      if(!textDuracionArchivo.getText().equals("")){
+      
+      this.duracion = (short) (Short.parseShort(textDuracionArchivoHora.getText()) * 3600
+              + Short.parseShort(textDuracionArchivoMinutos.getText()) * 60
+              + Short.parseShort(textDuracionArchivoSegundos.getText()));
+      if(!textDuracionArchivoHora.getText().equals("")
+              && !textDuracionArchivoMinutos.getText().equals("")
+              && !textDuracionArchivoSegundos.getText().equals("")){
         labelDuracionArchivo.setForeground(null);
-        archivo.setDuracionArchivo(Integer.parseInt(textDuracionArchivo.getText()));
+        archivo.setDuracionArchivo(this.duracion);
       } else {
-        labelDuracionArchivo.setForeground(Color.red);
         formularioListo = false;
+        labelDuracionArchivo.setForeground(Color.red);        
       }
       
       archivo.setFormatoArchivo(new Formato(
@@ -2283,6 +2499,8 @@ public class VentanaRegistrar extends javax.swing.JFrame {
       
       
       if(formularioListo){
+        
+        
         //guardado del Archivo en base de datos
         archivoDao.crearArchivo(archivo);
 
@@ -2294,8 +2512,10 @@ public class VentanaRegistrar extends javax.swing.JFrame {
     
       }
       
-    } catch (Exception e) {
-      e.printStackTrace();
+    } catch (NumberFormatException nfe) {
+      JOptionPane.showMessageDialog(this, nfe.getMessage());
+    } catch (NullPointerException npe){
+      JOptionPane.showMessageDialog(this, npe.getMessage());
     }
   }//GEN-LAST:event_botonAgregarProgramaActionPerformed
 
@@ -2308,21 +2528,49 @@ public class VentanaRegistrar extends javax.swing.JFrame {
     
     //insercion de informacion en Programa
     try {
-      if(!textAlturaInicioPrograma.getText().equals("")){
+      //altura inicio de programa de H:M:S a segundos
+      short alturaInicioPrograma = (short) (Short.parseShort(textAlturaInicioProgramaHora.getText()) * 3600
+                + Short.parseShort(textAlturaInicioProgramaMinutos.getText()) * 60
+                + Short.parseShort(textAlturaInicioProgramaSegundos.getText()));
+      
+      /*
+      //altura fin de programa de H:M:S a segundos
+      short alturaTerminoPrograma = (short) (Short.parseShort(textAlturaTerminoProgramaHora.getText()) * 3600
+                + Short.parseShort(textAlturaTerminoProgramaMinutos.getText()) * 60
+                + Short.parseShort(textAlturaTerminoProgramaSegundos.getText()));
+      */
+              
+      //validacion altura de inicio de programa
+      if(!textAlturaInicioProgramaHora.getText().equals("")
+              && !textAlturaInicioProgramaMinutos.getText().equals("")
+              && !textAlturaInicioProgramaSegundos.getText().equals("")
+              && alturaInicioPrograma >= this.alturaFinProgramaAnterior){
         labelAlturaInicioPrograma.setForeground(null);
-        programa.setAlturaInicio(Integer.parseInt(textAlturaInicioPrograma.getText()));
+        programa.setAlturaInicio(alturaInicioPrograma);
       } else {
         formularioListo = false;
-        labelAlturaInicioPrograma.setForeground(Color.red);        
+        labelAlturaInicioPrograma.setForeground(Color.red);
+        if(alturaInicioPrograma < this.alturaFinProgramaAnterior) {
+          JOptionPane.showMessageDialog(this, "El programa inicia antes de terminar el anterior","ERROR",0);
+        }
       }
       
-      if(!textAlturaTerminoPrograma.getText().equals("")){
+      /*
+      //validacion altura termino de programa
+      if(!textAlturaTerminoProgramaHora.getText().equals("")
+              && !textAlturaTerminoProgramaMinutos.getText().equals("")
+              && !textAlturaTerminoProgramaSegundos.getText().equals("")
+              && alturaTerminoPrograma > alturaInicioPrograma){
         labelAlturaTerminoPrograma.setForeground(null);
-        programa.setAlturaTermino(Integer.parseInt(textAlturaTerminoPrograma.getText()));
+        programa.setAlturaTermino(alturaTerminoPrograma);
       } else {
         formularioListo = false;
         labelAlturaTerminoPrograma.setForeground(Color.red);
+        if(alturaInicioPrograma >= alturaTerminoPrograma) {
+          JOptionPane.showMessageDialog(this, "El programa termina antes de comenzar","ERROR",0);
+        }
       }
+      */
       
       if(comboNombrePrograma.getSelectedIndex() != 0){
         labelNombrePrograma.setForeground(null);
@@ -2349,6 +2597,9 @@ public class VentanaRegistrar extends javax.swing.JFrame {
       }
       
       if(formularioListo){
+        if(this.contadorProgramas == 0){
+          this.alturaFinFragmentoAnterior = alturaInicioPrograma;
+        };
         //agrega Programa a lista Programas en base de datos
         archivoDao.insertarPrograma(textIdArchivo.getText(), programa);
         //desactiva panel para evitar doble grabación del encabezado
@@ -2358,9 +2609,11 @@ public class VentanaRegistrar extends javax.swing.JFrame {
         this.setPanelEnabled(panelAgregarFragmento, true);
         this.limpiarPanel(panelAgregarFragmento);
       }
-    } catch (Exception e){
-      e.printStackTrace();
-    } 
+    } catch (NumberFormatException nfe) {
+      JOptionPane.showMessageDialog(this, nfe.getMessage());
+    } catch (NullPointerException npe){
+      JOptionPane.showMessageDialog(this, npe.getMessage());
+    }
   }//GEN-LAST:event_botonAgregarFragmentoActionPerformed
 
   private void textTemaPanelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textTemaPanelActionPerformed
@@ -2393,14 +2646,6 @@ public class VentanaRegistrar extends javax.swing.JFrame {
     }
 
   }//GEN-LAST:event_comboTipoAudioActionPerformed
-
-  private void textAlturaTerminoFragmentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textAlturaTerminoFragmentoActionPerformed
-    // TODO add your handling code here:
-  }//GEN-LAST:event_textAlturaTerminoFragmentoActionPerformed
-
-  private void textAlturaInicioFragmentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textAlturaInicioFragmentoActionPerformed
-    // TODO add your handling code here:
-  }//GEN-LAST:event_textAlturaInicioFragmentoActionPerformed
 
   private void textMarcadorFinalBasquetballActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textMarcadorFinalBasquetballActionPerformed
     // TODO add your handling code here:
@@ -2867,22 +3112,49 @@ public class VentanaRegistrar extends javax.swing.JFrame {
           break;
         }
       }
-      if(!textAlturaInicioFragmento.getText().equals("")){
+      
+      //altura inicio de fragmento de H:M:S a segundos
+      short alturaInicioFragmento = (short) (Short.parseShort(textAlturaInicioFragmentoHora.getText()) * 3600
+                + Short.parseShort(textAlturaInicioFragmentoMinutos.getText()) * 60
+                + Short.parseShort(textAlturaInicioFragmentoSegundos.getText()));
+      
+      //altura termino de fragmento de H:M:S a segundos
+      short alturaTerminoFragmento = (short)(Short.parseShort(textAlturaTerminoFragmentoHora.getText()) * 3600
+                + Short.parseShort(textAlturaTerminoFragmentoMinutos.getText()) * 60
+                + Short.parseShort(textAlturaTerminoFragmentoSegundos.getText()));
+      
+      if(!textAlturaInicioFragmentoHora.getText().equals("")
+              && !textAlturaInicioFragmentoMinutos.getText().equals("")
+              && !textAlturaInicioFragmentoSegundos.getText().equals("")
+              && alturaInicioFragmento >= this.alturaFinFragmentoAnterior){
         labelAlturaInicioFragmento.setForeground(null);
-        audio.setAlturaInicio(Integer.parseInt(textAlturaInicioFragmento.getText()));
+        audio.setAlturaInicio(alturaInicioFragmento);
       } else {
         formularioListo = false;
-        labelAlturaInicioFragmento.setForeground(Color.red);
+        labelAlturaInicioPrograma.setForeground(Color.red);
+        if(alturaInicioFragmento < this.alturaFinFragmentoAnterior){
+          JOptionPane.showMessageDialog(this, "El fragmento comienza antes que el anterior", "ERROR", 0);
+        }
       }
       
-      if(!textAlturaTerminoFragmento.getText().equals("")){
+      if(!textAlturaTerminoFragmentoHora.getText().equals("")
+              && !textAlturaTerminoFragmentoMinutos.getText().equals("")
+              && !textAlturaTerminoFragmentoSegundos.getText().equals("")
+              && alturaInicioFragmento < alturaTerminoFragmento
+              && alturaTerminoFragmento <= this.duracion){
         labelAlturaTerminoFragmento.setForeground(null);
-        audio.setAlturaTermino(Integer.parseInt(textAlturaTerminoFragmento.getText()));
+        audio.setAlturaTermino(alturaTerminoFragmento);
       } else {
         formularioListo = false;
-        labelAlturaTerminoFragmento.setForeground(Color.red);
+        labelAlturaTerminoPrograma.setForeground(Color.red);
+        if(alturaInicioFragmento >= alturaTerminoFragmento){
+          JOptionPane.showMessageDialog(this, "El fragmento termina antes de comenzar", "ERROR", 0);
+        }
+        if(alturaTerminoFragmento > this.duracion){
+          JOptionPane.showMessageDialog(this, "Altura de término supera duración del archivo");
+        }
       }
-      
+        
       if(listaPalabrasClave.getModel().getSize() != 0){
         labelPalabrasClave.setForeground(null);
         for(int i = 0; i < listaPalabrasClave.getModel().getSize(); i++){
@@ -2902,6 +3174,11 @@ public class VentanaRegistrar extends javax.swing.JFrame {
       }
       
       if(formularioListo){
+        //actualizacion de altura de término de programa a medida que se agregan fragmentos
+        archivoDao.modificarCampoPrograma(textIdArchivo.getText(), contadorProgramas, "alturaTermino", alturaTerminoFragmento);
+        valorAlturaTerminoProgramaHora.setText(textAlturaTerminoFragmentoHora.getText());
+        valorAlturaTerminoProgramaMinutos.setText(textAlturaTerminoFragmentoMinutos.getText());
+        valorAlturaTerminoProgramaSegundos.setText(textAlturaTerminoFragmentoSegundos.getText());
         //se inserta el archivo en la lista Fragmentos del programa en la base de datos
         archivoDao.insertarAudio(textIdArchivo.getText(), String.valueOf(this.contadorProgramas), audio);
         //deshabilita panel agregarFragmento
@@ -2909,11 +3186,12 @@ public class VentanaRegistrar extends javax.swing.JFrame {
         //visibiliza y activa botones OtroFragmento y OtroPrograma
         this.setPanelEnabled(panelAgregarOtro,true);
         panelAgregarOtro.setVisible(true);
-        
       }
       
-    } catch (Exception e) {
-      e.printStackTrace();
+    } catch (NumberFormatException nfe) {
+      JOptionPane.showMessageDialog(this, nfe.getMessage());
+    } catch (NullPointerException npe){
+      JOptionPane.showMessageDialog(this, npe.getMessage());
     }
   }//GEN-LAST:event_botonGuardarFragmentoActionPerformed
 
@@ -3007,6 +3285,11 @@ public class VentanaRegistrar extends javax.swing.JFrame {
   }//GEN-LAST:event_textNombreSeccionActionPerformed
 
   private void botonOtroFragmentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonOtroFragmentoActionPerformed
+    //almacena altura del final del fragmento anterior
+    this.alturaFinFragmentoAnterior = 
+            (short) (Short.parseShort(textAlturaTerminoFragmentoHora.getText()) * 3600
+            + Short.parseShort(textAlturaTerminoFragmentoMinutos.getText()) * 60
+            + Short.parseShort(textAlturaTerminoFragmentoSegundos.getText()));
     //incrementa numero de fragmentos en programa
     this.contadorFragmentos++;
     //habilita panel AgregarFragmento
@@ -3017,9 +3300,20 @@ public class VentanaRegistrar extends javax.swing.JFrame {
     panelAgregarOtro.setVisible(false);
     //invisibiliza panel Tipos
     scrollTipos.setVisible(false);
+    //inicializa altura del nuevo fragmento
+    textAlturaInicioFragmentoHora.setText(String.valueOf(this.alturaFinFragmentoAnterior / 3600));
+    textAlturaInicioFragmentoMinutos.setText(String.valueOf((this.alturaFinFragmentoAnterior % 3600) / 60));
+    textAlturaInicioFragmentoSegundos.setText((String.valueOf(((this.alturaFinFragmentoAnterior % 3600) % 60))));
+    //se ubica en el subformulario de altura de termino de fragmento
+    textAlturaTerminoFragmentoHora.requestFocus();
   }//GEN-LAST:event_botonOtroFragmentoActionPerformed
 
   private void botonOtroProgramaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonOtroProgramaActionPerformed
+    //almacena altura del final del programa anterior
+    this.alturaFinProgramaAnterior = 
+            (short)(Short.parseShort(valorAlturaTerminoProgramaHora.getText())*3600
+            + Short.parseShort(valorAlturaTerminoProgramaMinutos.getText())*60
+            + Short.parseShort(valorAlturaTerminoProgramaSegundos.getText()));
     //incrementa numero de programas
     this.contadorProgramas++;
     //reinicia contador de fragmentos para el programa
@@ -3033,6 +3327,10 @@ public class VentanaRegistrar extends javax.swing.JFrame {
     panelAgregarFragmento.setVisible(false);
     scrollTipos.setVisible(false);
     panelDisciplina.setVisible(false);
+    //inicializa altura del nuevo programa
+    textAlturaInicioProgramaHora.setText(String.valueOf(this.alturaFinProgramaAnterior / 3600));
+    textAlturaInicioProgramaMinutos.setText(String.valueOf((this.alturaFinProgramaAnterior % 3600) / 60));
+    textAlturaInicioProgramaSegundos.setText((String.valueOf(((this.alturaFinProgramaAnterior % 3600) % 60))));
   }//GEN-LAST:event_botonOtroProgramaActionPerformed
 
   private void comboComentaristaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboComentaristaActionPerformed
@@ -3056,6 +3354,10 @@ public class VentanaRegistrar extends javax.swing.JFrame {
       popupLista.show(listaComentarista1, evt.getX(), evt.getY());
     }
   }//GEN-LAST:event_listaComentarista1MouseClicked
+
+  private void textAlturaInicioProgramaHoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textAlturaInicioProgramaHoraActionPerformed
+    // TODO add your handling code here:
+  }//GEN-LAST:event_textAlturaInicioProgramaHoraActionPerformed
 
   /**
    * @param args the command line arguments
@@ -3130,9 +3432,21 @@ public class VentanaRegistrar extends javax.swing.JFrame {
   private javax.swing.JComboBox<String> comboTipoAudio;
   private javax.swing.JComboBox<String> comboTipoSoporte;
   private javax.swing.JLabel labelAlturaInicioFragmento;
+  private javax.swing.JLabel labelAlturaInicioFragmentoHora;
+  private javax.swing.JLabel labelAlturaInicioFragmentoMinutos;
+  private javax.swing.JLabel labelAlturaInicioFragmentoSegundos;
   private javax.swing.JLabel labelAlturaInicioPrograma;
+  private javax.swing.JLabel labelAlturaInicioProgramaHora;
+  private javax.swing.JLabel labelAlturaInicioProgramaMinutos;
+  private javax.swing.JLabel labelAlturaInicioProgramaSegundos;
   private javax.swing.JLabel labelAlturaTerminoFragmento;
+  private javax.swing.JLabel labelAlturaTerminoFragmentoHora;
+  private javax.swing.JLabel labelAlturaTerminoFragmentoMinutos;
+  private javax.swing.JLabel labelAlturaTerminoFragmentoSegundos;
   private javax.swing.JLabel labelAlturaTerminoPrograma;
+  private javax.swing.JLabel labelAlturaTerminoProgramaHora;
+  private javax.swing.JLabel labelAlturaTerminoProgramaMinutos;
+  private javax.swing.JLabel labelAlturaTerminoProgramaSegundos;
   private javax.swing.JLabel labelBytesArchivo;
   private javax.swing.JLabel labelCanales;
   private javax.swing.JLabel labelCodec;
@@ -3155,6 +3469,7 @@ public class VentanaRegistrar extends javax.swing.JFrame {
   private javax.swing.JLabel labelFormatoArchivo;
   private javax.swing.JLabel labelFrecuenciaMuestreo;
   private javax.swing.JLabel labelGoles;
+  private javax.swing.JLabel labelHoraArchivo;
   private javax.swing.JLabel labelIdArchivo;
   private javax.swing.JLabel labelInvitadosSeccion;
   private javax.swing.JLabel labelJugadores;
@@ -3164,6 +3479,7 @@ public class VentanaRegistrar extends javax.swing.JFrame {
   private javax.swing.JLabel labelMarcadorFinalBasquetball;
   private javax.swing.JLabel labelMarcadorFinalFutbol;
   private javax.swing.JLabel labelMarcadorFinalTenis;
+  private javax.swing.JLabel labelMinutosArchivo;
   private javax.swing.JLabel labelNombreArchivo;
   private javax.swing.JLabel labelNombrePrograma;
   private javax.swing.JLabel labelNombreSeccion;
@@ -3215,10 +3531,15 @@ public class VentanaRegistrar extends javax.swing.JFrame {
   private javax.swing.JPanel panelAgregarFragmento;
   private javax.swing.JPanel panelAgregarOtro;
   private javax.swing.JPanel panelAgregarPrograma;
+  private javax.swing.JPanel panelAlturaInicioFragmento;
+  private javax.swing.JPanel panelAlturaInicioPrograma;
+  private javax.swing.JPanel panelAlturaTerminoPrograma;
+  private javax.swing.JPanel panelAlturaTerminoPrograma1;
   private javax.swing.JPanel panelBasquetball;
   private javax.swing.JPanel panelCrearArchivo;
   private javax.swing.JPanel panelDeporte;
   private javax.swing.JLayeredPane panelDisciplina;
+  private javax.swing.JPanel panelDuracionArchivo;
   private javax.swing.JPanel panelEntrevista;
   private javax.swing.JPanel panelFechaDigitalizacion;
   private javax.swing.JPanel panelFechaEmisionPrograma;
@@ -3234,6 +3555,7 @@ public class VentanaRegistrar extends javax.swing.JFrame {
   private javax.swing.JMenuItem popupListaBorrar;
   private javax.swing.JScrollPane scrollComentarista;
   private javax.swing.JScrollPane scrollConductor;
+  private javax.swing.JScrollPane scrollDescripcionExterior;
   private javax.swing.JScrollPane scrollEncargadoRRSS;
   private javax.swing.JScrollPane scrollEntrevistados;
   private javax.swing.JScrollPane scrollInvitadosSeccion;
@@ -3252,10 +3574,15 @@ public class VentanaRegistrar extends javax.swing.JFrame {
   private javax.swing.JScrollPane scrollTemaPanel;
   private javax.swing.JScrollPane scrollTemaSeccion;
   private javax.swing.JScrollPane scrollTipos;
-  private javax.swing.JTextField textAlturaInicioFragmento;
-  private javax.swing.JTextField textAlturaInicioPrograma;
-  private javax.swing.JTextField textAlturaTerminoFragmento;
-  private javax.swing.JTextField textAlturaTerminoPrograma;
+  private javax.swing.JTextField textAlturaInicioFragmentoHora;
+  private javax.swing.JTextField textAlturaInicioFragmentoMinutos;
+  private javax.swing.JTextField textAlturaInicioFragmentoSegundos;
+  private javax.swing.JTextField textAlturaInicioProgramaHora;
+  private javax.swing.JTextField textAlturaInicioProgramaMinutos;
+  private javax.swing.JTextField textAlturaInicioProgramaSegundos;
+  private javax.swing.JTextField textAlturaTerminoFragmentoHora;
+  private javax.swing.JTextField textAlturaTerminoFragmentoMinutos;
+  private javax.swing.JTextField textAlturaTerminoFragmentoSegundos;
   private javax.swing.JTextField textAnhoDigitalizacion;
   private javax.swing.JTextField textAnhoEmision;
   private javax.swing.JTextArea textAreaDescripcionExterior;
@@ -3264,7 +3591,9 @@ public class VentanaRegistrar extends javax.swing.JFrame {
   private javax.swing.JTextField textCompetencia;
   private javax.swing.JTextField textDiaDigitalizacion;
   private javax.swing.JTextField textDiaEmision;
-  private javax.swing.JTextField textDuracionArchivo;
+  private javax.swing.JTextField textDuracionArchivoHora;
+  private javax.swing.JTextField textDuracionArchivoMinutos;
+  private javax.swing.JTextField textDuracionArchivoSegundos;
   private javax.swing.JTextField textEntrevistados;
   private javax.swing.JTextField textEquipoLocalBasquetball;
   private javax.swing.JTextField textEquipoLocalFutbol;
@@ -3289,5 +3618,8 @@ public class VentanaRegistrar extends javax.swing.JFrame {
   private javax.swing.JTextField textTemaNoticia;
   private javax.swing.JTextField textTemaPanel;
   private javax.swing.JTextField textTemaSeccion;
+  private javax.swing.JLabel valorAlturaTerminoProgramaHora;
+  private javax.swing.JLabel valorAlturaTerminoProgramaMinutos;
+  private javax.swing.JLabel valorAlturaTerminoProgramaSegundos;
   // End of variables declaration//GEN-END:variables
 }
