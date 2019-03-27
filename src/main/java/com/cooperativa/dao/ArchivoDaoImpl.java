@@ -214,6 +214,34 @@ public class ArchivoDaoImpl implements IArchivoDao {
     return archivoActualizado;
   }
   
+  public boolean modificarCampoArchivo(String idArchivo, String campo, Object objetoModificado){
+    Conexion conexion = new Conexion();
+    MongoClient cliente = null;
+    Morphia morphia = null;
+    boolean archivoActualizado = false;
+    
+    try {
+      cliente = conexion.conectar();
+      morphia = new Morphia();
+      morphia.mapPackage("com.cooperativa.model");
+      final Datastore datastore = morphia.createDatastore(cliente, "cooperativa");
+      
+      Query<Archivo> updateQuery = datastore.createQuery(Archivo.class)
+              .filter("_id ==",idArchivo);
+      
+      UpdateOperations updateOperations = datastore.createUpdateOperations(Archivo.class)
+              .set(campo, objetoModificado.toString());
+      
+      
+    } catch (MongoException e) {
+      System.out.println("ERROR: Clase ArchivoDaoImpl, método modificarCampoArchivo");
+      
+    }
+    
+    cliente.close();
+    return archivoActualizado;
+  }
+  
   @Override
   public boolean modificarPrograma(String idArchivo, int indicePrograma, Programa programa){
     Conexion conexion = new Conexion();
@@ -249,6 +277,37 @@ public class ArchivoDaoImpl implements IArchivoDao {
     
     return programaActualizado;
   }
+  
+  public boolean modificarCampoPrograma(String idArchivo, int indicePrograma, String campo, Object objetoModificado){
+    Conexion conexion = new Conexion();
+    MongoClient cliente = null;
+    Morphia morphia = null;
+    boolean programaActualizado = false;
+    
+    try {
+      cliente = conexion.conectar();
+      morphia = new Morphia();
+      morphia.mapPackage("com.cooperativa.model");
+      final Datastore datastore = morphia.createDatastore(cliente, "cooperativa");
+      
+      Query<Archivo> updateQuery = datastore.createQuery(Archivo.class)
+              .filter("_id ==", idArchivo);
+      
+      String programaAModificar = "programas." + indicePrograma;
+      UpdateOperations updateOperations = datastore.createUpdateOperations(Archivo.class)
+              .set(programaAModificar + "." + campo, objetoModificado.toString());
+      
+      programaActualizado = datastore.updateFirst(updateQuery, updateOperations).getUpdatedExisting();
+      
+    } catch (MongoException e){
+      System.out.println("ERROR: Clase ArchivoDaoImpl, método modificarCampoPrograma");
+      e.printStackTrace();
+    }
+    
+    cliente.close();
+    return programaActualizado;
+    
+  }
 
   @Override
   public boolean modificarAudio(String idArchivo, int indicePrograma, int indiceAudio, Audio audio) {
@@ -279,6 +338,36 @@ public class ArchivoDaoImpl implements IArchivoDao {
     
     cliente.close();
     return audioActualizado;
+  }
+  
+  public boolean modificarCampoAudio(String idArchivo, int indicePrograma, int indiceAudio, String campo, Object objetoModificado){
+    Conexion conexion = new Conexion();
+    MongoClient cliente = null;
+    Morphia morphia = null;
+    boolean programaActualizado = false;
+    
+    try {
+      cliente = conexion.conectar();
+      morphia = new Morphia();
+      morphia.mapPackage("com.cooperativa.model");
+      final Datastore datastore = morphia.createDatastore(cliente, "cooperativa");
+      
+      Query<Archivo> updateQuery = datastore.createQuery(Archivo.class)
+              .filter("_id ==", idArchivo);
+      
+      UpdateOperations updateOperations = datastore.createUpdateOperations(Archivo.class)
+              .set("programas." + indicePrograma + ".fragmentos." + indiceAudio + "." + campo, objetoModificado.toString());
+      
+      programaActualizado = datastore.updateFirst(updateQuery, updateOperations).getUpdatedExisting();
+      
+    } catch (MongoException e){
+      System.out.println("ERROR: Clase ArchivoDaoImpl, método modificarCampoPrograma");
+      e.printStackTrace();
+    }
+    
+    cliente.close();
+    return programaActualizado;
+    
   }
 
   @Override
