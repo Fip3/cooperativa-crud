@@ -2644,6 +2644,9 @@ public class VentanaRegistrar extends javax.swing.JFrame {
       }
       panelTipos.getComponent(comboTipoAudio.getSelectedIndex()-1).setVisible(true);
     }
+    
+    SwingUtilities.updateComponentTreeUI(panelAgregarFragmento);
+    scrollTipos.setBorder(null);
 
   }//GEN-LAST:event_comboTipoAudioActionPerformed
 
