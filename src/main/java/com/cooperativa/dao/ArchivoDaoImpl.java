@@ -14,6 +14,7 @@ import com.cooperativa.idao.IArchivoDao;
 import org.bson.Document;
 import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.Morphia;
+import org.mongodb.morphia.query.FindOptions;
 import org.mongodb.morphia.query.Query;
 import org.mongodb.morphia.query.UpdateOperations;
 
@@ -176,6 +177,34 @@ public class ArchivoDaoImpl implements IArchivoDao {
     return archivo;
   }
   
+  public Archivo buscarUltimoPorUsuario(String usuario){
+    Conexion conexion = new Conexion();
+    MongoClient  cliente = null;
+    Morphia morphia = null;
+    Archivo archivo = null;
+    
+    try {
+      cliente = conexion.conectar();
+      morphia = new Morphia();
+      morphia.mapPackage("com.cooperativa.model");
+      final Datastore datastore = morphia.createDatastore(cliente, "cooperativa");
+      
+      Query<Archivo> consulta = datastore.createQuery(Archivo.class)
+              .filter("responsableIngreso ==", usuario)
+              .order("fechaIngreso");
+      FindOptions opciones = new FindOptions()
+              .limit(1);
+      
+      archivo = consulta.get(opciones);
+      
+    } catch (Exception e){
+      System.out.print("ERROR: Clase ArchivoDaoImpl, método buscarUltimoPorUsuario");
+    }
+    cliente.close();
+    return archivo;
+            
+  }
+  
   @Override
   public boolean modificarArchivo(Archivo archivo){
     Conexion conexion = new Conexion();
@@ -193,7 +222,6 @@ public class ArchivoDaoImpl implements IArchivoDao {
               .filter("_id ==",archivo.getId());
       
       UpdateOperations updateOperations = datastore.createUpdateOperations(Archivo.class)
-              .set("fechaIngreso", archivo.getFechaIngreso())
               .set("responsableDigitalizacion", archivo.getResponsableDigitalizacion())
               .set("codigoSoporte", archivo.getCodigoSoporte())
               .set("tipoSoporte", archivo.getTipoSoporte())
@@ -262,7 +290,6 @@ public class ArchivoDaoImpl implements IArchivoDao {
       UpdateOperations updateOperations = datastore.createUpdateOperations(Archivo.class)
               .set(programaAModificar + ".idPrograma", programa.getIdPrograma())
               .set(programaAModificar + ".alturaInicio", programa.getAlturaInicio())
-              .set(programaAModificar + ".alturaTermino", programa.getAlturaTermino())
               .set(programaAModificar + ".nombrePrograma", programa.getNombrePrograma())
               .set(programaAModificar + ".fechaEmision", programa.getFechaEmision());
       
