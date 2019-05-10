@@ -144,6 +144,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Ultimo Ingresado"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonBuscarUltimoArchivoActionPerformed"/>
+      </Events>
     </Component>
     <Container class="javax.swing.JPanel" name="panelArchivo">
       <Properties>
@@ -747,7 +750,7 @@
                       </Group>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="botonAgregarFragmento" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="botonActualizarPrograma" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="labelConductor" alignment="0" max="-2" attributes="0"/>
@@ -817,7 +820,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="scrollConductor" min="-2" pref="40" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="238" max="-2" attributes="0"/>
-                  <Component id="botonAgregarFragmento" min="-2" max="-2" attributes="0"/>
+                  <Component id="botonActualizarPrograma" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -838,11 +841,17 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="&lt;&lt;"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonProgramaAnteriorActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="botonProgramaSiguiente">
           <Properties>
             <Property name="text" type="java.lang.String" value="&gt;&gt;"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonProgramaSiguienteActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="labelAlturaInicioPrograma">
           <Properties>
@@ -1116,12 +1125,12 @@
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JButton" name="botonAgregarFragmento">
+        <Component class="javax.swing.JButton" name="botonActualizarPrograma">
           <Properties>
             <Property name="text" type="java.lang.String" value="Actualizar Programa"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonAgregarFragmentoActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonActualizarProgramaActionPerformed"/>
           </Events>
         </Component>
         <Container class="javax.swing.JScrollPane" name="scrollConductor">
@@ -1199,7 +1208,7 @@
                                   <Component id="comboTipoAudio" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
-                              <Component id="panelAlturaTerminoPrograma1" max="32767" attributes="0"/>
+                              <Component id="panelAlturaTerminoFragmento" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -1222,14 +1231,14 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="valorIdFragmento" alignment="0" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="labelIdFragmento" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="botonFragmentoAnterior" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="botonFragmentoSiguiente" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
+                      <Component id="valorIdFragmento" min="-2" pref="27" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="labelAlturaInicioFragmento" min="-2" max="-2" attributes="0"/>
                       <Component id="panelAlturaInicioFragmento" min="-2" max="-2" attributes="0"/>
@@ -1237,7 +1246,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="labelAlturaTerminoFragmento" min="-2" max="-2" attributes="0"/>
-                      <Component id="panelAlturaTerminoPrograma1" min="-2" max="-2" attributes="0"/>
+                      <Component id="panelAlturaTerminoFragmento" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -1258,9 +1267,9 @@
                       <Component id="labelDescripcionFragmento" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="textAreaDescripcionFragmento" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace pref="7" max="32767" attributes="0"/>
                   <Component id="botonActualizarFragmento" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -1280,11 +1289,17 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="&lt;&lt;"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonFragmentoAnteriorActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="botonFragmentoSiguiente">
           <Properties>
             <Property name="text" type="java.lang.String" value="&gt;&gt;"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonFragmentoSiguienteActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="labelAlturaInicioFragmento">
           <Properties>
@@ -1358,7 +1373,7 @@
             <Property name="text" type="java.lang.String" value="Altura de T&#xe9;rmino"/>
           </Properties>
         </Component>
-        <Container class="javax.swing.JPanel" name="panelAlturaTerminoPrograma1">
+        <Container class="javax.swing.JPanel" name="panelAlturaTerminoFragmento">
 
           <Layout>
             <DimensionLayout dim="0">
@@ -2755,7 +2770,7 @@
 
                       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                       <SubComponents>
-                        <Component class="javax.swing.JList" name="listaComentarista1">
+                        <Component class="javax.swing.JList" name="listaReportero">
                           <Properties>
                             <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
                               <StringArray count="0"/>
@@ -2767,7 +2782,7 @@
                             </Property>
                           </Properties>
                           <Events>
-                            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="listaComentarista1MouseClicked"/>
+                            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="listaReporteroMouseClicked"/>
                           </Events>
                           <AuxValues>
                             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>

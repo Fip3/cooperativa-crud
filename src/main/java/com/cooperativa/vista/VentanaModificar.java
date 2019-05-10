@@ -34,6 +34,7 @@ public class VentanaModificar extends javax.swing.JFrame {
   private byte contadorFragmentos;
   private final ConstDaoImpl constDao;
   private final ArchivoDaoImpl archivoDao;
+  private Archivo archivo;
   private final String operador;
   private short alturaFinProgramaAnterior;
   private short alturaFinFragmentoAnterior;
@@ -75,7 +76,7 @@ public class VentanaModificar extends javax.swing.JFrame {
     //inicializacion alturas
     this.alturaFinProgramaAnterior = 0;
     this.alturaFinFragmentoAnterior = 0;
-    
+   
     //inicializacion de comboBoxs
     completarCombo(comboResponsableDigitalizacion, "operadores");
     completarCombo(comboTipoSoporte, "soportes");
@@ -359,6 +360,205 @@ public class VentanaModificar extends javax.swing.JFrame {
     }
   }
   
+  private void recargarArchivo(){
+    this.archivo = archivoDao.buscarPorId(textBuscarIdArchivo.getText());
+  }
+  
+  private void desplegarArchivo(Archivo archivo){
+    
+    panelArchivo.setVisible(true);
+    textIdArchivo.setText(archivo.getId());
+    comboResponsableDigitalizacion.setSelectedItem(archivo.getResponsableDigitalizacion());
+    textCodigoSoporte.setText(archivo.getCodigoSoporte());
+    comboTipoSoporte.setSelectedItem(archivo.getTipoSoporte());
+    textAreaDescripcionExterior.setText(archivo.getDescripcionExterior());
+    textNombreArchivo.setText(archivo.getNombreArchivo());
+    textTamanhoArchivo.setText(String.valueOf(archivo.getTamanhoArchivo()));
+    textDuracionArchivoHora.setText(String.valueOf(archivo.getDuracionArchivo() / 3600));
+    textDuracionArchivoMinutos.setText(String.valueOf((archivo.getDuracionArchivo() % 3600) / 60));
+    textDuracionArchivoSegundos.setText(String.valueOf((archivo.getDuracionArchivo() % 3600) % 60));
+    comboFrecuenciaMuestreo.setSelectedItem(archivo.getFormatoArchivo().getFrecuenciaMuestreo());
+    comboProfundidadBits.setSelectedItem(archivo.getFormatoArchivo().getProfundidadBits());
+    comboCanales.setSelectedItem(archivo.getFormatoArchivo().getCanales());
+    comboCodec.setSelectedItem(archivo.getFormatoArchivo().getCodec());
+    comboTasaBits.setSelectedItem(archivo.getFormatoArchivo().getTasaBits());
+    textDiaDigitalizacion.setText(String.valueOf(archivo.getFechaDigitalizacion().toInstant().atZone(ZoneId.of("Z")).getDayOfMonth()));
+    textMesDigitalizacion.setText(String.valueOf(archivo.getFechaDigitalizacion().toInstant().atZone(ZoneId.of("Z")).getMonthValue()));
+    textAnhoDigitalizacion.setText(String.valueOf(archivo.getFechaDigitalizacion().toInstant().atZone(ZoneId.of("Z")).getYear()));
+    
+    this.desplegarPrograma(0);
+    panelPrograma.setVisible(true);
+    this.desplegarFragmento(0);
+    panelFragmento.setVisible(true);
+    
+  }
+  
+  private void desplegarPrograma(int indicePrograma){
+    Programa programa = this.archivo.getProgramas().get(indicePrograma);
+    valorIdPrograma.setText(programa.getIdPrograma());
+    textAlturaInicioProgramaHora.setText(String.valueOf(programa.getAlturaInicio() / 3600));
+    textAlturaInicioProgramaMinutos.setText(String.valueOf((programa.getAlturaInicio() % 3600) / 60));
+    textAlturaInicioProgramaSegundos.setText(String.valueOf((programa.getAlturaInicio() % 3600) % 60));
+    valorAlturaTerminoProgramaHora.setText(String.valueOf(programa.getAlturaTermino() / 3600));
+    valorAlturaTerminoProgramaMinutos.setText(String.valueOf((programa.getAlturaTermino() % 3600) / 60));
+    valorAlturaTerminoProgramaSegundos.setText(String.valueOf((programa.getAlturaTermino() % 3600) % 60));
+    comboNombrePrograma.setSelectedItem(programa.getNombrePrograma());
+    textDiaEmision.setText(String.valueOf(programa.getFechaEmision().toInstant().atZone(ZoneId.of("Z")).getDayOfMonth()));
+    textMesEmision.setText(String.valueOf(programa.getFechaEmision().toInstant().atZone(ZoneId.of("Z")).getMonthValue()));
+    textAnhoEmision.setText(String.valueOf(programa.getFechaEmision().toInstant().atZone(ZoneId.of("Z")).getYear()));
+    for(String c: programa.getConductor()){
+      this.agregarALista(c, listaConductor);
+    }
+    
+    this.desplegarFragmento(0);
+  }
+  
+  private void desplegarFragmento(int indiceAudio){
+    Audio fragmento = this.archivo.getProgramas().get(this.contadorProgramas).getFragmentos().get(indiceAudio);
+    
+    valorIdFragmento.setText(fragmento.getIdAudio());
+    textAlturaInicioFragmentoHora.setText(String.valueOf(fragmento.getAlturaInicio() / 3600));
+    textAlturaInicioFragmentoMinutos.setText(String.valueOf((fragmento.getAlturaInicio() % 3600) / 60));
+    textAlturaInicioFragmentoSegundos.setText(String.valueOf((fragmento.getAlturaInicio() % 3600) % 60));
+    textAlturaTerminoFragmentoHora.setText(String.valueOf(fragmento.getAlturaTermino() / 3600));
+    textAlturaTerminoFragmentoMinutos.setText(String.valueOf((fragmento.getAlturaTermino() % 3600) / 60));
+    textAlturaTerminoFragmentoSegundos.setText(String.valueOf((fragmento.getAlturaTermino() % 3600) % 60));
+    comboTipoAudio.setSelectedItem(fragmento.getTipo());
+    //despliegue de tipos
+    switch(comboTipoAudio.getSelectedIndex()){
+      case 1: {
+        Panel panel = (Panel)fragmento;
+        for(Personaje p: panel.getPanelista()){
+          this.agregarALista(p.toString(), this.listaPanelistas);
+        }
+        for(String t: panel.getTema()){
+          this.agregarALista(t, this.listaTemaPanel);
+        }
+        break;
+      }
+        
+      case 2: {
+        Deporte deporte = (Deporte)fragmento;
+        for(String r:deporte.getRelator()){
+          this.agregarALista(r,listaRelator);
+        }
+        for(String lc:deporte.getLocutorComercial()){
+          this.agregarALista(lc,listaLocutorComercial);
+        }
+        for(String ers:deporte.getEncargadoRedesSociales()){
+          this.agregarALista(ers,listaEncargadoRRSS);
+        }
+        for(String c:deporte.getComentarista()){
+          this.agregarALista(c,listaComentarista);
+        }
+        for(String rc:deporte.getReportero()){
+          this.agregarALista(rc,listaReportero);
+        }
+        textCompetencia.setText(deporte.getCompetencia());
+        textLugar.setText(deporte.getLugar());
+        
+        comboDisciplina.setSelectedItem(deporte.getDisciplina());
+        
+        switch(comboDisciplina.getSelectedIndex()){
+          case 1: {
+            Tenis tenis = (Tenis)deporte;
+            String cadena = "";
+            for(String j: tenis.getJugador()){
+              cadena += j + ";";
+            }
+            if(!cadena.equals("")){
+              textJugadores.setText(cadena.substring(0, cadena.length()-2));
+            }
+            
+            textMarcadorFinalTenis.setText(tenis.getMarcador());
+            
+            break;
+          }
+          case 2: {
+            Basquetball basquetball = (Basquetball)deporte;
+            textEquipoLocalBasquetball.setText(basquetball.getEquipoLocal());
+            textEquipoVisitaBasquetball.setText(basquetball.getEquipoVisita());
+            textMarcadorFinalBasquetball.setText(basquetball.getMarcador());
+            break;
+          }
+          case 3: {
+            Futbol futbol = (Futbol)deporte;
+            
+            textEquipoLocalFutbol.setText(futbol.getEquipoLocal());
+            textEquipoVisitaFutbol.setText(futbol.getEquipoVisita());
+            textMarcadorFinalFutbol.setText(futbol.getMarcador());
+            
+            break;
+          }
+        }
+        
+        break;
+      }
+        
+      case 3: {
+        Entrevista entrevista = (Entrevista)fragmento;
+        for(String p: entrevista.getPeriodista()){
+          agregarALista(p, listaPeriodistaEntrevista);
+        }
+        for(Personaje e: entrevista.getEntrevistado()){
+          agregarALista(e.toString(), listaEntrevistados);
+        }
+        for(String t: entrevista.getTema()){
+          agregarALista(t,listaTemaEntrevista);
+        }
+        break;
+      }
+      case 4: {
+        Seccion seccion = (Seccion)fragmento;
+        textNombreSeccion.setText(seccion.getNombre());
+        for(String p: seccion.getPanelista()){
+          agregarALista(p, listaPanelistasSeccion);
+        }
+        for(String t: seccion.getTema()){
+          agregarALista(t, listaTemaSeccion);
+        }
+        for(Personaje p: seccion.getInvitado()){
+          agregarALista(p.toString(), listaInvitadosSeccion);
+        }
+        break;
+      }
+      case 5: {
+        Informe informe = (Informe)fragmento;
+        for(String p: informe.getPeriodista()){
+          agregarALista(p, listaPeriodistaInforme);
+        }
+        for(String t: informe.getTema()){
+          agregarALista(t, listaTemaInforme);
+        }
+        textLugarInforme.setText(informe.getLugar());
+        for(Personaje p: informe.getCunha()){
+          agregarALista(p.toString(), listaPersonajeInforme);
+        }
+        
+        break;
+      }
+      case 6: {
+        Noticia noticia = (Noticia)fragmento;
+        for(String t: noticia.getTema()){
+          agregarALista(t, listaTemaNoticia);
+        }
+        break;
+      }
+      default: {
+        break;
+      }
+    }
+    
+    
+    for(String pc: fragmento.getPalabrasClave()){
+      this.agregarALista(pc, this.listaPalabrasClave);
+    }
+    textAreaDescripcionFragmento.setText(fragmento.getDescripcion());
+    
+  }
+  
+  
+  
   /**
    * This method is called from within the constructor to initialize the form. WARNING: Do NOT
    * modify this code. The content of this method is always regenerated by the Form Editor.
@@ -452,7 +652,7 @@ public class VentanaModificar extends javax.swing.JFrame {
     textAnhoEmision = new javax.swing.JTextField();
     labelConductor = new javax.swing.JLabel();
     comboConductor = new javax.swing.JComboBox<>();
-    botonAgregarFragmento = new javax.swing.JButton();
+    botonActualizarPrograma = new javax.swing.JButton();
     scrollConductor = new javax.swing.JScrollPane();
     listaConductor = new javax.swing.JList<>();
     panelFragmento = new javax.swing.JPanel();
@@ -469,7 +669,7 @@ public class VentanaModificar extends javax.swing.JFrame {
     textAlturaInicioFragmentoSegundos = new javax.swing.JTextField();
     labelAlturaInicioFragmentoSegundos = new javax.swing.JLabel();
     labelAlturaTerminoFragmento = new javax.swing.JLabel();
-    panelAlturaTerminoPrograma1 = new javax.swing.JPanel();
+    panelAlturaTerminoFragmento = new javax.swing.JPanel();
     textAlturaTerminoFragmentoHora = new javax.swing.JTextField();
     labelAlturaTerminoFragmentoHora = new javax.swing.JLabel();
     textAlturaTerminoFragmentoMinutos = new javax.swing.JTextField();
@@ -565,7 +765,7 @@ public class VentanaModificar extends javax.swing.JFrame {
     labelReportero = new javax.swing.JLabel();
     comboReportero = new javax.swing.JComboBox<>();
     scrollReportero = new javax.swing.JScrollPane();
-    listaComentarista1 = new javax.swing.JList<>();
+    listaReportero = new javax.swing.JList<>();
     labelCompetencia = new javax.swing.JLabel();
     textCompetencia = new javax.swing.JTextField();
     labelLugar = new javax.swing.JLabel();
@@ -635,6 +835,11 @@ public class VentanaModificar extends javax.swing.JFrame {
     });
 
     botonBuscarUltimoArchivo.setText("Ultimo Ingresado");
+    botonBuscarUltimoArchivo.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        botonBuscarUltimoArchivoActionPerformed(evt);
+      }
+    });
 
     panelArchivo.setBorder(javax.swing.BorderFactory.createTitledBorder("Archivo"));
 
@@ -968,8 +1173,18 @@ public class VentanaModificar extends javax.swing.JFrame {
     valorIdPrograma.setText("--");
 
     botonProgramaAnterior.setText("<<");
+    botonProgramaAnterior.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        botonProgramaAnteriorActionPerformed(evt);
+      }
+    });
 
     botonProgramaSiguiente.setText(">>");
+    botonProgramaSiguiente.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        botonProgramaSiguienteActionPerformed(evt);
+      }
+    });
 
     labelAlturaInicioPrograma.setText("Altura Inicio");
 
@@ -1138,10 +1353,10 @@ public class VentanaModificar extends javax.swing.JFrame {
       }
     });
 
-    botonAgregarFragmento.setText("Actualizar Programa");
-    botonAgregarFragmento.addActionListener(new java.awt.event.ActionListener() {
+    botonActualizarPrograma.setText("Actualizar Programa");
+    botonActualizarPrograma.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
-        botonAgregarFragmentoActionPerformed(evt);
+        botonActualizarProgramaActionPerformed(evt);
       }
     });
 
@@ -1172,7 +1387,7 @@ public class VentanaModificar extends javax.swing.JFrame {
             .addComponent(panelAlturaInicioPrograma, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
           .addGroup(panelProgramaLayout.createSequentialGroup()
             .addGroup(panelProgramaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-              .addComponent(botonAgregarFragmento)
+              .addComponent(botonActualizarPrograma)
               .addGroup(panelProgramaLayout.createSequentialGroup()
                 .addGroup(panelProgramaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                   .addComponent(labelConductor)
@@ -1227,7 +1442,7 @@ public class VentanaModificar extends javax.swing.JFrame {
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addComponent(scrollConductor, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addGap(238, 238, 238)
-        .addComponent(botonAgregarFragmento)
+        .addComponent(botonActualizarPrograma)
         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
 
@@ -1239,8 +1454,18 @@ public class VentanaModificar extends javax.swing.JFrame {
     valorIdFragmento.setText("--");
 
     botonFragmentoAnterior.setText("<<");
+    botonFragmentoAnterior.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        botonFragmentoAnteriorActionPerformed(evt);
+      }
+    });
 
     botonFragmentoSiguiente.setText(">>");
+    botonFragmentoSiguiente.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        botonFragmentoSiguienteActionPerformed(evt);
+      }
+    });
 
     labelAlturaInicioFragmento.setText("Altura de Inicio");
 
@@ -1290,11 +1515,11 @@ public class VentanaModificar extends javax.swing.JFrame {
 
     labelAlturaTerminoFragmentoSegundos.setText("s");
 
-    javax.swing.GroupLayout panelAlturaTerminoPrograma1Layout = new javax.swing.GroupLayout(panelAlturaTerminoPrograma1);
-    panelAlturaTerminoPrograma1.setLayout(panelAlturaTerminoPrograma1Layout);
-    panelAlturaTerminoPrograma1Layout.setHorizontalGroup(
-      panelAlturaTerminoPrograma1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGroup(panelAlturaTerminoPrograma1Layout.createSequentialGroup()
+    javax.swing.GroupLayout panelAlturaTerminoFragmentoLayout = new javax.swing.GroupLayout(panelAlturaTerminoFragmento);
+    panelAlturaTerminoFragmento.setLayout(panelAlturaTerminoFragmentoLayout);
+    panelAlturaTerminoFragmentoLayout.setHorizontalGroup(
+      panelAlturaTerminoFragmentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(panelAlturaTerminoFragmentoLayout.createSequentialGroup()
         .addGap(0, 0, 0)
         .addComponent(textAlturaTerminoFragmentoHora, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1308,11 +1533,11 @@ public class VentanaModificar extends javax.swing.JFrame {
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addComponent(labelAlturaTerminoFragmentoSegundos))
     );
-    panelAlturaTerminoPrograma1Layout.setVerticalGroup(
-      panelAlturaTerminoPrograma1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGroup(panelAlturaTerminoPrograma1Layout.createSequentialGroup()
+    panelAlturaTerminoFragmentoLayout.setVerticalGroup(
+      panelAlturaTerminoFragmentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(panelAlturaTerminoFragmentoLayout.createSequentialGroup()
         .addGap(0, 0, 0)
-        .addGroup(panelAlturaTerminoPrograma1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+        .addGroup(panelAlturaTerminoFragmentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(textAlturaTerminoFragmentoSegundos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
           .addComponent(labelAlturaTerminoFragmentoSegundos)
           .addComponent(textAlturaTerminoFragmentoMinutos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1975,15 +2200,15 @@ public class VentanaModificar extends javax.swing.JFrame {
       }
     });
 
-    listaComentarista1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-    listaComentarista1.setToolTipText("Click derecho para borrar nombre");
-    listaComentarista1.setMaximumSize(new java.awt.Dimension(0, 3));
-    listaComentarista1.addMouseListener(new java.awt.event.MouseAdapter() {
+    listaReportero.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+    listaReportero.setToolTipText("Click derecho para borrar nombre");
+    listaReportero.setMaximumSize(new java.awt.Dimension(0, 3));
+    listaReportero.addMouseListener(new java.awt.event.MouseAdapter() {
       public void mouseClicked(java.awt.event.MouseEvent evt) {
-        listaComentarista1MouseClicked(evt);
+        listaReporteroMouseClicked(evt);
       }
     });
-    scrollReportero.setViewportView(listaComentarista1);
+    scrollReportero.setViewportView(listaReportero);
 
     labelCompetencia.setText("Competencia");
 
@@ -2349,7 +2574,7 @@ public class VentanaModificar extends javax.swing.JFrame {
               .addGroup(panelFragmentoLayout.createSequentialGroup()
                 .addComponent(comboTipoAudio, 0, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
-              .addComponent(panelAlturaTerminoPrograma1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+              .addComponent(panelAlturaTerminoFragmento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
           .addGroup(panelFragmentoLayout.createSequentialGroup()
             .addComponent(labelIdFragmento)
             .addGap(18, 18, 18)
@@ -2366,19 +2591,19 @@ public class VentanaModificar extends javax.swing.JFrame {
       .addGroup(panelFragmentoLayout.createSequentialGroup()
         .addContainerGap()
         .addGroup(panelFragmentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-          .addComponent(valorIdFragmento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
           .addGroup(panelFragmentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
             .addComponent(labelIdFragmento)
             .addComponent(botonFragmentoAnterior)
-            .addComponent(botonFragmentoSiguiente)))
-        .addGap(10, 10, 10)
+            .addComponent(botonFragmentoSiguiente))
+          .addComponent(valorIdFragmento, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addGroup(panelFragmentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
           .addComponent(labelAlturaInicioFragmento)
           .addComponent(panelAlturaInicioFragmento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addGroup(panelFragmentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
           .addComponent(labelAlturaTerminoFragmento)
-          .addComponent(panelAlturaTerminoPrograma1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+          .addComponent(panelAlturaTerminoFragmento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addGroup(panelFragmentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(labelTipoAudio)
@@ -2395,9 +2620,9 @@ public class VentanaModificar extends javax.swing.JFrame {
         .addGroup(panelFragmentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(labelDescripcionFragmento)
           .addComponent(textAreaDescripcionFragmento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        .addGap(18, 18, 18)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
         .addComponent(botonActualizarFragmento)
-        .addGap(0, 0, 0))
+        .addContainerGap())
     );
 
     jButton1.setText("SALIR");
@@ -2601,6 +2826,7 @@ public class VentanaModificar extends javax.swing.JFrame {
       if(formularioListo){
         //actualización del Archivo en base de datos
         archivoDao.modificarArchivo(archivoModificado);
+        recargarArchivo();
       }
       
     } catch (NumberFormatException nfe) {
@@ -2610,7 +2836,7 @@ public class VentanaModificar extends javax.swing.JFrame {
     }
   }//GEN-LAST:event_botonActualizarArchivoActionPerformed
 
-  private void botonAgregarFragmentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarFragmentoActionPerformed
+  private void botonActualizarProgramaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActualizarProgramaActionPerformed
     
     //Al presionar AgregarFragmento se inserta la informacion del programa al Archivo
     //creación de Programa
@@ -2689,7 +2915,8 @@ public class VentanaModificar extends javax.swing.JFrame {
       
       if(formularioListo){
         //agrega Programa a lista Programas en base de datos
-        archivoDao.modificarPrograma(textIdArchivo.getText(), Integer.parseInt(valorIdFragmento.getText()), programa);
+        archivoDao.modificarPrograma(textIdArchivo.getText(), Integer.parseInt(valorIdPrograma.getText()), programa);
+        recargarArchivo();
         
       }
     } catch (NumberFormatException nfe) {
@@ -2697,7 +2924,7 @@ public class VentanaModificar extends javax.swing.JFrame {
     } catch (NullPointerException npe){
       JOptionPane.showMessageDialog(this, "NPE " + npe.getMessage());
     }
-  }//GEN-LAST:event_botonAgregarFragmentoActionPerformed
+  }//GEN-LAST:event_botonActualizarProgramaActionPerformed
 
   private void textTemaPanelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textTemaPanelActionPerformed
     // TODO add your handling code here:
@@ -2910,7 +3137,7 @@ public class VentanaModificar extends javax.swing.JFrame {
   }//GEN-LAST:event_listaTemaNoticiaMouseClicked
 
   private void botonActualizarFragmentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActualizarFragmentoActionPerformed
-    //se crea un Audio para agregar al listado fragmentos en la base de datos
+    //se crea un Audio para modificar en el listado Fragmentos en la base de datos
     //creacion Audio
     Audio audio = null;
     boolean formularioListo = true;
@@ -3066,8 +3293,8 @@ public class VentanaModificar extends javax.swing.JFrame {
             }
           }
           
-          for(int i = 0; i < listaComentarista1.getModel().getSize(); i++){
-            if(audioTemp.agregarReportero(listaComentarista1.getModel().getElementAt(i))){
+          for(int i = 0; i < listaReportero.getModel().getSize(); i++){
+            if(audioTemp.agregarReportero(listaReportero.getModel().getElementAt(i))){
               System.out.println("REPORTERO AGREGADO");
             }
           }
@@ -3265,8 +3492,7 @@ public class VentanaModificar extends javax.swing.JFrame {
         //se inserta el archivo en la lista Fragmentos del programa en la base de datos
         archivoDao.modificarAudio(textIdArchivo.getText(), Integer.parseInt(valorIdPrograma.getText()), Integer.parseInt(valorIdFragmento.getText()), audio);
         //deshabilita panel agregarFragmento
-        this.setPanelEnabled(panelFragmento, false);
-        
+        recargarArchivo();
       }
       
     } catch (NumberFormatException nfe) {
@@ -3377,15 +3603,15 @@ public class VentanaModificar extends javax.swing.JFrame {
   }//GEN-LAST:event_listaComentaristaMouseClicked
 
   private void comboReporteroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboReporteroActionPerformed
-    this.agregarALista(comboReportero, listaComentarista1);
+    this.agregarALista(comboReportero, listaReportero);
   }//GEN-LAST:event_comboReporteroActionPerformed
 
-  private void listaComentarista1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaComentarista1MouseClicked
-    listaComentarista1.setSelectedIndex(listaComentarista1.locationToIndex(evt.getPoint()));
+  private void listaReporteroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaReporteroMouseClicked
+    listaReportero.setSelectedIndex(listaReportero.locationToIndex(evt.getPoint()));
     if(SwingUtilities.isRightMouseButton(evt)){
-      popupLista.show(listaComentarista1, evt.getX(), evt.getY());
+      popupLista.show(listaReportero, evt.getX(), evt.getY());
     }
-  }//GEN-LAST:event_listaComentarista1MouseClicked
+  }//GEN-LAST:event_listaReporteroMouseClicked
 
   private void textAlturaInicioProgramaHoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textAlturaInicioProgramaHoraActionPerformed
     // TODO add your handling code here:
@@ -3400,44 +3626,98 @@ public class VentanaModificar extends javax.swing.JFrame {
   }//GEN-LAST:event_jButton1ActionPerformed
 
   private void botonBuscarIdArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarIdArchivoActionPerformed
-    Archivo archivo = archivoDao.buscarPorId(textBuscarIdArchivo.getText());
-    panelArchivo.setVisible(true);
-    textIdArchivo.setText(archivo.getId());
-    comboResponsableDigitalizacion.setSelectedItem(archivo.getResponsableDigitalizacion());
-    textCodigoSoporte.setText(archivo.getCodigoSoporte());
-    comboTipoSoporte.setSelectedItem(archivo.getTipoSoporte());
-    textAreaDescripcionExterior.setText(archivo.getDescripcionExterior());
-    textNombreArchivo.setText(archivo.getNombreArchivo());
-    textTamanhoArchivo.setText(String.valueOf(archivo.getTamanhoArchivo()));
-    textDuracionArchivoHora.setText(String.valueOf(archivo.getDuracionArchivo() / 3600));
-    textDuracionArchivoMinutos.setText(String.valueOf((archivo.getDuracionArchivo() % 3600) / 60));
-    textDuracionArchivoSegundos.setText(String.valueOf((archivo.getDuracionArchivo() % 3600) % 60));
-    comboFrecuenciaMuestreo.setSelectedItem(archivo.getFormatoArchivo().getFrecuenciaMuestreo());
-    comboProfundidadBits.setSelectedItem(archivo.getFormatoArchivo().getProfundidadBits());
-    comboCanales.setSelectedItem(archivo.getFormatoArchivo().getCanales());
-    comboCodec.setSelectedItem(archivo.getFormatoArchivo().getCodec());
-    comboTasaBits.setSelectedItem(archivo.getFormatoArchivo().getTasaBits());
-    textDiaDigitalizacion.setText(String.valueOf(archivo.getFechaDigitalizacion().toInstant().atZone(ZoneId.of("Z")).getDayOfMonth()));
-    textMesDigitalizacion.setText(String.valueOf(archivo.getFechaDigitalizacion().toInstant().atZone(ZoneId.of("Z")).getMonthValue()));
-    textAnhoDigitalizacion.setText(String.valueOf(archivo.getFechaDigitalizacion().toInstant().atZone(ZoneId.of("Z")).getYear()));
+    this.contadorProgramas = 0;
+    this.contadorFragmentos = 0;
     
-    Programa programa = archivo.getProgramas().get(0);
-    panelPrograma.setVisible(true);
-    valorIdPrograma.setText(programa.getIdPrograma());
-    textAlturaInicioProgramaHora.setText(String.valueOf(programa.getAlturaInicio() / 3600));
-    textAlturaInicioProgramaMinutos.setText(String.valueOf((programa.getAlturaInicio() % 3600) / 60));
-    textAlturaInicioProgramaSegundos.setText(String.valueOf((programa.getAlturaInicio() % 3600) % 60));
-    valorAlturaTerminoProgramaHora.setText(String.valueOf(programa.getAlturaTermino() / 3600));
-    valorAlturaTerminoProgramaMinutos.setText(String.valueOf((programa.getAlturaTermino() % 3600) / 60));
-    valorAlturaTerminoProgramaSegundos.setText(String.valueOf((programa.getAlturaTermino() % 3600) % 60));
-    comboNombrePrograma.setSelectedItem(programa.getNombrePrograma());
-    textDiaEmision.setText(String.valueOf(programa.getFechaEmision().toInstant().atZone(ZoneId.of("Z")).getDayOfMonth()));
-    textMesEmision.setText(String.valueOf(programa.getFechaEmision().toInstant().atZone(ZoneId.of("Z")).getMonthValue()));
-    textAnhoEmision.setText(String.valueOf(programa.getFechaEmision().toInstant().atZone(ZoneId.of("Z")).getYear()));
-    for(String c: programa.getConductor()){
-      this.agregarALista(c, listaConductor);
-    }
+    //inicializaciones botones navegacion
+    botonProgramaAnterior.setEnabled(false);
+    botonFragmentoAnterior.setEnabled(false);
+    
+    this.archivo = archivoDao.buscarPorId(textBuscarIdArchivo.getText());
+    desplegarArchivo(archivo);
   }//GEN-LAST:event_botonBuscarIdArchivoActionPerformed
+
+  private void botonProgramaAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonProgramaAnteriorActionPerformed
+    recargarArchivo();
+    this.contadorProgramas--;
+    this.contadorFragmentos=0;
+    this.desplegarPrograma(contadorProgramas);
+    botonProgramaSiguiente.setEnabled(true);
+    if(contadorProgramas < archivo.getProgramas().size()-1){
+      botonProgramaSiguiente.setEnabled(true);
+    }
+    if(contadorProgramas == 0){
+      botonProgramaAnterior.setEnabled(false);
+    }
+    if(archivo.getProgramas().get(contadorProgramas).getFragmentos().size() == 1){
+      botonFragmentoSiguiente.setEnabled(false);
+      botonFragmentoAnterior.setEnabled(false);
+    } else {
+      botonFragmentoSiguiente.setEnabled(true);
+      botonFragmentoAnterior.setEnabled(false);
+    }
+    
+    
+  }//GEN-LAST:event_botonProgramaAnteriorActionPerformed
+
+  private void botonProgramaSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonProgramaSiguienteActionPerformed
+    recargarArchivo();
+    this.contadorProgramas++;
+    this.contadorFragmentos=0;
+    this.desplegarPrograma(contadorProgramas);
+    botonProgramaAnterior.setEnabled(true);
+    if(contadorProgramas == archivo.getProgramas().size()-1){
+      botonProgramaSiguiente.setEnabled(false);
+    } else if(contadorProgramas > 0){
+      botonProgramaSiguiente.setEnabled(true);
+    }
+    if(archivo.getProgramas().get(contadorProgramas).getFragmentos().size() == 1){
+      botonFragmentoSiguiente.setEnabled(false);
+      botonFragmentoAnterior.setEnabled(false);
+    } else {
+      botonFragmentoSiguiente.setEnabled(true);
+      botonFragmentoAnterior.setEnabled(false);
+    }
+    
+  }//GEN-LAST:event_botonProgramaSiguienteActionPerformed
+
+  private void botonFragmentoAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonFragmentoAnteriorActionPerformed
+    recargarArchivo();
+    this.contadorFragmentos--;
+    this.desplegarFragmento(contadorFragmentos);
+    botonFragmentoSiguiente.setEnabled(true);
+    if(contadorFragmentos < archivo.getProgramas().get(contadorProgramas).getFragmentos().size()-1){
+      botonFragmentoSiguiente.setEnabled(true);
+    }
+    if(contadorFragmentos == 0){
+      botonFragmentoAnterior.setEnabled(false);
+    }
+    scrollTipos.getComponent(0).requestFocus();
+  }//GEN-LAST:event_botonFragmentoAnteriorActionPerformed
+
+  private void botonFragmentoSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonFragmentoSiguienteActionPerformed
+    recargarArchivo();
+    this.contadorFragmentos++;
+    this.desplegarFragmento(contadorFragmentos);
+    botonFragmentoAnterior.setEnabled(true);
+    if(contadorFragmentos == archivo.getProgramas().get(contadorProgramas).getFragmentos().size()-1){
+      botonFragmentoSiguiente.setEnabled(false);
+    } else if(contadorFragmentos > 0){
+      botonFragmentoSiguiente.setEnabled(true);
+    }
+  }//GEN-LAST:event_botonFragmentoSiguienteActionPerformed
+
+  private void botonBuscarUltimoArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarUltimoArchivoActionPerformed
+    this.contadorProgramas = 0;
+    this.contadorFragmentos = 0;
+    
+    //inicializaciones botones navegacion
+    botonProgramaAnterior.setEnabled(false);
+    botonFragmentoAnterior.setEnabled(false);
+    
+    this.archivo = archivoDao.buscarUltimoPorUsuario(operador);
+    desplegarArchivo(archivo);
+  }//GEN-LAST:event_botonBuscarUltimoArchivoActionPerformed
 
   /**
    * @param args the command line arguments
@@ -3479,7 +3759,7 @@ public class VentanaModificar extends javax.swing.JFrame {
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JButton botonActualizarArchivo;
   private javax.swing.JButton botonActualizarFragmento;
-  private javax.swing.JButton botonAgregarFragmento;
+  private javax.swing.JButton botonActualizarPrograma;
   private javax.swing.JButton botonAgregarGoles;
   private javax.swing.JButton botonBuscarIdArchivo;
   private javax.swing.JButton botonBuscarUltimoArchivo;
@@ -3599,7 +3879,6 @@ public class VentanaModificar extends javax.swing.JFrame {
   private javax.swing.JLabel labelTipoSoporte;
   private javax.swing.JLabel labelTitulo;
   private javax.swing.JList<String> listaComentarista;
-  private javax.swing.JList<String> listaComentarista1;
   private javax.swing.JList<String> listaConductor;
   private javax.swing.JList<String> listaEncargadoRRSS;
   private javax.swing.JList<String> listaEntrevistados;
@@ -3612,6 +3891,7 @@ public class VentanaModificar extends javax.swing.JFrame {
   private javax.swing.JList<String> listaPeriodistaInforme;
   private javax.swing.JList<String> listaPersonajeInforme;
   private javax.swing.JList<String> listaRelator;
+  private javax.swing.JList<String> listaReportero;
   private javax.swing.JList<String> listaTemaEntrevista;
   private javax.swing.JList<String> listaTemaInforme;
   private javax.swing.JList<String> listaTemaNoticia;
@@ -3619,8 +3899,8 @@ public class VentanaModificar extends javax.swing.JFrame {
   private javax.swing.JList<String> listaTemaSeccion;
   private javax.swing.JPanel panelAlturaInicioFragmento;
   private javax.swing.JPanel panelAlturaInicioPrograma;
+  private javax.swing.JPanel panelAlturaTerminoFragmento;
   private javax.swing.JPanel panelAlturaTerminoPrograma;
-  private javax.swing.JPanel panelAlturaTerminoPrograma1;
   private javax.swing.JPanel panelArchivo;
   private javax.swing.JPanel panelBasquetball;
   private javax.swing.JPanel panelDeporte;

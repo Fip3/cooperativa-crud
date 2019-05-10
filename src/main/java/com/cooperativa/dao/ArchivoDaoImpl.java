@@ -191,7 +191,7 @@ public class ArchivoDaoImpl implements IArchivoDao {
       
       Query<Archivo> consulta = datastore.createQuery(Archivo.class)
               .filter("responsableIngreso ==", usuario)
-              .order("fechaIngreso");
+              .order("-fechaIngreso");
       FindOptions opciones = new FindOptions()
               .limit(1);
       
@@ -286,7 +286,7 @@ public class ArchivoDaoImpl implements IArchivoDao {
       Query<Archivo> updateQuery = datastore.createQuery(Archivo.class)
               .filter("_id ==", idArchivo);
       
-      String programaAModificar = "programa." + indicePrograma;
+      String programaAModificar = "programas." + indicePrograma;
       UpdateOperations updateOperations = datastore.createUpdateOperations(Archivo.class)
               .set(programaAModificar + ".idPrograma", programa.getIdPrograma())
               .set(programaAModificar + ".alturaInicio", programa.getAlturaInicio())
