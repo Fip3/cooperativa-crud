@@ -25,9 +25,6 @@ import javax.swing.SwingUtilities;
  */
 public class VentanaModificar extends javax.swing.JFrame {
 
-  /**
-   * Creates new form VentanaModificar
-   */
   
   //declaracion de atributos personalizados
   private byte contadorProgramas;
@@ -41,6 +38,10 @@ public class VentanaModificar extends javax.swing.JFrame {
   private short duracion;
   private Cambio cambio;
   
+  /**
+   * Creates new form VentanaModificar
+   * @param operador
+   */
   public VentanaModificar(String operador) {
     this.operador = operador;
     this.cambio = new Cambio();
@@ -801,7 +802,7 @@ public class VentanaModificar extends javax.swing.JFrame {
     labelDescripcionFragmento = new javax.swing.JLabel();
     textAreaDescripcionFragmento = new javax.swing.JTextArea();
     botonActualizarFragmento = new javax.swing.JButton();
-    jButton1 = new javax.swing.JButton();
+    botonSalir = new javax.swing.JButton();
 
     popupListaBorrar.setText("Borrar");
     popupListaBorrar.addActionListener(new java.awt.event.ActionListener() {
@@ -2625,10 +2626,10 @@ public class VentanaModificar extends javax.swing.JFrame {
         .addContainerGap())
     );
 
-    jButton1.setText("SALIR");
-    jButton1.addActionListener(new java.awt.event.ActionListener() {
+    botonSalir.setText("SALIR");
+    botonSalir.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
-        jButton1ActionPerformed(evt);
+        botonSalirActionPerformed(evt);
       }
     });
 
@@ -2658,7 +2659,7 @@ public class VentanaModificar extends javax.swing.JFrame {
             .addGap(18, 18, 18)
             .addComponent(botonBuscarUltimoArchivo)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jButton1)))
+            .addComponent(botonSalir)))
         .addContainerGap())
     );
     layout.setVerticalGroup(
@@ -2677,7 +2678,7 @@ public class VentanaModificar extends javax.swing.JFrame {
               .addComponent(textBuscarIdArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
               .addComponent(botonBuscarIdArchivo)
               .addComponent(botonBuscarUltimoArchivo)
-              .addComponent(jButton1))
+              .addComponent(botonSalir))
             .addGap(12, 12, 12)))
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
           .addComponent(panelArchivo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -3621,9 +3622,13 @@ public class VentanaModificar extends javax.swing.JFrame {
     // TODO add your handling code here:
   }//GEN-LAST:event_textBuscarIdArchivoActionPerformed
 
-  private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    // TODO add your handling code here:
-  }//GEN-LAST:event_jButton1ActionPerformed
+  private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
+    String id = this.labelIdArchivo.getText();
+    
+    this.dispose();
+    new VentanaComentario(this.operador,id).setVisible(true);
+    
+  }//GEN-LAST:event_botonSalirActionPerformed
 
   private void botonBuscarIdArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarIdArchivoActionPerformed
     this.contadorProgramas = 0;
@@ -3770,6 +3775,7 @@ public class VentanaModificar extends javax.swing.JFrame {
   private javax.swing.JButton botonPersonajeInforme;
   private javax.swing.JButton botonProgramaAnterior;
   private javax.swing.JButton botonProgramaSiguiente;
+  private javax.swing.JButton botonSalir;
   private javax.swing.JButton botonTemaEntrevista;
   private javax.swing.JButton botonTemaInforme;
   private javax.swing.JButton botonTemaNoticia;
@@ -3796,7 +3802,6 @@ public class VentanaModificar extends javax.swing.JFrame {
   private javax.swing.JComboBox<String> comboTasaBits;
   private javax.swing.JComboBox<String> comboTipoAudio;
   private javax.swing.JComboBox<String> comboTipoSoporte;
-  private javax.swing.JButton jButton1;
   private javax.swing.JLabel labelAlturaInicioFragmento;
   private javax.swing.JLabel labelAlturaInicioFragmentoHora;
   private javax.swing.JLabel labelAlturaInicioFragmentoMinutos;
