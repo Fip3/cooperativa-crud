@@ -36,7 +36,7 @@ public class VentanaModificar extends javax.swing.JFrame {
   private short alturaFinProgramaAnterior;
   private short alturaFinFragmentoAnterior;
   private short duracion;
-  private Cambio cambio;
+  private boolean modificado;
   
   /**
    * Creates new form VentanaModificar
@@ -44,8 +44,7 @@ public class VentanaModificar extends javax.swing.JFrame {
    */
   public VentanaModificar(String operador) {
     this.operador = operador;
-    this.cambio = new Cambio();
-    cambio.setFechaCambio(new Date());
+    this.modificado = false;
     
     initComponents();
     
@@ -2828,6 +2827,7 @@ public class VentanaModificar extends javax.swing.JFrame {
         //actualización del Archivo en base de datos
         archivoDao.modificarArchivo(archivoModificado);
         recargarArchivo();
+        this.modificado = true;
       }
       
     } catch (NumberFormatException nfe) {
@@ -2918,7 +2918,7 @@ public class VentanaModificar extends javax.swing.JFrame {
         //agrega Programa a lista Programas en base de datos
         archivoDao.modificarPrograma(textIdArchivo.getText(), Integer.parseInt(valorIdPrograma.getText()), programa);
         recargarArchivo();
-        
+        this.modificado = true;
       }
     } catch (NumberFormatException nfe) {
       JOptionPane.showMessageDialog(this, "NFE " + nfe.getMessage());
@@ -3494,6 +3494,7 @@ public class VentanaModificar extends javax.swing.JFrame {
         archivoDao.modificarAudio(textIdArchivo.getText(), Integer.parseInt(valorIdPrograma.getText()), Integer.parseInt(valorIdFragmento.getText()), audio);
         //deshabilita panel agregarFragmento
         recargarArchivo();
+        this.modificado = true;
       }
       
     } catch (NumberFormatException nfe) {
@@ -3623,11 +3624,12 @@ public class VentanaModificar extends javax.swing.JFrame {
   }//GEN-LAST:event_textBuscarIdArchivoActionPerformed
 
   private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
-    String id = this.labelIdArchivo.getText();
-    
     this.dispose();
-    new VentanaComentario(this.operador,id).setVisible(true);
-    
+    if(this.modificado){
+      new VentanaComentario(this.operador,this.textIdArchivo.getText())
+              .setVisible(true);
+    }
+      
   }//GEN-LAST:event_botonSalirActionPerformed
 
   private void botonBuscarIdArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarIdArchivoActionPerformed
