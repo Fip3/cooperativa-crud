@@ -590,9 +590,11 @@ public class ArchivoDaoImpl implements IArchivoDao {
       Datastore datastore = morphia.createDatastore(cliente, "cooperativa");
       
       Query<Archivo> consulta = datastore.createQuery(Archivo.class)
-              .filter("_id ==", idArchivo);
-      
-      resultado = consulta.asList().get(0).getHistorialCambios();
+              .filter("_id ==", idArchivo)
+              .order("-fechaCambio");
+      FindOptions opciones = new FindOptions()
+              .limit(1);
+      resultado = consulta.get(opciones).getHistorialCambios();
       
       
     } catch (MongoException e) {
