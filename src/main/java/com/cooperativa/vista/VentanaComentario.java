@@ -4,6 +4,10 @@
  * and open the template in the editor.
  */
 package com.cooperativa.vista;
+import com.cooperativa.model.*;
+import com.cooperativa.dao.ArchivoDaoImpl;
+import java.util.List;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -13,6 +17,7 @@ public class VentanaComentario extends javax.swing.JFrame {
   
   private String operador;
   private String idArchivo;
+  private ArchivoDaoImpl archivoDao;
   
   /**
    * Creates new form VentanaComentario
@@ -27,6 +32,30 @@ public class VentanaComentario extends javax.swing.JFrame {
     
     this.labelOperador.setText(this.operador);
     this.valueIdArchivo.setText(this.idArchivo);
+    
+    completarTabla(idArchivo);
+  }
+  
+  //metodos personalizados
+  
+  private void completarTabla(String idArchivo) {
+    Cambio cambio;
+    TableModel modelo = tablaHistorial.getModel();
+    
+    try{
+      int counter = 0;
+      List<Cambio> cambios = archivoDao.listarCambios(idArchivo);
+      for(Cambio c: cambios){
+        modelo.setValueAt(c.getIdCambio(), counter, 0);
+        modelo.setValueAt(c.getFechaCambio(), counter, 1);
+        modelo.setValueAt(c.getResponsableCambio(), counter, 2);
+        modelo.setValueAt(c.getDescripcion(), counter, 3);
+        counter++;
+      }
+      tablaHistorial.setModel(modelo);
+    }
+    catch(Exception e){
+    }
   }
 
   /**
@@ -70,10 +99,7 @@ public class VentanaComentario extends javax.swing.JFrame {
 
     tablaHistorial.setModel(new javax.swing.table.DefaultTableModel(
       new Object [][] {
-        {null, null, null, null},
-        {null, null, null, null},
-        {null, null, null, null},
-        {null, null, null, null}
+
       },
       new String [] {
         "#", "Fecha", "Operador", "Descripcion"
@@ -188,4 +214,5 @@ public class VentanaComentario extends javax.swing.JFrame {
   private javax.swing.JTextArea textDescripcion;
   private javax.swing.JLabel valueIdArchivo;
   // End of variables declaration//GEN-END:variables
+
 }
