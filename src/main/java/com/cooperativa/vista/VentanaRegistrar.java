@@ -9,6 +9,7 @@ import com.cooperativa.dao.*;
 import com.cooperativa.model.*;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -324,6 +325,14 @@ public class VentanaRegistrar extends javax.swing.JFrame {
         this.limpiarPanel((javax.swing.JScrollPane)c);
       }
     }
+  }
+  
+  public void windowClosing(WindowEvent e){
+    Cambio primerCambio = new Cambio();
+    primerCambio.setIdCambio(0);
+    primerCambio.setResponsableCambio(this.operador);
+    primerCambio.setDescripcion("Creación del registro");
+    archivoDao.agregarCambio(textIdArchivo.getText(), primerCambio);
   }
   
   /**
