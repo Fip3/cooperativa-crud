@@ -13,19 +13,20 @@ import java.util.Date;
  */
 public class Cambio {
   
-  private String idCambio;
+  private int idCambio;
   private String responsableCambio;
   private Date fechaCambio;
   private String descripcion;
 
   public Cambio() {
+    this.fechaCambio = new Date();
   }
 
-  public String getIdCambio() {
+  public int getIdCambio() {
     return idCambio;
   }
 
-  public void setIdCambio(String idCambio) {
+  public void setIdCambio(int idCambio) {
     this.idCambio = idCambio;
   }
 
@@ -39,10 +40,6 @@ public class Cambio {
 
   public Date getFechaCambio() {
     return fechaCambio;
-  }
-
-  public void setFechaCambio(Date fechaCambio) {
-    this.fechaCambio = fechaCambio;
   }
 
   public String getDescripcion() {
