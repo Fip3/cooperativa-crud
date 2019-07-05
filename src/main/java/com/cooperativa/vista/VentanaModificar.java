@@ -3486,7 +3486,12 @@ public class VentanaModificar extends javax.swing.JFrame {
       
       if(formularioListo){
         //actualizacion de altura de término de programa a medida que se agregan fragmentos
+        
+        /*
+        NO FUNCIONA CORRECTAMENTE CUANDO HAY MAS DE UN FRAGMENTO Y SE MODIFICA ALGUNO QUE NO SEA EL ULTIMO
         archivoDao.modificarCampoPrograma(textIdArchivo.getText(), contadorProgramas, "alturaTermino", alturaTerminoFragmento);
+        */
+        
         valorAlturaTerminoProgramaHora.setText(textAlturaTerminoFragmentoHora.getText());
         valorAlturaTerminoProgramaMinutos.setText(textAlturaTerminoFragmentoMinutos.getText());
         valorAlturaTerminoProgramaSegundos.setText(textAlturaTerminoFragmentoSegundos.getText());
@@ -3624,11 +3629,10 @@ public class VentanaModificar extends javax.swing.JFrame {
   }//GEN-LAST:event_textBuscarIdArchivoActionPerformed
 
   private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
-    this.dispose();
-    if(this.modificado){
-      new VentanaComentario(this.operador,this.textIdArchivo.getText())
-              .setVisible(true);
-    }
+    
+    new VentanaComentario(this.operador,this.textIdArchivo.getText()).setVisible(true);
+    
+    this.dispose();  
       
   }//GEN-LAST:event_botonSalirActionPerformed
 
@@ -3715,6 +3719,7 @@ public class VentanaModificar extends javax.swing.JFrame {
   }//GEN-LAST:event_botonFragmentoSiguienteActionPerformed
 
   private void botonBuscarUltimoArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarUltimoArchivoActionPerformed
+    
     this.contadorProgramas = 0;
     this.contadorFragmentos = 0;
     
@@ -3723,6 +3728,7 @@ public class VentanaModificar extends javax.swing.JFrame {
     botonFragmentoAnterior.setEnabled(false);
     
     this.archivo = archivoDao.buscarUltimoPorUsuario(operador);
+    textBuscarIdArchivo.setText(this.archivo.getId());
     desplegarArchivo(archivo);
   }//GEN-LAST:event_botonBuscarUltimoArchivoActionPerformed
 
