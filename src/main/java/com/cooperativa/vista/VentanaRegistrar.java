@@ -37,9 +37,12 @@ public class VentanaRegistrar extends javax.swing.JFrame {
   private short alturaFinProgramaAnterior;
   private short alturaFinFragmentoAnterior;
   private short duracion;
+  private VentanaPrincipal principal;
   
-  public VentanaRegistrar(String operador) {
+  public VentanaRegistrar(String operador, VentanaPrincipal principal) {
+    
     this.operador = operador;
+    this.principal = principal;
     initComponents();
     
     //inicializacion de paneles no visibles al cargar ventana
@@ -568,6 +571,7 @@ public class VentanaRegistrar extends javax.swing.JFrame {
     panelAgregarOtro = new javax.swing.JPanel();
     botonOtroFragmento = new javax.swing.JButton();
     botonOtroPrograma = new javax.swing.JButton();
+    botonSalir = new javax.swing.JButton();
 
     popupListaBorrar.setText("Borrar");
     popupListaBorrar.addActionListener(new java.awt.event.ActionListener() {
@@ -906,7 +910,7 @@ public class VentanaRegistrar extends javax.swing.JFrame {
           .addComponent(labelFechaDigitalizacion))
         .addGap(18, 18, 18)
         .addComponent(botonAgregarPrograma)
-        .addGap(0, 203, Short.MAX_VALUE))
+        .addGap(0, 195, Short.MAX_VALUE))
     );
 
     panelAgregarPrograma.setBorder(javax.swing.BorderFactory.createTitledBorder("Agregar Programa"));
@@ -2319,7 +2323,7 @@ public class VentanaRegistrar extends javax.swing.JFrame {
           .addComponent(labelTipoAudio)
           .addComponent(comboTipoAudio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-        .addComponent(scrollTipos, javax.swing.GroupLayout.DEFAULT_SIZE, 322, Short.MAX_VALUE)
+        .addComponent(scrollTipos, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addGroup(panelAgregarFragmentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(comboPalabrasClave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2337,6 +2341,13 @@ public class VentanaRegistrar extends javax.swing.JFrame {
         .addContainerGap())
     );
 
+    botonSalir.setText("SALIR");
+    botonSalir.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        botonSalirActionPerformed(evt);
+      }
+    });
+
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
     getContentPane().setLayout(layout);
     layout.setHorizontalGroup(
@@ -2351,17 +2362,21 @@ public class VentanaRegistrar extends javax.swing.JFrame {
             .addGap(18, 18, 18)
             .addComponent(panelAgregarFragmento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
           .addGroup(layout.createSequentialGroup()
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-              .addComponent(labelTitulo)
-              .addComponent(labelSubtitulo))
-            .addGap(0, 0, Short.MAX_VALUE)))
+            .addComponent(labelSubtitulo)
+            .addGap(0, 0, Short.MAX_VALUE))
+          .addGroup(layout.createSequentialGroup()
+            .addComponent(labelTitulo)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(botonSalir)))
         .addContainerGap())
     );
     layout.setVerticalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(layout.createSequentialGroup()
         .addContainerGap()
-        .addComponent(labelTitulo)
+        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+          .addComponent(labelTitulo)
+          .addComponent(botonSalir))
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addComponent(labelSubtitulo)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -3371,6 +3386,15 @@ public class VentanaRegistrar extends javax.swing.JFrame {
     // TODO add your handling code here:
   }//GEN-LAST:event_textAlturaInicioProgramaHoraActionPerformed
 
+  private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
+    Object[] opciones = {"Si","No"};
+    int salir = JOptionPane.showOptionDialog(this, "¿Estás seguro que quieres salir? \nLos registros no guardados se perderán.", "Saliendo de REGISTRO...", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, opciones, opciones[1]);
+    if (salir == 0) {
+      this.dispose();
+      principal.setVisible(true);
+    }
+  }//GEN-LAST:event_botonSalirActionPerformed
+
   /**
    * @param args the command line arguments
    */
@@ -3402,7 +3426,7 @@ public class VentanaRegistrar extends javax.swing.JFrame {
     java.awt.EventQueue.invokeLater(new Runnable() {
       @Override
       public void run() {
-        new VentanaRegistrar("OPERADOR DE PRUEBA").setVisible(true);
+        new VentanaRegistrar("OPERADOR DE PRUEBA",new VentanaPrincipal("OPERADOR DE PRUEBA")).setVisible(true);
       }
     });
   }
@@ -3417,6 +3441,7 @@ public class VentanaRegistrar extends javax.swing.JFrame {
   private javax.swing.JButton botonOtroFragmento;
   private javax.swing.JButton botonOtroPrograma;
   private javax.swing.JButton botonPersonajeInforme;
+  private javax.swing.JButton botonSalir;
   private javax.swing.JButton botonTemaEntrevista;
   private javax.swing.JButton botonTemaInforme;
   private javax.swing.JButton botonTemaNoticia;
