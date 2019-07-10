@@ -161,16 +161,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
   }// </editor-fold>//GEN-END:initComponents
 
   private void botonARegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonARegistrarActionPerformed
-    java.awt.EventQueue.invokeLater(new Runnable() {
-      @Override
-      public void run() {
-        new VentanaRegistrar("OPERADOR DE PRUEBA").setVisible(true);
-      }
-    });
+    new VentanaRegistrar("OPERADOR DE PRUEBA",this).setVisible(true);
+    this.setVisible(false);
   }//GEN-LAST:event_botonARegistrarActionPerformed
 
   private void botonAModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAModificarActionPerformed
-    // TODO add your handling code here:
+    new VentanaModificar("OPERADOR DE PRUEBA",this).setVisible(true);
+    this.setVisible(false);
   }//GEN-LAST:event_botonAModificarActionPerformed
 
   private void botonABusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonABusquedaActionPerformed
