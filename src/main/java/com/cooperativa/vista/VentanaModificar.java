@@ -35,15 +35,17 @@ public class VentanaModificar extends javax.swing.JFrame {
   private final String operador;
   private short alturaFinProgramaAnterior;
   private short alturaFinFragmentoAnterior;
-  private short duracion;
   private boolean modificado;
+  private VentanaPrincipal principal;
   
   /**
    * Creates new form VentanaModificar
    * @param operador
+   * @param principal
    */
-  public VentanaModificar(String operador) {
+  public VentanaModificar(String operador, VentanaPrincipal principal) {
     this.operador = operador;
+    this.principal = principal;
     this.modificado = false;
     
     initComponents();
@@ -1441,7 +1443,7 @@ public class VentanaModificar extends javax.swing.JFrame {
           .addComponent(comboConductor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addComponent(scrollConductor, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addGap(238, 238, 238)
+        .addGap(250, 250, 250)
         .addComponent(botonActualizarPrograma)
         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
@@ -2735,6 +2737,7 @@ public class VentanaModificar extends javax.swing.JFrame {
     
     //variables
     boolean formularioListo = true;
+    int duracion = 0;
     
     //Al presionar Actualizar Archivo, se genera el Archivo y se actualiza en la base de datos
     
@@ -2795,14 +2798,14 @@ public class VentanaModificar extends javax.swing.JFrame {
         formularioListo = false;
       }
       
-      this.duracion = (short) (Short.parseShort(textDuracionArchivoHora.getText()) * 3600
+      duracion = (short) (Short.parseShort(textDuracionArchivoHora.getText()) * 3600
               + Short.parseShort(textDuracionArchivoMinutos.getText()) * 60
               + Short.parseShort(textDuracionArchivoSegundos.getText()));
       if(!textDuracionArchivoHora.getText().equals("")
               && !textDuracionArchivoMinutos.getText().equals("")
               && !textDuracionArchivoSegundos.getText().equals("")){
         labelDuracionArchivo.setForeground(null);
-        archivoModificado.setDuracionArchivo(this.duracion);
+        archivoModificado.setDuracionArchivo(duracion);
       } else {
         formularioListo = false;
         labelDuracionArchivo.setForeground(Color.red);        
@@ -2827,6 +2830,7 @@ public class VentanaModificar extends javax.swing.JFrame {
         //actualización del Archivo en base de datos
         archivoDao.modificarArchivo(archivoModificado);
         recargarArchivo();
+        this.desplegarArchivo(archivo);
         this.modificado = true;
       }
       
@@ -2917,7 +2921,9 @@ public class VentanaModificar extends javax.swing.JFrame {
       if(formularioListo){
         //agrega Programa a lista Programas en base de datos
         archivoDao.modificarPrograma(textIdArchivo.getText(), Integer.parseInt(valorIdPrograma.getText()), programa);
+        archivoDao.modificarCampoAudio(textIdArchivo.getText(), contadorProgramas, 0, "alturaInicio", alturaInicioPrograma);
         recargarArchivo();
+        desplegarPrograma(contadorProgramas);
         this.modificado = true;
       }
     } catch (NumberFormatException nfe) {
@@ -3142,6 +3148,7 @@ public class VentanaModificar extends javax.swing.JFrame {
     //creacion Audio
     Audio audio = null;
     boolean formularioListo = true;
+    int duracion = archivo.getDuracionArchivo();
     
     //se completa Audio según opciones elegidas
     try {
@@ -3452,7 +3459,7 @@ public class VentanaModificar extends javax.swing.JFrame {
               && !textAlturaTerminoFragmentoMinutos.getText().equals("")
               && !textAlturaTerminoFragmentoSegundos.getText().equals("")
               && alturaInicioFragmento < alturaTerminoFragmento
-              && alturaTerminoFragmento <= this.duracion){
+              && alturaTerminoFragmento <= duracion){
         labelAlturaTerminoFragmento.setForeground(null);
         audio.setAlturaTermino(alturaTerminoFragmento);
       } else {
@@ -3461,8 +3468,8 @@ public class VentanaModificar extends javax.swing.JFrame {
         if(alturaInicioFragmento >= alturaTerminoFragmento){
           JOptionPane.showMessageDialog(this, "El fragmento termina antes de comenzar", "ERROR", 0);
         }
-        if(alturaTerminoFragmento > this.duracion){
-          JOptionPane.showMessageDialog(this, "Altura de término supera duración del archivo");
+        if(alturaTerminoFragmento > duracion){
+          JOptionPane.showMessageDialog(this, "Altura de término supera duración del archivo" + "\nDuracion: " + duracion + "\nAltura término: " + alturaTerminoFragmento);
         }
       }
         
@@ -3485,20 +3492,27 @@ public class VentanaModificar extends javax.swing.JFrame {
       }
       
       if(formularioListo){
-        //actualizacion de altura de término de programa a medida que se agregan fragmentos
         
-        /*
-        NO FUNCIONA CORRECTAMENTE CUANDO HAY MAS DE UN FRAGMENTO Y SE MODIFICA ALGUNO QUE NO SEA EL ULTIMO
-        archivoDao.modificarCampoPrograma(textIdArchivo.getText(), contadorProgramas, "alturaTermino", alturaTerminoFragmento);
-        */
+        if((archivo.getProgramas().get(contadorProgramas).getFragmentos().size() - 1) == Integer.parseInt(valorIdFragmento.getText())){
+          archivoDao.modificarCampoPrograma(textIdArchivo.getText(), contadorProgramas, "alturaTermino", alturaTerminoFragmento);
+          valorAlturaTerminoProgramaHora.setText(textAlturaTerminoFragmentoHora.getText());
+          valorAlturaTerminoProgramaMinutos.setText(textAlturaTerminoFragmentoMinutos.getText());
+          valorAlturaTerminoProgramaSegundos.setText(textAlturaTerminoFragmentoSegundos.getText());
+          if((archivo.getProgramas().size() - 1) != Integer.parseInt(valorIdPrograma.getText())){
+            archivoDao.modificarCampoPrograma(textIdArchivo.getText(), contadorProgramas + 1, "alturaInicio", alturaTerminoFragmento);
+            archivoDao.modificarCampoAudio(textIdArchivo.getText(), contadorProgramas + 1, 0, "alturaInicio", alturaTerminoFragmento);
+          }
+        } else {
+          archivoDao.modificarCampoAudio(textIdArchivo.getText(), contadorProgramas, contadorFragmentos + 1, "alturaInicio", alturaTerminoFragmento);
+        }
         
-        valorAlturaTerminoProgramaHora.setText(textAlturaTerminoFragmentoHora.getText());
-        valorAlturaTerminoProgramaMinutos.setText(textAlturaTerminoFragmentoMinutos.getText());
-        valorAlturaTerminoProgramaSegundos.setText(textAlturaTerminoFragmentoSegundos.getText());
+        
         //se inserta el archivo en la lista Fragmentos del programa en la base de datos
         archivoDao.modificarAudio(textIdArchivo.getText(), Integer.parseInt(valorIdPrograma.getText()), Integer.parseInt(valorIdFragmento.getText()), audio);
-        //deshabilita panel agregarFragmento
+        
         recargarArchivo();
+        desplegarFragmento(contadorFragmentos);
+        
         this.modificado = true;
       }
       
@@ -3764,7 +3778,7 @@ public class VentanaModificar extends javax.swing.JFrame {
     java.awt.EventQueue.invokeLater(new Runnable() {
       @Override
       public void run() {
-        new VentanaModificar("OPERADOR DE PRUEBA").setVisible(true);
+        new VentanaModificar("OPERADOR DE PRUEBA",new VentanaPrincipal("OPERADOR DE PRUEBA")).setVisible(true);
       }
       });
   }
