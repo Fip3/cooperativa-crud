@@ -9,7 +9,6 @@ import com.cooperativa.dao.*;
 import com.cooperativa.model.*;
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -330,7 +329,7 @@ public class VentanaRegistrar extends javax.swing.JFrame {
     }
   }
   
-  public void windowClosing(WindowEvent e){
+  private void comentarioInicial(){
     Cambio primerCambio = new Cambio();
     primerCambio.setIdCambio(0);
     primerCambio.setResponsableCambio(this.operador);
@@ -532,7 +531,7 @@ public class VentanaRegistrar extends javax.swing.JFrame {
     labelReportero = new javax.swing.JLabel();
     comboReportero = new javax.swing.JComboBox<>();
     scrollReportero = new javax.swing.JScrollPane();
-    listaComentarista1 = new javax.swing.JList<>();
+    listaReportero = new javax.swing.JList<>();
     labelCompetencia = new javax.swing.JLabel();
     textCompetencia = new javax.swing.JTextField();
     labelLugar = new javax.swing.JLabel();
@@ -1895,15 +1894,15 @@ public class VentanaRegistrar extends javax.swing.JFrame {
       }
     });
 
-    listaComentarista1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-    listaComentarista1.setToolTipText("Click derecho para borrar nombre");
-    listaComentarista1.setMaximumSize(new java.awt.Dimension(0, 3));
-    listaComentarista1.addMouseListener(new java.awt.event.MouseAdapter() {
+    listaReportero.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+    listaReportero.setToolTipText("Click derecho para borrar nombre");
+    listaReportero.setMaximumSize(new java.awt.Dimension(0, 3));
+    listaReportero.addMouseListener(new java.awt.event.MouseAdapter() {
       public void mouseClicked(java.awt.event.MouseEvent evt) {
-        listaComentarista1MouseClicked(evt);
+        listaReporteroMouseClicked(evt);
       }
     });
-    scrollReportero.setViewportView(listaComentarista1);
+    scrollReportero.setViewportView(listaReportero);
 
     labelCompetencia.setText("Competencia");
 
@@ -2524,16 +2523,18 @@ public class VentanaRegistrar extends javax.swing.JFrame {
       
       if(formularioListo){
         
-        
         //guardado del Archivo en base de datos
         archivoDao.crearArchivo(archivo);
+        
+        //crea primer registro de cambio
+        this.comentarioInicial();
 
         //Desactiva panel para evitar reingreso de Archivo
         this.setPanelEnabled(panelCrearArchivo, false);
         
         //revela panel Agregar Fragmento
         panelAgregarPrograma.setVisible(true);
-    
+        
       }
       
     } catch (NumberFormatException nfe) {
@@ -3010,8 +3011,8 @@ public class VentanaRegistrar extends javax.swing.JFrame {
             }
           }
           
-          for(int i = 0; i < listaComentarista1.getModel().getSize(); i++){
-            if(audioTemp.agregarReportero(listaComentarista1.getModel().getElementAt(i))){
+          for(int i = 0; i < listaReportero.getModel().getSize(); i++){
+            if(audioTemp.agregarReportero(listaReportero.getModel().getElementAt(i))){
               System.out.println("REPORTERO AGREGADO");
             }
           }
@@ -3372,15 +3373,15 @@ public class VentanaRegistrar extends javax.swing.JFrame {
   }//GEN-LAST:event_listaComentaristaMouseClicked
 
   private void comboReporteroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboReporteroActionPerformed
-    this.agregarALista(comboReportero, listaComentarista1);
+    this.agregarALista(comboReportero, listaReportero);
   }//GEN-LAST:event_comboReporteroActionPerformed
 
-  private void listaComentarista1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaComentarista1MouseClicked
-    listaComentarista1.setSelectedIndex(listaComentarista1.locationToIndex(evt.getPoint()));
+  private void listaReporteroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaReporteroMouseClicked
+    listaReportero.setSelectedIndex(listaReportero.locationToIndex(evt.getPoint()));
     if(SwingUtilities.isRightMouseButton(evt)){
-      popupLista.show(listaComentarista1, evt.getX(), evt.getY());
+      popupLista.show(listaReportero, evt.getX(), evt.getY());
     }
-  }//GEN-LAST:event_listaComentarista1MouseClicked
+  }//GEN-LAST:event_listaReporteroMouseClicked
 
   private void textAlturaInicioProgramaHoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textAlturaInicioProgramaHoraActionPerformed
     // TODO add your handling code here:
@@ -3547,7 +3548,6 @@ public class VentanaRegistrar extends javax.swing.JFrame {
   private javax.swing.JLabel labelTipoSoporte;
   private javax.swing.JLabel labelTitulo;
   private javax.swing.JList<String> listaComentarista;
-  private javax.swing.JList<String> listaComentarista1;
   private javax.swing.JList<String> listaConductor;
   private javax.swing.JList<String> listaEncargadoRRSS;
   private javax.swing.JList<String> listaEntrevistados;
@@ -3560,6 +3560,7 @@ public class VentanaRegistrar extends javax.swing.JFrame {
   private javax.swing.JList<String> listaPeriodistaInforme;
   private javax.swing.JList<String> listaPersonajeInforme;
   private javax.swing.JList<String> listaRelator;
+  private javax.swing.JList<String> listaReportero;
   private javax.swing.JList<String> listaTemaEntrevista;
   private javax.swing.JList<String> listaTemaInforme;
   private javax.swing.JList<String> listaTemaNoticia;
