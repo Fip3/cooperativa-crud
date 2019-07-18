@@ -3644,7 +3644,12 @@ public class VentanaModificar extends javax.swing.JFrame {
 
   private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
     
-    new VentanaComentario(this.operador,this.textIdArchivo.getText()).setVisible(true);
+    if(modificado){
+      new VentanaComentario(this.operador,this.textIdArchivo.getText()).setVisible(true);
+    } else {
+      JOptionPane.showMessageDialog(this, "Cerrando archivo sin modificaciones...");
+      principal.setVisible(true);
+    }
     
     this.dispose();  
       
