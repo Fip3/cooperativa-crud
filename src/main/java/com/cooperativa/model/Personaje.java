@@ -47,4 +47,9 @@ public class Personaje {
   public void setInstitucion(String institucion) {
     this.institucion = institucion;
   }
+  
+  @Override
+  public String toString() {
+    return (nombreCompleto + ". " + cargo + ", " + institucion);
+  }
 }
