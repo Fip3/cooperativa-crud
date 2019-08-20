@@ -8,13 +8,9 @@ package com.cooperativa.vista;
 import com.cooperativa.dao.*;
 import com.cooperativa.model.*;
 import java.awt.Component;
-import java.util.ArrayList;
 import java.time.ZoneId;
 import java.util.Arrays;
-import java.util.List;
 import javax.swing.DefaultListModel;
-import javax.swing.JOptionPane;
-import javax.swing.SwingUtilities;
 
 /**
  *
@@ -2028,7 +2024,7 @@ public class VentanaBusqueda extends javax.swing.JFrame {
 
   private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
     
-    new VentanaPrincipal(this.operador).setVisible(true);
+    principal.setVisible(true);
     this.dispose();  
       
   }//GEN-LAST:event_botonSalirActionPerformed
