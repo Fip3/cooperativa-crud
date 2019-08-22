@@ -195,12 +195,12 @@ public class Archivo {
    * @return int - Devuelve la cantidad de fragmentos descritos en el listado de programas.
    */
   public int numeroFragmentos() {
-    int total = this.programas.size();
+    int total = 0;
     
     for(Programa p: programas){
-      total =+ p.getFragmentos().size();
+      total += p.getFragmentos().size();
     }
-    
+
     return total;
   }
 
