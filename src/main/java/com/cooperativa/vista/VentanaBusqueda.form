@@ -1634,11 +1634,7 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                              <Component id="panelDisciplina" pref="0" max="32767" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="panelDisciplina" alignment="1" pref="0" max="32767" attributes="0"/>
                           <Group type="102" alignment="1" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="labelReportero" pref="164" max="32767" attributes="0"/>
@@ -2310,6 +2306,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="&lt;&lt;"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonResultadoAnteriorActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="valorResultados">
           <Properties>
@@ -2324,6 +2323,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="&gt;&gt;"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonResultadoSiguienteActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

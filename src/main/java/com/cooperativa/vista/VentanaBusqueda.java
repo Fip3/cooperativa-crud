@@ -9,7 +9,9 @@ import com.cooperativa.dao.*;
 import com.cooperativa.model.*;
 import java.awt.Component;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import javax.swing.DefaultListModel;
 
 /**
@@ -20,11 +22,14 @@ public class VentanaBusqueda extends javax.swing.JFrame {
 
   
   //declaracion de atributos personalizados
+  private byte contadorArchivos;
   private byte contadorProgramas;
   private byte contadorFragmentos;
+  private int contadorResultados;
   private final ConstDaoImpl constDao;
   private final ArchivoDaoImpl archivoDao;
-  private Archivo archivo;
+  private List<Archivo> resultados;
+  private int totalResultados;
   private final String operador;
   private VentanaPrincipal principal;
   
@@ -61,8 +66,11 @@ public class VentanaBusqueda extends javax.swing.JFrame {
     this.archivoDao = new ArchivoDaoImpl();
     
     //inicializacion de contadores
+    this.contadorArchivos = 0;
     this.contadorProgramas = 0;
     this.contadorFragmentos = 0;
+    this.totalResultados = 0;
+    
     
    
   }
@@ -93,6 +101,15 @@ public class VentanaBusqueda extends javax.swing.JFrame {
     }
     
     listaFinal.setModel(modelo);
+  }
+  
+  /**
+   * Limpia la <code>JList</code> indicada
+   * @param lista <code>JList</code> que recibe el valor seleccionado
+   */
+  private void limpiarLista(javax.swing.JList lista){
+    DefaultListModel modelo = new DefaultListModel();
+    lista.setModel(modelo);
   }
   
   /**
@@ -253,191 +270,229 @@ public class VentanaBusqueda extends javax.swing.JFrame {
     }
   }
   
-  private void recargarArchivo(){
-    this.archivo = archivoDao.buscarPorId(textBuscarTexto.getText());
-  }
-  
-  private void desplegarArchivo(Archivo archivo){
+  private void desplegarArchivo(int indiceArchivo){
     
-    panelArchivo.setVisible(true);
-    textIdArchivo.setText(archivo.getId());
-    textNombreArchivo.setText(archivo.getNombreArchivo());
-    
-    this.desplegarPrograma(0);
-    panelPrograma.setVisible(true);
-    this.desplegarFragmento(0);
-    panelFragmento.setVisible(true);
+    try {
+      panelArchivo.setVisible(true);
+      textIdArchivo.setText(this.resultados.get(indiceArchivo).getId());
+      textNombreArchivo.setText(this.resultados.get(indiceArchivo).getNombreArchivo());
+
+      panelPrograma.setVisible(true);
+      panelFragmento.setVisible(true);
+    } catch (NullPointerException npe) {
+      System.out.println("ATENCION: Existen claves inexistentes o sin valores definidos (desplegarArchivo)");
+    } catch (IndexOutOfBoundsException ioube) {
+      System.out.println("ATENCION: Existen archivos sin programas definidos (desplegarArchivo)");
+    }
+      
     
   }
   
   private void desplegarPrograma(int indicePrograma){
-    Programa programa = this.archivo.getProgramas().get(indicePrograma);
-    valorAlturaInicioProgramaHora.setText(String.valueOf(programa.getAlturaInicio() / 3600));
-    valorAlturaInicioProgramaMinutos.setText(String.valueOf((programa.getAlturaInicio() % 3600) / 60));
-    valorAlturaInicioProgramaSegundos.setText(String.valueOf((programa.getAlturaInicio() % 3600) % 60));
-    valorAlturaTerminoProgramaHora.setText(String.valueOf(programa.getAlturaTermino() / 3600));
-    valorAlturaTerminoProgramaMinutos.setText(String.valueOf((programa.getAlturaTermino() % 3600) / 60));
-    valorAlturaTerminoProgramaSegundos.setText(String.valueOf((programa.getAlturaTermino() % 3600) % 60));
-    textNombrePrograma.setText(programa.getNombrePrograma());
-    textDiaEmision.setText(String.valueOf(programa.getFechaEmision().toInstant().atZone(ZoneId.of("Z")).getDayOfMonth()));
-    textMesEmision.setText(String.valueOf(programa.getFechaEmision().toInstant().atZone(ZoneId.of("Z")).getMonthValue()));
-    textAnhoEmision.setText(String.valueOf(programa.getFechaEmision().toInstant().atZone(ZoneId.of("Z")).getYear()));
-    for(String c: programa.getConductor()){
-      this.agregarALista(c, listaConductor);
+    try {
+      
+      Programa programa = this.resultados.get(contadorArchivos).getProgramas().get(indicePrograma);
+      valorAlturaInicioProgramaHora.setText(String.valueOf(programa.getAlturaInicio() / 3600));
+      valorAlturaInicioProgramaMinutos.setText(String.valueOf((programa.getAlturaInicio() % 3600) / 60));
+      valorAlturaInicioProgramaSegundos.setText(String.valueOf((programa.getAlturaInicio() % 3600) % 60));
+      valorAlturaTerminoProgramaHora.setText(String.valueOf(programa.getAlturaTermino() / 3600));
+      valorAlturaTerminoProgramaMinutos.setText(String.valueOf((programa.getAlturaTermino() % 3600) / 60));
+      valorAlturaTerminoProgramaSegundos.setText(String.valueOf((programa.getAlturaTermino() % 3600) % 60));
+      textNombrePrograma.setText(programa.getNombrePrograma());
+      textDiaEmision.setText(String.valueOf(programa.getFechaEmision().toInstant().atZone(ZoneId.of("Z")).getDayOfMonth()));
+      textMesEmision.setText(String.valueOf(programa.getFechaEmision().toInstant().atZone(ZoneId.of("Z")).getMonthValue()));
+      textAnhoEmision.setText(String.valueOf(programa.getFechaEmision().toInstant().atZone(ZoneId.of("Z")).getYear()));
+      
+      limpiarLista(listaConductor);
+      for(String c: programa.getConductor()){
+        this.agregarALista(c, listaConductor);
+      }
+
+    } catch (NullPointerException npe) {
+      System.out.println("ATENCION: Existen claves inexistentes o sin valores definidos (desplegarPrograma)");
+    } catch (IndexOutOfBoundsException ioube) {
+      System.out.println("ATENCION: Existen programas sin fragmentos definidos (desplegarPrograma)");
     }
-    
-    this.desplegarFragmento(0);
   }
   
   private void desplegarFragmento(int indiceAudio){
-    Audio fragmento = this.archivo.getProgramas().get(this.contadorProgramas).getFragmentos().get(indiceAudio);
-    
-    valorIdFragmento.setText(fragmento.getIdAudio());
-    valorAlturaInicioFragmentoHora.setText(String.valueOf(fragmento.getAlturaInicio() / 3600));
-    valorAlturaInicioFragmentoMinutos.setText(String.valueOf((fragmento.getAlturaInicio() % 3600) / 60));
-    valorAlturaInicioFragmentoSegundos.setText(String.valueOf((fragmento.getAlturaInicio() % 3600) % 60));
-    valorAlturaTerminoFragmentoHora.setText(String.valueOf(fragmento.getAlturaTermino() / 3600));
-    valorAlturaTerminoFragmentoMinutos.setText(String.valueOf((fragmento.getAlturaTermino() % 3600) / 60));
-    valorAlturaTerminoFragmentoSegundos.setText(String.valueOf((fragmento.getAlturaTermino() % 3600) % 60));
-    
-    String[] tiposAudio = {"Panel", "Deporte", "Entrevista", "Seccion", "Informe", "Noticia"};
-    String[] disciplinasDeporte = {"Tenis", "Basquetball", "Futbol"};
-    
-    int indexTipoAudio = Arrays.asList(tiposAudio).indexOf(textTipoAudio) + 1;
-    
-    //despliegue de tipos
-    switch(indexTipoAudio){
-      case 1: {
-        Panel panel = (Panel)fragmento;
-        for(Personaje p: panel.getPanelista()){
-          this.agregarALista(p.toString(), this.listaPanelistas);
+    try {
+      
+
+      Audio fragmento = this.resultados.get(this.contadorArchivos).getProgramas().get(this.contadorProgramas).getFragmentos().get(indiceAudio);
+
+      valorIdFragmento.setText(fragmento.getIdAudio());
+      valorAlturaInicioFragmentoHora.setText(String.valueOf(fragmento.getAlturaInicio() / 3600));
+      valorAlturaInicioFragmentoMinutos.setText(String.valueOf((fragmento.getAlturaInicio() % 3600) / 60));
+      valorAlturaInicioFragmentoSegundos.setText(String.valueOf((fragmento.getAlturaInicio() % 3600) % 60));
+      valorAlturaTerminoFragmentoHora.setText(String.valueOf(fragmento.getAlturaTermino() / 3600));
+      valorAlturaTerminoFragmentoMinutos.setText(String.valueOf((fragmento.getAlturaTermino() % 3600) / 60));
+      valorAlturaTerminoFragmentoSegundos.setText(String.valueOf((fragmento.getAlturaTermino() % 3600) % 60));
+
+      String[] tiposAudio = {"Panel", "Deporte", "Entrevista", "Seccion", "Informe", "Noticia"};
+      String[] disciplinasDeporte = {"Tenis", "Basquetball", "Futbol"};
+
+      this.textTipoAudio.setText(fragmento.getTipo());
+      
+      int indexTipoAudio = Arrays.asList(tiposAudio).indexOf(fragmento.getTipo()) + 1;
+            
+      //despliegue de tipos
+      switch(indexTipoAudio){
+        case 1: {
+          Panel panel = (Panel)fragmento;
+          for(Personaje p: panel.getPanelista()){
+            this.agregarALista(p.toString(), this.listaPanelistas);
+          }
+          for(String t: panel.getTema()){
+            this.agregarALista(t, this.listaTemaPanel);
+          }
+          break;
         }
-        for(String t: panel.getTema()){
-          this.agregarALista(t, this.listaTemaPanel);
-        }
-        break;
-      }
-        
-      case 2: {
-        Deporte deporte = (Deporte)fragmento;
-        for(String r:deporte.getRelator()){
-          this.agregarALista(r,listaRelator);
-        }
-        for(String lc:deporte.getLocutorComercial()){
-          this.agregarALista(lc,listaLocutorComercial);
-        }
-        for(String ers:deporte.getEncargadoRedesSociales()){
-          this.agregarALista(ers,listaEncargadoRRSS);
-        }
-        for(String c:deporte.getComentarista()){
-          this.agregarALista(c,listaComentarista);
-        }
-        for(String rc:deporte.getReportero()){
-          this.agregarALista(rc,listaReportero);
-        }
-        textCompetencia.setText(deporte.getCompetencia());
-        textLugar.setText(deporte.getLugar());
-        
-        int indexDisciplinaDeporte = Arrays.asList(disciplinasDeporte).indexOf(textDisciplina) + 1;
-        
-        switch(indexDisciplinaDeporte){
-          case 1: {
-            Tenis tenis = (Tenis)deporte;
-            String cadena = "";
-            for(String j: tenis.getJugador()){
-              cadena += j + ";";
+
+        case 2: {
+          Deporte deporte = (Deporte)fragmento;
+          for(String r:deporte.getRelator()){
+            this.agregarALista(r,listaRelator);
+          }
+          for(String lc:deporte.getLocutorComercial()){
+            this.agregarALista(lc,listaLocutorComercial);
+          }
+          for(String ers:deporte.getEncargadoRedesSociales()){
+            this.agregarALista(ers,listaEncargadoRRSS);
+          }
+          for(String c:deporte.getComentarista()){
+            this.agregarALista(c,listaComentarista);
+          }
+          for(String rc:deporte.getReportero()){
+            this.agregarALista(rc,listaReportero);
+          }
+          textCompetencia.setText(deporte.getCompetencia());
+          textLugar.setText(deporte.getLugar());
+
+          int indexDisciplinaDeporte = Arrays.asList(disciplinasDeporte).indexOf(deporte.getDisciplina()) + 1;
+
+          switch(indexDisciplinaDeporte){
+            case 1: {
+              Tenis tenis = (Tenis)deporte;
+              String cadena = "";
+              for(String j: tenis.getJugador()){
+                cadena += j + ";";
+              }
+              if(!cadena.equals("")){
+                textJugadores.setText(cadena.substring(0, cadena.length()-2));
+              }
+
+              textMarcadorFinalTenis.setText(tenis.getMarcador());
+
+              break;
             }
-            if(!cadena.equals("")){
-              textJugadores.setText(cadena.substring(0, cadena.length()-2));
+            case 2: {
+              Basquetball basquetball = (Basquetball)deporte;
+              textEquipoLocalBasquetball.setText(basquetball.getEquipoLocal());
+              textEquipoVisitaBasquetball.setText(basquetball.getEquipoVisita());
+              textMarcadorFinalBasquetball.setText(basquetball.getMarcador());
+              break;
             }
-            
-            textMarcadorFinalTenis.setText(tenis.getMarcador());
-            
-            break;
+            case 3: {
+              Futbol futbol = (Futbol)deporte;
+
+              textEquipoLocalFutbol.setText(futbol.getEquipoLocal());
+              textEquipoVisitaFutbol.setText(futbol.getEquipoVisita());
+              textMarcadorFinalFutbol.setText(futbol.getMarcador());
+
+              break;
+            }
           }
-          case 2: {
-            Basquetball basquetball = (Basquetball)deporte;
-            textEquipoLocalBasquetball.setText(basquetball.getEquipoLocal());
-            textEquipoVisitaBasquetball.setText(basquetball.getEquipoVisita());
-            textMarcadorFinalBasquetball.setText(basquetball.getMarcador());
-            break;
+          
+          for(Component c: panelDisciplina.getComponents()){
+            c.setVisible(false);
           }
-          case 3: {
-            Futbol futbol = (Futbol)deporte;
-            
-            textEquipoLocalFutbol.setText(futbol.getEquipoLocal());
-            textEquipoVisitaFutbol.setText(futbol.getEquipoVisita());
-            textMarcadorFinalFutbol.setText(futbol.getMarcador());
-            
-            break;
+          
+          panelDisciplina.getComponent(indexDisciplinaDeporte - 1).setVisible(true);
+          panelDisciplina.setVisible(true);
+
+          break;
+        }
+
+        case 3: {
+          Entrevista entrevista = (Entrevista)fragmento;
+          for(String p: entrevista.getPeriodista()){
+            agregarALista(p, listaPeriodistaEntrevista);
           }
+          for(Personaje e: entrevista.getEntrevistado()){
+            agregarALista(e.toString(), listaEntrevistados);
+          }
+          for(String t: entrevista.getTema()){
+            agregarALista(t,listaTemaEntrevista);
+          }
+          break;
         }
-        
-        break;
+        case 4: {
+          Seccion seccion = (Seccion)fragmento;
+          textNombreSeccion.setText(seccion.getNombre());
+          for(String p: seccion.getPanelista()){
+            agregarALista(p, listaPanelistasSeccion);
+          }
+          for(String t: seccion.getTema()){
+            agregarALista(t, listaTemaSeccion);
+          }
+          for(Personaje p: seccion.getInvitado()){
+            agregarALista(p.toString(), listaInvitadosSeccion);
+          }
+          break;
+        }
+        case 5: {
+          Informe informe = (Informe)fragmento;
+          for(String p: informe.getPeriodista()){
+            agregarALista(p, listaPeriodistaInforme);
+          }
+          for(String t: informe.getTema()){
+            agregarALista(t, listaTemaInforme);
+          }
+          textLugarInforme.setText(informe.getLugar());
+          for(Personaje p: informe.getCunha()){
+            agregarALista(p.toString(), listaPersonajeInforme);
+          }
+
+          break;
+        }
+        case 6: {
+          Noticia noticia = (Noticia)fragmento;
+          for(String t: noticia.getTema()){
+            agregarALista(t, listaTemaNoticia);
+          }
+          break;
+        }
+        default: {
+          break;
+        }
       }
-        
-      case 3: {
-        Entrevista entrevista = (Entrevista)fragmento;
-        for(String p: entrevista.getPeriodista()){
-          agregarALista(p, listaPeriodistaEntrevista);
-        }
-        for(Personaje e: entrevista.getEntrevistado()){
-          agregarALista(e.toString(), listaEntrevistados);
-        }
-        for(String t: entrevista.getTema()){
-          agregarALista(t,listaTemaEntrevista);
-        }
-        break;
+
+
+      for(String pc: fragmento.getPalabrasClave()){
+        this.agregarALista(pc, this.listaPalabrasClave);
       }
-      case 4: {
-        Seccion seccion = (Seccion)fragmento;
-        textNombreSeccion.setText(seccion.getNombre());
-        for(String p: seccion.getPanelista()){
-          agregarALista(p, listaPanelistasSeccion);
-        }
-        for(String t: seccion.getTema()){
-          agregarALista(t, listaTemaSeccion);
-        }
-        for(Personaje p: seccion.getInvitado()){
-          agregarALista(p.toString(), listaInvitadosSeccion);
-        }
-        break;
+      textAreaDescripcionFragmento.setText(fragmento.getDescripcion());
+      
+      
+      for(Component c: panelTipos.getComponents()){
+        c.setVisible(false);
       }
-      case 5: {
-        Informe informe = (Informe)fragmento;
-        for(String p: informe.getPeriodista()){
-          agregarALista(p, listaPeriodistaInforme);
-        }
-        for(String t: informe.getTema()){
-          agregarALista(t, listaTemaInforme);
-        }
-        textLugarInforme.setText(informe.getLugar());
-        for(Personaje p: informe.getCunha()){
-          agregarALista(p.toString(), listaPersonajeInforme);
-        }
-        
-        break;
-      }
-      case 6: {
-        Noticia noticia = (Noticia)fragmento;
-        for(String t: noticia.getTema()){
-          agregarALista(t, listaTemaNoticia);
-        }
-        break;
-      }
-      default: {
-        break;
-      }
+      
+      panelTipos.getComponent(indexTipoAudio-1).setVisible(true);
+      scrollTipos.setVisible(true);
+      
+    } catch (NullPointerException npe) {
+      System.out.println("ATENCION: Existen claves inexistentes o sin valores definidos (desplegarFragmewnto)");
+    } catch (IndexOutOfBoundsException ioube) {
+      System.out.println("ATENCION: Existen programas sin fragmentos definidos (desplegarFragmento)");
     }
-    
-    
-    for(String pc: fragmento.getPalabrasClave()){
-      this.agregarALista(pc, this.listaPalabrasClave);
-    }
-    textAreaDescripcionFragmento.setText(fragmento.getDescripcion());
     
   }
   
+  private void actualizarMarcadorResultados(){
+    this.valorResultados.setText(this.contadorResultados + "/" + totalResultados);
+  }
   
   
   /**
@@ -1681,10 +1736,7 @@ public class VentanaBusqueda extends javax.swing.JFrame {
     panelDeporte.setLayout(panelDeporteLayout);
     panelDeporteLayout.setHorizontalGroup(
       panelDeporteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDeporteLayout.createSequentialGroup()
-        .addGap(0, 0, 0)
-        .addComponent(panelDisciplina, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-        .addGap(0, 0, 0))
+      .addComponent(panelDisciplina, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
       .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDeporteLayout.createSequentialGroup()
         .addGroup(panelDeporteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
           .addComponent(labelReportero, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
@@ -1846,12 +1898,22 @@ public class VentanaBusqueda extends javax.swing.JFrame {
     );
 
     botonResultadoAnterior.setText("<<");
+    botonResultadoAnterior.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        botonResultadoAnteriorActionPerformed(evt);
+      }
+    });
 
     valorResultados.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
     valorResultados.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
     valorResultados.setText("0/0");
 
     botonResultadoSiguiente.setText(">>");
+    botonResultadoSiguiente.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        botonResultadoSiguienteActionPerformed(evt);
+      }
+    });
 
     javax.swing.GroupLayout panelNavegacionLayout = new javax.swing.GroupLayout(panelNavegacion);
     panelNavegacion.setLayout(panelNavegacionLayout);
@@ -2030,15 +2092,31 @@ public class VentanaBusqueda extends javax.swing.JFrame {
   }//GEN-LAST:event_botonSalirActionPerformed
 
   private void botonBuscarTextoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarTextoActionPerformed
+    this.contadorArchivos = 0;
     this.contadorProgramas = 0;
     this.contadorFragmentos = 0;
+    this.contadorResultados = 0;
+    this.totalResultados = 0;
     
     //inicializaciones botones navegacion
     botonResultadoAnterior.setEnabled(false);
-    botonResultadoSiguiente.setEnabled(false);
+    botonResultadoSiguiente.setEnabled(true);
     
-    this.archivo = archivoDao.buscarPorId(textBuscarTexto.getText());
-    desplegarArchivo(archivo);
+    this.resultados = archivoDao.buscar(textBuscarTexto.getText());
+    
+    for(Archivo archivo: this.resultados) {
+      totalResultados += archivo.numeroFragmentos();
+    }
+    
+    if(!this.resultados.isEmpty()){
+      contadorResultados = 1;
+      desplegarArchivo(contadorArchivos);
+      desplegarPrograma(contadorProgramas);
+      desplegarFragmento(contadorFragmentos);
+    }
+    
+    this.actualizarMarcadorResultados();
+    
   }//GEN-LAST:event_botonBuscarTextoActionPerformed
 
   private void textMarcadorFinalBasquetballActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textMarcadorFinalBasquetballActionPerformed
@@ -2092,6 +2170,88 @@ public class VentanaBusqueda extends javax.swing.JFrame {
   private void listaRelatorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaRelatorMouseClicked
     // TODO add your handling code here:
   }//GEN-LAST:event_listaRelatorMouseClicked
+
+  private void botonResultadoSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonResultadoSiguienteActionPerformed
+    
+    byte viArchivos = contadorArchivos;
+    byte viProgramas = contadorProgramas;
+    byte viFragmentos =  contadorFragmentos;
+    contadorFragmentos++;
+    this.contadorResultados++;
+    
+    
+    if(resultados.get(contadorArchivos).getProgramas().get(contadorProgramas).getFragmentos().size() == contadorFragmentos){
+      
+      contadorFragmentos = 0;
+      contadorProgramas++;
+      
+      if(resultados.get(contadorArchivos).getProgramas().size() == contadorProgramas) {
+        contadorProgramas = 0;
+        contadorArchivos++;
+        
+        if(resultados.size() == contadorArchivos){
+          contadorArchivos = viArchivos;
+          contadorProgramas = viProgramas;
+          contadorFragmentos = viFragmentos;
+          
+          botonResultadoSiguiente.setEnabled(false);
+        }
+      }
+    }
+    
+    botonResultadoAnterior.setEnabled(true);
+    actualizarMarcadorResultados();
+    
+    if(this.contadorResultados == totalResultados){
+      botonResultadoSiguiente.setEnabled(false);
+    }
+    
+    desplegarArchivo(contadorArchivos);
+    desplegarPrograma(contadorProgramas);
+    desplegarFragmento(contadorFragmentos);
+    
+  }//GEN-LAST:event_botonResultadoSiguienteActionPerformed
+
+  private void botonResultadoAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonResultadoAnteriorActionPerformed
+    byte viArchivos = contadorArchivos;
+    byte viProgramas = contadorProgramas;
+    byte viFragmentos =  contadorFragmentos;
+    
+    this.contadorResultados--;
+    contadorFragmentos--;
+    
+    if(contadorFragmentos < 0){
+      contadorProgramas--;
+      
+      if(contadorProgramas < 0){
+        contadorArchivos--;
+        
+        if(contadorArchivos < 0) {
+          contadorArchivos = 0;
+          contadorProgramas = 0;
+          contadorFragmentos = 0;
+          
+        }
+        contadorProgramas = (byte)(resultados.get(contadorArchivos).getProgramas().size() - 1);
+      }
+      contadorFragmentos = (byte)(resultados.get(contadorArchivos).getProgramas().get(contadorProgramas).getFragmentos().size() - 1);
+    }
+    
+    botonResultadoSiguiente.setEnabled(true);
+    
+    
+    if(this.contadorResultados > 0){
+      actualizarMarcadorResultados();
+    } 
+    
+    if(this.contadorResultados <= 1){
+      botonResultadoAnterior.setEnabled(false);
+    }
+    
+    desplegarArchivo(contadorArchivos);
+    desplegarPrograma(contadorProgramas);
+    desplegarFragmento(contadorFragmentos);
+  }//GEN-LAST:event_botonResultadoAnteriorActionPerformed
 
   /**
    * @param args the command line arguments
