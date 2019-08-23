@@ -171,7 +171,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
   }//GEN-LAST:event_botonAModificarActionPerformed
 
   private void botonABusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonABusquedaActionPerformed
-    // TODO add your handling code here:
+    new VentanaBusqueda("OPERADOR DE PRUEBA", this).setVisible(true);
+    this.setVisible(false);
   }//GEN-LAST:event_botonABusquedaActionPerformed
 
   private void enlaceSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_enlaceSalirMouseClicked
