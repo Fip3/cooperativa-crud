@@ -71,7 +71,9 @@ public class VentanaBusqueda extends javax.swing.JFrame {
     this.contadorFragmentos = 0;
     this.totalResultados = 0;
     
-    
+    //inicializacion de botones
+    botonResultadoAnterior.setEnabled(false);
+    botonResultadoSiguiente.setEnabled(false);
    
   }
   
@@ -2098,24 +2100,33 @@ public class VentanaBusqueda extends javax.swing.JFrame {
     this.contadorResultados = 0;
     this.totalResultados = 0;
     
+    if(!textBuscarTexto.getText().equals("")){
+      this.resultados = archivoDao.buscar(textBuscarTexto.getText());
+    } else {
+      this.resultados = archivoDao.obtenerTodos();
+    }
+    
     //inicializaciones botones navegacion
     botonResultadoAnterior.setEnabled(false);
-    botonResultadoSiguiente.setEnabled(true);
-    
-    this.resultados = archivoDao.buscar(textBuscarTexto.getText());
     
     for(Archivo archivo: this.resultados) {
       totalResultados += archivo.numeroFragmentos();
     }
     
     if(!this.resultados.isEmpty()){
+      if(this.resultados.size() > 1 || this.resultados.get(this.contadorResultados).numeroFragmentos() > 1){
+        botonResultadoSiguiente.setEnabled(true);
+      }
       contadorResultados = 1;
       desplegarArchivo(contadorArchivos);
       desplegarPrograma(contadorProgramas);
       desplegarFragmento(contadorFragmentos);
+      this.actualizarMarcadorResultados();
+    } else {
+      this.valorResultados.setText("NO HAY RESULTADOS");
     }
     
-    this.actualizarMarcadorResultados();
+    
     
   }//GEN-LAST:event_botonBuscarTextoActionPerformed
 
