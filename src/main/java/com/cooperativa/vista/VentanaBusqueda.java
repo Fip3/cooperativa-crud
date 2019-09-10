@@ -45,35 +45,17 @@ public class VentanaBusqueda extends javax.swing.JFrame {
     initComponents();
     
     //inicializacion de paneles no visibles al cargar ventana
-    panelArchivo.setVisible(false);
-    panelPrograma.setVisible(false);
-    panelFragmento.setVisible(false);
-    scrollTipos.setVisible(false);
-    panelNoticia.setVisible(false);
-    panelInforme.setVisible(false);
-    panelEntrevista.setVisible(false);
-    panelPanel.setVisible(false);
-    panelSeccion.setVisible(false);
-    panelDeporte.setVisible(false);
-    panelDisciplina.setVisible(false);
-    panelBasquetball.setVisible(false);
-    panelFutbol.setVisible(false);
-    panelTenis.setVisible(false);
-    
+    initPaneles();
     
     //inicializacion DAOs
     this.constDao = new ConstDaoImpl();
     this.archivoDao = new ArchivoDaoImpl();
     
     //inicializacion de contadores
-    this.contadorArchivos = 0;
-    this.contadorProgramas = 0;
-    this.contadorFragmentos = 0;
-    this.totalResultados = 0;
+    initContadores();
     
     //inicializacion de botones
-    botonResultadoAnterior.setEnabled(false);
-    botonResultadoSiguiente.setEnabled(false);
+    initBotones();
    
   }
   
@@ -494,6 +476,36 @@ public class VentanaBusqueda extends javax.swing.JFrame {
   
   private void actualizarMarcadorResultados(){
     this.valorResultados.setText(this.contadorResultados + "/" + totalResultados);
+  }
+
+  private void initPaneles(){
+    panelArchivo.setVisible(false);
+    panelPrograma.setVisible(false);
+    panelFragmento.setVisible(false);
+    scrollTipos.setVisible(false);
+    panelNoticia.setVisible(false);
+    panelInforme.setVisible(false);
+    panelEntrevista.setVisible(false);
+    panelPanel.setVisible(false);
+    panelSeccion.setVisible(false);
+    panelDeporte.setVisible(false);
+    panelDisciplina.setVisible(false);
+    panelBasquetball.setVisible(false);
+    panelFutbol.setVisible(false);
+    panelTenis.setVisible(false);
+  }
+
+  private void initContadores(){
+    this.contadorArchivos = 0;
+    this.contadorProgramas = 0;
+    this.contadorFragmentos = 0;
+    this.contadorResultados = 0;
+    this.totalResultados = 0;
+  }
+
+  private void initBotones(){
+    botonResultadoAnterior.setEnabled(false);
+    botonResultadoSiguiente.setEnabled(false);
   }
   
   
@@ -2089,16 +2101,14 @@ public class VentanaBusqueda extends javax.swing.JFrame {
   private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
     
     principal.setVisible(true);
-    this.dispose();  
+    this.dispose();
       
   }//GEN-LAST:event_botonSalirActionPerformed
 
   private void botonBuscarTextoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarTextoActionPerformed
-    this.contadorArchivos = 0;
-    this.contadorProgramas = 0;
-    this.contadorFragmentos = 0;
-    this.contadorResultados = 0;
-    this.totalResultados = 0;
+    initContadores();
+    initBotones();
+    initPaneles();
     
     if(!textBuscarTexto.getText().equals("")){
       this.resultados = archivoDao.buscar(textBuscarTexto.getText());
