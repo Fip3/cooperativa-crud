@@ -470,6 +470,7 @@ public class VentanaBusqueda extends javax.swing.JFrame {
       System.out.println("ATENCION: Existen claves inexistentes o sin valores definidos (desplegarFragmewnto)");
     } catch (IndexOutOfBoundsException ioube) {
       System.out.println("ATENCION: Existen programas sin fragmentos definidos (desplegarFragmento)");
+      this.panelFragmento.setVisible(false);
     }
     
   }

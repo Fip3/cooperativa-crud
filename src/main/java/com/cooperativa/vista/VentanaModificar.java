@@ -89,8 +89,8 @@ public class VentanaModificar extends javax.swing.JFrame {
     completarCombo(comboComentarista,"periodistas");
     completarCombo(comboReportero,"periodistas");
     completarCombo(comboPalabrasClave,"palabrasClave");
-    completarCombo(comboPanelistas,"panelistas");
-    completarCombo(comboPanelistasSeccion,"panelistas");
+    completarCombo(comboPanelistas,"personajes");
+    completarCombo(comboPanelistasSeccion,"personajes");
     completarCombo(comboPeriodistaEntrevista,"periodistas");
     completarCombo(comboPeriodistaInforme,"periodistas");
     completarCombo(comboRelator,"periodistas");
