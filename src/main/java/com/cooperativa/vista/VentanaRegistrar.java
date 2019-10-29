@@ -247,6 +247,10 @@ public class VentanaRegistrar extends javax.swing.JFrame {
     }
   }
   
+  /**
+   * Limpia el <code>JPanel</code> y todos sus componentes
+   * @param panel <code>JPanel</code> que se va a limpiar
+   */
   private void limpiarPanel(javax.swing.JPanel panel){
     for(Component c : panel.getComponents()){
       if(c instanceof javax.swing.JTextField){
@@ -273,6 +277,10 @@ public class VentanaRegistrar extends javax.swing.JFrame {
     }
   }
   
+  /**
+   * Limpia el <code>JLayeredPane</code> y todos sus componentes
+   * @param panel <code>JLayeredPane</code> que se va a limpiar
+   */
   private void limpiarPanel(javax.swing.JLayeredPane panel){
     for(Component c : panel.getComponents()){
       if(c instanceof javax.swing.JTextField){
@@ -299,10 +307,18 @@ public class VentanaRegistrar extends javax.swing.JFrame {
     }
   }
   
+  /**
+   * Limpia el <code>JViewport</code> inserto en <code>JScrollPane</code>
+   * @param panel <code>JScrollPane</code> cuyo <code>JViewport</code> será limpiado
+   */
   private void limpiarPanel(javax.swing.JScrollPane panel){
     limpiarViewport(panel.getViewport());
   }
   
+  /**
+   * Limpia el <code>JViewport</code> inserto en <code>JScrollPane</code> y todos sus componentes
+   * @param panel <code>JViewport</code> que se va a limpiar
+   */
   private void limpiarViewport(javax.swing.JViewport viewport){
     for(Component c : viewport.getComponents()){
       if(c instanceof javax.swing.JTextField){
@@ -329,6 +345,9 @@ public class VentanaRegistrar extends javax.swing.JFrame {
     }
   }
   
+  /**
+   * Inserta el comentario inicial al crear un Archivo dentro de la base de datos
+   */
   private void comentarioInicial(){
     Cambio primerCambio = new Cambio();
     primerCambio.setIdCambio(0);
@@ -2579,23 +2598,6 @@ public class VentanaRegistrar extends javax.swing.JFrame {
           JOptionPane.showMessageDialog(this, "El programa inicia antes de terminar el anterior","ERROR",0);
         }
       }
-      
-      /*
-      //validacion altura termino de programa
-      if(!textAlturaTerminoProgramaHora.getText().equals("")
-              && !textAlturaTerminoProgramaMinutos.getText().equals("")
-              && !textAlturaTerminoProgramaSegundos.getText().equals("")
-              && alturaTerminoPrograma > alturaInicioPrograma){
-        labelAlturaTerminoPrograma.setForeground(null);
-        programa.setAlturaTermino(alturaTerminoPrograma);
-      } else {
-        formularioListo = false;
-        labelAlturaTerminoPrograma.setForeground(Color.red);
-        if(alturaInicioPrograma >= alturaTerminoPrograma) {
-          JOptionPane.showMessageDialog(this, "El programa termina antes de comenzar","ERROR",0);
-        }
-      }
-      */
       
       if(comboNombrePrograma.getSelectedIndex() != 0){
         labelNombrePrograma.setForeground(null);
