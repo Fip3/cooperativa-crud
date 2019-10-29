@@ -7,6 +7,7 @@ package com.cooperativa.vista;
 
 import com.cooperativa.dao.*;
 import com.cooperativa.model.*;
+import com.cooperativa.tools.Converter;
 import java.awt.Color;
 import java.awt.Component;
 import java.util.ArrayList;
@@ -2512,9 +2513,16 @@ public class VentanaRegistrar extends javax.swing.JFrame {
         formularioListo = false;
       }
       
+      this.duracion =(short)Converter.deHmsASegundos(
+              Integer.parseInt(textDuracionArchivoHora.getText()),
+              Integer.parseInt(textDuracionArchivoMinutos.getText()),
+              Integer.parseInt(textDuracionArchivoSegundos.getText())
+      );
+      /*
       this.duracion = (short) (Short.parseShort(textDuracionArchivoHora.getText()) * 3600
               + Short.parseShort(textDuracionArchivoMinutos.getText()) * 60
               + Short.parseShort(textDuracionArchivoSegundos.getText()));
+      */
       if(!textDuracionArchivoHora.getText().equals("")
               && !textDuracionArchivoMinutos.getText().equals("")
               && !textDuracionArchivoSegundos.getText().equals("")){
@@ -2573,9 +2581,17 @@ public class VentanaRegistrar extends javax.swing.JFrame {
     //insercion de informacion en Programa
     try {
       //altura inicio de programa de H:M:S a segundos
+      /*
       short alturaInicioPrograma = (short) (Short.parseShort(textAlturaInicioProgramaHora.getText()) * 3600
                 + Short.parseShort(textAlturaInicioProgramaMinutos.getText()) * 60
                 + Short.parseShort(textAlturaInicioProgramaSegundos.getText()));
+      */
+      
+      short alturaInicioPrograma = (short)Converter.deHmsASegundos(
+              Integer.parseInt(textAlturaInicioProgramaHora.getText()),
+              Integer.parseInt(textAlturaInicioProgramaMinutos.getText()),
+              Integer.parseInt(textAlturaInicioProgramaSegundos.getText())
+      );
       
       /*
       //altura fin de programa de H:M:S a segundos
@@ -3144,14 +3160,28 @@ public class VentanaRegistrar extends javax.swing.JFrame {
       }
       
       //altura inicio de fragmento de H:M:S a segundos
+      /*
       short alturaInicioFragmento = (short) (Short.parseShort(textAlturaInicioFragmentoHora.getText()) * 3600
                 + Short.parseShort(textAlturaInicioFragmentoMinutos.getText()) * 60
                 + Short.parseShort(textAlturaInicioFragmentoSegundos.getText()));
+      */
+      short alturaInicioFragmento = (short)Converter.deHmsASegundos(
+              Integer.parseInt(textAlturaInicioFragmentoHora.getText()),
+              Integer.parseInt(textAlturaInicioFragmentoMinutos.getText()),
+              Integer.parseInt(textAlturaInicioFragmentoSegundos.getText())
+      );
       
       //altura termino de fragmento de H:M:S a segundos
+      /*
       short alturaTerminoFragmento = (short)(Short.parseShort(textAlturaTerminoFragmentoHora.getText()) * 3600
                 + Short.parseShort(textAlturaTerminoFragmentoMinutos.getText()) * 60
                 + Short.parseShort(textAlturaTerminoFragmentoSegundos.getText()));
+      */
+      short alturaTerminoFragmento = (short)Converter.deHmsASegundos(
+              Integer.parseInt(textAlturaTerminoFragmentoHora.getText()),
+              Integer.parseInt(textAlturaTerminoFragmentoMinutos.getText()),
+              Integer.parseInt(textAlturaTerminoFragmentoSegundos.getText())
+      );
       
       if(!textAlturaInicioFragmentoHora.getText().equals("")
               && !textAlturaInicioFragmentoMinutos.getText().equals("")
@@ -3317,9 +3347,16 @@ public class VentanaRegistrar extends javax.swing.JFrame {
   private void botonOtroFragmentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonOtroFragmentoActionPerformed
     //almacena altura del final del fragmento anterior
     this.alturaFinFragmentoAnterior = 
+            /*
             (short) (Short.parseShort(textAlturaTerminoFragmentoHora.getText()) * 3600
             + Short.parseShort(textAlturaTerminoFragmentoMinutos.getText()) * 60
             + Short.parseShort(textAlturaTerminoFragmentoSegundos.getText()));
+            */
+            (short)Converter.deHmsASegundos(
+              Integer.parseInt(textAlturaTerminoFragmentoHora.getText()),
+              Integer.parseInt(textAlturaTerminoFragmentoMinutos.getText()),
+              Integer.parseInt(textAlturaTerminoFragmentoSegundos.getText())
+      );
     //incrementa numero de fragmentos en programa
     this.contadorFragmentos++;
     //habilita panel AgregarFragmento
@@ -3331,9 +3368,9 @@ public class VentanaRegistrar extends javax.swing.JFrame {
     //invisibiliza panel Tipos
     scrollTipos.setVisible(false);
     //inicializa altura del nuevo fragmento
-    textAlturaInicioFragmentoHora.setText(String.valueOf(this.alturaFinFragmentoAnterior / 3600));
-    textAlturaInicioFragmentoMinutos.setText(String.valueOf((this.alturaFinFragmentoAnterior % 3600) / 60));
-    textAlturaInicioFragmentoSegundos.setText((String.valueOf(((this.alturaFinFragmentoAnterior % 3600) % 60))));
+    textAlturaInicioFragmentoHora.setText(String.valueOf(Converter.deSegundosAHms(alturaFinFragmentoAnterior)[0]));
+    textAlturaInicioFragmentoMinutos.setText(String.valueOf(Converter.deSegundosAHms(alturaFinFragmentoAnterior)[1]));
+    textAlturaInicioFragmentoSegundos.setText((String.valueOf(Converter.deSegundosAHms(alturaFinFragmentoAnterior)[2])));
     //se ubica en el subformulario de altura de termino de fragmento
     textAlturaTerminoFragmentoHora.requestFocus();
   }//GEN-LAST:event_botonOtroFragmentoActionPerformed
@@ -3341,9 +3378,16 @@ public class VentanaRegistrar extends javax.swing.JFrame {
   private void botonOtroProgramaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonOtroProgramaActionPerformed
     //almacena altura del final del programa anterior
     this.alturaFinProgramaAnterior = 
+            /*
             (short)(Short.parseShort(valorAlturaTerminoProgramaHora.getText())*3600
             + Short.parseShort(valorAlturaTerminoProgramaMinutos.getText())*60
             + Short.parseShort(valorAlturaTerminoProgramaSegundos.getText()));
+            */
+            (short)Converter.deHmsASegundos(
+              Integer.parseInt(valorAlturaTerminoProgramaHora.getText()),
+              Integer.parseInt(valorAlturaTerminoProgramaMinutos.getText()),
+              Integer.parseInt(valorAlturaTerminoProgramaSegundos.getText())
+      );
     //incrementa numero de programas
     this.contadorProgramas++;
     //reinicia contador de fragmentos para el programa
@@ -3358,9 +3402,9 @@ public class VentanaRegistrar extends javax.swing.JFrame {
     scrollTipos.setVisible(false);
     panelDisciplina.setVisible(false);
     //inicializa altura del nuevo programa
-    textAlturaInicioProgramaHora.setText(String.valueOf(this.alturaFinProgramaAnterior / 3600));
-    textAlturaInicioProgramaMinutos.setText(String.valueOf((this.alturaFinProgramaAnterior % 3600) / 60));
-    textAlturaInicioProgramaSegundos.setText((String.valueOf(((this.alturaFinProgramaAnterior % 3600) % 60))));
+    textAlturaInicioProgramaHora.setText(String.valueOf(Converter.deSegundosAHms(alturaFinProgramaAnterior)[0]));
+    textAlturaInicioProgramaMinutos.setText(String.valueOf(Converter.deSegundosAHms(alturaFinProgramaAnterior)[1]));
+    textAlturaInicioProgramaSegundos.setText((String.valueOf(Converter.deSegundosAHms(alturaFinProgramaAnterior)[2])));
   }//GEN-LAST:event_botonOtroProgramaActionPerformed
 
   private void comboComentaristaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboComentaristaActionPerformed
