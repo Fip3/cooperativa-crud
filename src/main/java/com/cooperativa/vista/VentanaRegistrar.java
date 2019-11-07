@@ -2551,16 +2551,19 @@ public class VentanaRegistrar extends javax.swing.JFrame {
       if(formularioListo){
         
         //guardado del Archivo en base de datos
-        archivoDao.crearArchivo(archivo);
-        
-        //crea primer registro de cambio
-        this.comentarioInicial();
+        if(archivoDao.crearArchivo(archivo)){
+          //crea primer registro de cambio
+          this.comentarioInicial();
 
-        //Desactiva panel para evitar reingreso de Archivo
-        this.setPanelEnabled(panelCrearArchivo, false);
+          //Desactiva panel para evitar reingreso de Archivo
+          this.setPanelEnabled(panelCrearArchivo, false);
+
+          //revela panel Agregar Fragmento
+          panelAgregarPrograma.setVisible(true);
+        } else{
+          JOptionPane.showMessageDialog(this, "ID de archivo ya existe");
+        }
         
-        //revela panel Agregar Fragmento
-        panelAgregarPrograma.setVisible(true);
         
       }
       
