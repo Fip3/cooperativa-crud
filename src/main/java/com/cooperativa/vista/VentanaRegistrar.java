@@ -2451,8 +2451,6 @@ public class VentanaRegistrar extends javax.swing.JFrame {
 
   private void botonAgregarProgramaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarProgramaActionPerformed
     
-    //variables
-    boolean formularioListo = true;
     
     //Al presionar AgregarPrograma, se genera el Archivo y se guarda en la base de datos
     
@@ -2461,111 +2459,160 @@ public class VentanaRegistrar extends javax.swing.JFrame {
     
     try {
       //Creacion y llenado del Archivo
+      
+      boolean camposOpcionalesEnBlanco = false;
+      boolean camposObligatoriosEnBlanco = false;
+      String listaCamposObligatoriosEnBlanco = "";
+      String listaCamposOpcionalesEnBlanco = "";
+      
       if(!textIdArchivo.getText().equals("")){
         labelIdArchivo.setForeground(null);
         archivo.setId(textIdArchivo.getText());
       } else {
+        camposObligatoriosEnBlanco = true;
+        listaCamposObligatoriosEnBlanco += labelIdArchivo.getText() + "\n";
         labelIdArchivo.setForeground(Color.red);
-        formularioListo = false;
       }
       
       if(comboResponsableDigitalizacion.getSelectedIndex() != 0){
         labelResponsableDigitalizacion.setForeground(null);
         archivo.setResponsableDigitalizacion(comboResponsableDigitalizacion.getSelectedItem().toString());
       } else {
+        camposObligatoriosEnBlanco = true;
+        listaCamposObligatoriosEnBlanco += labelResponsableDigitalizacion.getText() + "\n";
         labelResponsableDigitalizacion.setForeground(Color.red);
-        formularioListo = false;
       }
       
-      if(textCodigoSoporte.getText().equals("")){
-        textCodigoSoporte.setText("{}");
-        textCodigoSoporte.setEditable(false);
+      if(!textCodigoSoporte.getText().equals("")){
+        archivo.setCodigoSoporte(textCodigoSoporte.getText());
+      } else {
+        camposOpcionalesEnBlanco = true;
+        listaCamposOpcionalesEnBlanco += labelCodigoSoporte.getText() + "\n";
       }
-      archivo.setCodigoSoporte(textCodigoSoporte.getText());
       
       if(comboTipoSoporte.getSelectedIndex() != 0){
         labelTipoSoporte.setForeground(null);
         archivo.setTipoSoporte(comboTipoSoporte.getSelectedItem().toString());
       } else {
+        camposObligatoriosEnBlanco = true;
+        listaCamposObligatoriosEnBlanco += labelTipoSoporte.getText() + "\n";
         labelTipoSoporte.setForeground(Color.red);
-        formularioListo = false;
       }
       
-      if(textAreaDescripcionExterior.getDocument().getLength() == 0){
-        textAreaDescripcionExterior.setText("{}");
-        textAreaDescripcionExterior.setEditable(false);
+      if(textAreaDescripcionExterior.getDocument().getLength() != 0){
+        archivo.setDescripcionExterior(textAreaDescripcionExterior.getText());
+      } else {
+        camposOpcionalesEnBlanco = true;
+        listaCamposOpcionalesEnBlanco += labelDescripcionExterior.getText() + "\n";
+        
       }
-      archivo.setDescripcionExterior(textAreaDescripcionExterior.getText());
       
       if(!textNombreArchivo.getText().equals("")){
         labelNombreArchivo.setForeground(null);
         archivo.setNombreArchivo(textNombreArchivo.getText());
       } else {
+        camposObligatoriosEnBlanco = true;
+        listaCamposObligatoriosEnBlanco += labelNombreArchivo.getText() + "\n";
+        
         labelNombreArchivo.setForeground(Color.red);
-        formularioListo = false;
       }
       
       if(!textTamanhoArchivo.getText().equals("")){
         labelTamanhoArchivo.setForeground(null);
         archivo.setTamanhoArchivo(Integer.parseInt(textTamanhoArchivo.getText()));
       } else {
+        camposObligatoriosEnBlanco = true;
+        listaCamposObligatoriosEnBlanco += labelTamanhoArchivo.getText() + "\n";
+        
         labelTamanhoArchivo.setForeground(Color.red);
-        formularioListo = false;
       }
       
-      this.duracion =(short)Converter.deHmsASegundos(
-              Integer.parseInt(textDuracionArchivoHora.getText()),
-              Integer.parseInt(textDuracionArchivoMinutos.getText()),
-              Integer.parseInt(textDuracionArchivoSegundos.getText())
-      );
-      /*
-      this.duracion = (short) (Short.parseShort(textDuracionArchivoHora.getText()) * 3600
-              + Short.parseShort(textDuracionArchivoMinutos.getText()) * 60
-              + Short.parseShort(textDuracionArchivoSegundos.getText()));
-      */
       if(!textDuracionArchivoHora.getText().equals("")
               && !textDuracionArchivoMinutos.getText().equals("")
               && !textDuracionArchivoSegundos.getText().equals("")){
+        
         labelDuracionArchivo.setForeground(null);
+        this.duracion =(short)Converter.deHmsASegundos(
+                Integer.parseInt(textDuracionArchivoHora.getText()),
+                Integer.parseInt(textDuracionArchivoMinutos.getText()),
+                Integer.parseInt(textDuracionArchivoSegundos.getText())
+        );
+
         archivo.setDuracionArchivo(this.duracion);
       } else {
-        formularioListo = false;
-        labelDuracionArchivo.setForeground(Color.red);        
+        labelDuracionArchivo.setForeground(Color.red);
+        camposObligatoriosEnBlanco = true;
+        listaCamposObligatoriosEnBlanco += labelDuracionArchivo.getText() + "\n";
       }
       
-      archivo.setFormatoArchivo(new Formato(
-              Byte.parseByte(comboCanales.getSelectedItem().toString()),
-              Byte.parseByte(comboProfundidadBits.getSelectedItem().toString()),
-              Integer.parseInt(comboFrecuenciaMuestreo.getSelectedItem().toString()),
-              comboCodec.getSelectedItem().toString(),
-              Short.parseShort(comboTasaBits.getSelectedItem().toString())
-      ));
-      
-      archivo.setFechaDigitalizacion(new GregorianCalendar(
-              Integer.parseInt(textAnhoDigitalizacion.getText()),
-              (Integer.parseInt(textMesDigitalizacion.getText()) - 1),
-              Integer.parseInt(textDiaDigitalizacion.getText())
-      ).getTime());
-      
-      
-      if(formularioListo){
-        
-        //guardado del Archivo en base de datos
-        if(archivoDao.crearArchivo(archivo)){
-          //crea primer registro de cambio
-          this.comentarioInicial();
-
-          //Desactiva panel para evitar reingreso de Archivo
-          this.setPanelEnabled(panelCrearArchivo, false);
-
-          //revela panel Agregar Fragmento
-          panelAgregarPrograma.setVisible(true);
-        } else{
-          JOptionPane.showMessageDialog(this, "ID de archivo ya existe");
+      int comboFormatoEnBlanco = 1;
+      for(Component c : panelFormato.getComponents()){
+        if (c instanceof javax.swing.JComboBox){
+          comboFormatoEnBlanco *= ((javax.swing.JComboBox) c).getSelectedIndex();
         }
-        
-        
       }
+      if(comboFormatoEnBlanco != 0){
+        archivo.setFormatoArchivo(new Formato(
+                Byte.parseByte(comboCanales.getSelectedItem().toString()),
+                Byte.parseByte(comboProfundidadBits.getSelectedItem().toString()),
+                Integer.parseInt(comboFrecuenciaMuestreo.getSelectedItem().toString()),
+                comboCodec.getSelectedItem().toString(),
+                Short.parseShort(comboTasaBits.getSelectedItem().toString())
+        ));
+      } else {
+        camposObligatoriosEnBlanco = true;
+        listaCamposObligatoriosEnBlanco += labelFormatoArchivo.getText() + "\n";
+      }
+      
+      
+      if(!textAnhoDigitalizacion.getText().equals("")
+              && !textMesDigitalizacion.getText().equals("")
+              && !textDiaDigitalizacion.getText().equals("")){
+        
+        archivo.setFechaDigitalizacion(new GregorianCalendar(
+                Integer.parseInt(textAnhoDigitalizacion.getText()),
+                (Integer.parseInt(textMesDigitalizacion.getText()) - 1),
+                Integer.parseInt(textDiaDigitalizacion.getText())
+        ).getTime());
+      } else {
+        camposOpcionalesEnBlanco = true;
+        listaCamposOpcionalesEnBlanco += labelFechaDigitalizacion.getText() + "\n";
+      }
+      
+      int opcion = 1;
+      String mensaje = "Los siguientes campos están en blanco: \n" ;
+      if(camposObligatoriosEnBlanco){
+        mensaje = mensaje 
+                + "Obligatorios:\n" 
+                + listaCamposObligatoriosEnBlanco;
+        mensaje = mensaje 
+                + "\nOpcionales:\n"
+                + listaCamposOpcionalesEnBlanco 
+                + "\n Complétalos y presiona Agregar Programa nuevamente";
+        JOptionPane.showMessageDialog(this, mensaje);
+      } else if (camposOpcionalesEnBlanco){
+        mensaje = mensaje 
+                + "Opcionales:\n"
+                + listaCamposOpcionalesEnBlanco
+                + "\n ¿Deseas continuar?";
+        opcion = JOptionPane.showConfirmDialog(this, mensaje, "Advertencia",0);
+      }
+      
+      if(opcion == 0){
+          //guardado del Archivo en base de datos
+          if(archivoDao.crearArchivo(archivo)){
+            //crea primer registro de cambio
+            this.comentarioInicial();
+
+            //Desactiva panel para evitar reingreso de Archivo
+            this.setPanelEnabled(panelCrearArchivo, false);
+
+            //revela panel Agregar Fragmento
+            panelAgregarPrograma.setVisible(true);
+          } else{
+            JOptionPane.showMessageDialog(this, "ID de archivo ya existe");
+          }
+        }
       
     } catch (NumberFormatException nfe) {
       JOptionPane.showMessageDialog(this, nfe.getMessage());
