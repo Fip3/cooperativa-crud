@@ -2596,23 +2596,25 @@ public class VentanaRegistrar extends javax.swing.JFrame {
                 + listaCamposOpcionalesEnBlanco
                 + "\n ¿Deseas continuar?";
         opcion = JOptionPane.showConfirmDialog(this, mensaje, "Advertencia",0);
+      } else {
+        opcion = 0;
       }
       
       if(opcion == 0){
-          //guardado del Archivo en base de datos
-          if(archivoDao.crearArchivo(archivo)){
-            //crea primer registro de cambio
-            this.comentarioInicial();
+        //guardado del Archivo en base de datos
+        if(archivoDao.crearArchivo(archivo)){
+          //crea primer registro de cambio
+          this.comentarioInicial();
 
-            //Desactiva panel para evitar reingreso de Archivo
-            this.setPanelEnabled(panelCrearArchivo, false);
+          //Desactiva panel para evitar reingreso de Archivo
+          this.setPanelEnabled(panelCrearArchivo, false);
 
-            //revela panel Agregar Fragmento
-            panelAgregarPrograma.setVisible(true);
-          } else{
-            JOptionPane.showMessageDialog(this, "ID de archivo ya existe");
-          }
+          //revela panel Agregar Fragmento
+          panelAgregarPrograma.setVisible(true);
+        } else{
+          JOptionPane.showMessageDialog(this, "ID de archivo ya existe");
         }
+      }
       
     } catch (NumberFormatException nfe) {
       JOptionPane.showMessageDialog(this, nfe.getMessage());
