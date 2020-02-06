@@ -2628,29 +2628,19 @@ public class VentanaRegistrar extends javax.swing.JFrame {
     //Al presionar AgregarFragmento se inserta la informacion del programa al Archivo
     //creación de Programa
     Programa programa = new Programa(String.valueOf(this.contadorProgramas));
-    boolean formularioListo = true;
     
     //insercion de informacion en Programa
     try {
-      //altura inicio de programa de H:M:S a segundos
-      /*
-      short alturaInicioPrograma = (short) (Short.parseShort(textAlturaInicioProgramaHora.getText()) * 3600
-                + Short.parseShort(textAlturaInicioProgramaMinutos.getText()) * 60
-                + Short.parseShort(textAlturaInicioProgramaSegundos.getText()));
-      */
+      boolean camposOpcionalesEnBlanco = false;
+      boolean camposObligatoriosEnBlanco = false;
+      String listaCamposObligatoriosEnBlanco = "";
+      String listaCamposOpcionalesEnBlanco = "";
       
       short alturaInicioPrograma = (short)Converter.deHmsASegundos(
               Integer.parseInt(textAlturaInicioProgramaHora.getText()),
               Integer.parseInt(textAlturaInicioProgramaMinutos.getText()),
               Integer.parseInt(textAlturaInicioProgramaSegundos.getText())
       );
-      
-      /*
-      //altura fin de programa de H:M:S a segundos
-      short alturaTerminoPrograma = (short) (Short.parseShort(textAlturaTerminoProgramaHora.getText()) * 3600
-                + Short.parseShort(textAlturaTerminoProgramaMinutos.getText()) * 60
-                + Short.parseShort(textAlturaTerminoProgramaSegundos.getText()));
-      */
               
       //validacion altura de inicio de programa
       if(!textAlturaInicioProgramaHora.getText().equals("")
@@ -2660,7 +2650,8 @@ public class VentanaRegistrar extends javax.swing.JFrame {
         labelAlturaInicioPrograma.setForeground(null);
         programa.setAlturaInicio(alturaInicioPrograma);
       } else {
-        formularioListo = false;
+        camposObligatoriosEnBlanco = true;
+        listaCamposObligatoriosEnBlanco += labelAlturaInicioPrograma.getText() + "\n";
         labelAlturaInicioPrograma.setForeground(Color.red);
         if(alturaInicioPrograma < this.alturaFinProgramaAnterior) {
           JOptionPane.showMessageDialog(this, "El programa inicia antes de terminar el anterior","ERROR",0);
@@ -2671,15 +2662,23 @@ public class VentanaRegistrar extends javax.swing.JFrame {
         labelNombrePrograma.setForeground(null);
         programa.setNombrePrograma(comboNombrePrograma.getSelectedItem().toString());
       } else {
-        formularioListo = false;
+        camposObligatoriosEnBlanco = true;
+        listaCamposObligatoriosEnBlanco += labelNombrePrograma.getText() + "\n";
         labelNombrePrograma.setForeground(Color.red);
       }
       
-      programa.setFechaEmision(new GregorianCalendar(
-              Integer.parseInt(textAnhoEmision.getText()),
-              (Integer.parseInt(textMesEmision.getText()) - 1),
-              Integer.parseInt(textDiaEmision.getText())
-      ).getTime());
+      if(!textAnhoEmision.getText().equals("")
+              && !textMesEmision.getText().equals("")
+              && !textDiaEmision.getText().equals("")){
+        programa.setFechaEmision(new GregorianCalendar(
+                Integer.parseInt(textAnhoEmision.getText()),
+                (Integer.parseInt(textMesEmision.getText()) - 1),
+                Integer.parseInt(textDiaEmision.getText())
+        ).getTime());
+      } else {
+        camposOpcionalesEnBlanco = true;
+        listaCamposOpcionalesEnBlanco +=  labelFechaEmisionPrograma.getText() + "\n";
+      }
       
       if(listaConductor.getModel().getSize() != 0){
         labelConductor.setForeground(null);
@@ -2687,22 +2686,48 @@ public class VentanaRegistrar extends javax.swing.JFrame {
           programa.agregarConductor(listaConductor.getModel().getElementAt(i));
         }
       } else {
-        formularioListo = false;
+        camposObligatoriosEnBlanco = true;
+        listaCamposObligatoriosEnBlanco += labelConductor.getText() + "\n";
         labelConductor.setForeground(Color.red);
       }
       
-      if(formularioListo){
-        if(this.contadorProgramas == 0){
-          this.alturaFinFragmentoAnterior = alturaInicioPrograma;
-        };
+      int opcion = 1;
+      String mensaje = "Los siguientes campos están en blanco: \n";
+      if(camposObligatoriosEnBlanco){
+        mensaje = mensaje
+                + "Obligatorios:\n"
+                + listaCamposObligatoriosEnBlanco;
+        mensaje = mensaje
+                + "\nOpcionales:\n"
+                + listaCamposOpcionalesEnBlanco
+                + "\n Complétalos y presiona Agregar Fragmento nuevamente";
+        JOptionPane.showMessageDialog(this, mensaje);
+      } else if (camposOpcionalesEnBlanco){
+        mensaje = mensaje
+                + "Opcionales:\n"
+                + listaCamposOpcionalesEnBlanco
+                + "\n ¿Deseas continuar?";
+        opcion = JOptionPane.showConfirmDialog(this, mensaje, "Advertencia", 0);
+      } else {
+        opcion = 0;
+      }
+      
+      if(opcion == 0){
+        
         //agrega Programa a lista Programas en base de datos
-        archivoDao.insertarPrograma(textIdArchivo.getText(), programa);
-        //desactiva panel para evitar doble grabación del encabezado
-        this.setPanelEnabled(panelAgregarPrograma, false);
-        // visibiliza, activa y limpia panel AgregarFragmento
-        panelAgregarFragmento.setVisible(true);
-        this.setPanelEnabled(panelAgregarFragmento, true);
-        this.limpiarPanel(panelAgregarFragmento);
+        if(archivoDao.insertarPrograma(textIdArchivo.getText(), programa)){
+          
+          //desactiva panel para evitar doble grabación del encabezado
+          this.setPanelEnabled(panelAgregarPrograma, false);
+          
+          // visibiliza, activa y limpia panel AgregarFragmento
+          panelAgregarFragmento.setVisible(true);
+          this.setPanelEnabled(panelAgregarFragmento, true);
+          this.limpiarPanel(panelAgregarFragmento);
+          if(this.contadorProgramas == 0){
+            this.alturaFinFragmentoAnterior = alturaInicioPrograma;
+          }
+        }
       }
     } catch (NumberFormatException nfe) {
       JOptionPane.showMessageDialog(this, nfe.getMessage());
