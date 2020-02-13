@@ -23,6 +23,12 @@ public class Personaje {
     this.cargo = cargo;
     this.institucion = institucion;
   }
+  
+  public Personaje(String datos){
+    this.nombreCompleto = datos.split("\\.\\s")[0];
+    this.cargo = datos.split("\\.\\s")[1].split("\\,\\s")[0];
+    this.institucion = datos.split("\\.\\s")[1].split("\\,\\s")[1];
+  }
 
   public String getNombreCompleto() {
     return nombreCompleto;
@@ -52,4 +58,5 @@ public class Personaje {
   public String toString() {
     return (nombreCompleto + ". " + cargo + ", " + institucion);
   }
+  
 }
