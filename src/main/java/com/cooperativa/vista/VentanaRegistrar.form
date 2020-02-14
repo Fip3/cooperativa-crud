@@ -1945,19 +1945,15 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="scrollInvitadosSeccion" pref="0" max="32767" attributes="0"/>
                                   <Component id="scrollTemaSeccion" alignment="1" pref="0" max="32767" attributes="0"/>
-                                  <Component id="comboPanelistasSeccion" max="32767" attributes="0"/>
+                                  <Component id="comboPanelistasSeccion" pref="153" max="32767" attributes="0"/>
                                   <Component id="scrollPanelistasSeccion" alignment="0" pref="0" max="32767" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="textTemaSeccion" max="32767" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="botonTemaSeccion" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="textInvitadosSeccion" min="-2" pref="108" max="-2" attributes="0"/>
-                                      <EmptySpace pref="8" max="32767" attributes="0"/>
-                                      <Component id="botonInvitadosSeccion" min="-2" max="-2" attributes="0"/>
-                                  </Group>
                                   <Component id="textNombreSeccion" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="comboInvitadosSeccion" alignment="0" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
@@ -1988,8 +1984,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="labelInvitadosSeccion" alignment="3" max="-2" attributes="0"/>
-                                  <Component id="textInvitadosSeccion" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="botonInvitadosSeccion" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="comboInvitadosSeccion" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="scrollInvitadosSeccion" min="-2" pref="58" max="-2" attributes="0"/>
@@ -2106,19 +2101,6 @@
                         <Property name="text" type="java.lang.String" value="Invitados"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="textInvitadosSeccion">
-                    </Component>
-                    <Component class="javax.swing.JButton" name="botonInvitadosSeccion">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="+"/>
-                        <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
-                          <Insets value="[2, 5, 2, 5]"/>
-                        </Property>
-                      </Properties>
-                      <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonInvitadosSeccionActionPerformed"/>
-                      </Events>
-                    </Component>
                     <Container class="javax.swing.JScrollPane" name="scrollInvitadosSeccion">
                       <AuxValues>
                         <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
@@ -2146,6 +2128,21 @@
                         </Component>
                       </SubComponents>
                     </Container>
+                    <Component class="javax.swing.JComboBox" name="comboInvitadosSeccion">
+                      <Properties>
+                        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                          <StringArray count="1">
+                            <StringItem index="0" value="Elige el nombre"/>
+                          </StringArray>
+                        </Property>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="comboInvitadosSeccionActionPerformed"/>
+                      </Events>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                      </AuxValues>
+                    </Component>
                   </SubComponents>
                 </Container>
                 <Container class="javax.swing.JPanel" name="panelPanel">
